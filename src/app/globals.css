@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: #070D17;
+    --foreground: #F8FAFC;
+    --card: #0B1728;
+    --card-foreground: #F8FAFC;
+    --popover: #0B1728;
+    --popover-foreground: #F8FAFC;
+    --primary: #20C9BD;
+    --primary-foreground: #070D17;
+    --secondary: #123354;
+    --secondary-foreground: #F8FAFC;
+    --muted: #132238;
+    --muted-foreground: #94A3B8;
+    --accent: #E9B65A;
+    --accent-foreground: #070D17;
+    --destructive: #EF4444;
+    --destructive-foreground: #FFFFFF;
+    --border: rgba(255, 255, 255, 0.09);
+    --input: rgba(255, 255, 255, 0.12);
+    --ring: #20C9BD;
+    --radius: 0.75rem;
+
+    /* Custom scientific brand tokens */
+    --space-black: #070D17;
+    --midnight-navy: #0B1728;
+    --deep-blue: #123354;
+    --turquoise: #20C9BD;
+    --agri-green: #57B86B;
+    --sunrise-gold: #E9B65A;
+  }
+}
+
+@theme {
+  --color-space-black: #070D17;
+  --color-midnight-navy: #0B1728;
+  --color-deep-blue: #123354;
+  --color-turquoise: #20C9BD;
+  --color-agri-green: #57B86B;
+  --color-sunrise-gold: #E9B65A;
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+  --color-card-bg: rgba(11, 23, 40, 0.75);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--space-black);
+  color: var(--foreground);
+  font-feature-settings: "rlig" 1, "calt" 1;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Background Atmosphere Gradients */
+.bg-space-radial {
+  background: radial-gradient(circle at 50% 0%, rgba(18, 51, 84, 0.45) 0%, rgba(7, 13, 23, 1) 75%);
+}
+
+.bg-earth-glow {
+  background: radial-gradient(circle at 50% 120%, rgba(32, 201, 189, 0.18) 0%, rgba(7, 13, 23, 0) 65%);
+}
+
+.bg-sunrise-glow {
+  background: radial-gradient(circle at 85% 15%, rgba(233, 182, 90, 0.12) 0%, rgba(7, 13, 23, 0) 50%);
+}
+
+/* Glassmorphism Cards */
+.glass-panel {
+  background: rgba(11, 23, 40, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(18, 51, 84, 0.55);
+  border-color: rgba(32, 201, 189, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -10px rgba(7, 13, 23, 0.8), 0 0 20px -5px rgba(32, 201, 189, 0.15);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #070D17;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(32, 201, 189, 0.4);
+}
+
+/* Subtle scientific grid */
+.scientific-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

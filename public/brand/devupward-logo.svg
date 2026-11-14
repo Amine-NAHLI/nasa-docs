@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 40" fill="none">
+  <defs>
+    <linearGradient id="upwardGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#20C9BD" />
+      <stop offset="100%" stop-color="#E9B65A" />
+    </linearGradient>
+  </defs>
+  <!-- Geometric upward delta / chevron -->
+  <polygon points="12,30 24,10 36,30 28,30 24,20 20,30" fill="url(#upwardGrad)" />
+  <circle cx="24" cy="8" r="3" fill="#E9B65A" />
+  <!-- DEVUPWARD Wordmark -->
+  <text x="44" y="26" font-family="system-ui, sans-serif" font-size="16" font-weight="800" letter-spacing="2" fill="#FFFFFF">DEV<tspan fill="#20C9BD">UPWARD</tspan></text>
+</svg>
