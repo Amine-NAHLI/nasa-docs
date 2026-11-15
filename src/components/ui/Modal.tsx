@@ -75,7 +75,7 @@ export function Modal({
             exit={{ opacity: 0, scale: 0.98, y: 8 }}
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className={cn(
-              "relative w-full rounded-xl border border-zinc-200 bg-white p-6 shadow-2xl text-zinc-900 z-10 my-8 overflow-hidden",
+              "relative w-full rounded-xl border border-zinc-200 dark:border-[#232529] bg-white dark:bg-[#141518] p-6 shadow-2xl text-zinc-900 dark:text-zinc-100 z-10 my-8 overflow-hidden transition-colors",
               maxWClasses[maxWidth],
               className
             )}
@@ -83,13 +83,13 @@ export function Modal({
           >
             <div className="flex items-start justify-between gap-4 mb-4">
               <div>
-                {title && <h2 className="text-lg font-bold text-zinc-900">{title}</h2>}
-                {description && <p className="text-xs text-zinc-500 mt-0.5">{description}</p>}
+                {title && <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">{title}</h2>}
+                {description && <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">{description}</p>}
               </div>
               <button
                 type="button"
                 onClick={onClose}
-                className="rounded-lg p-1.5 text-zinc-400 hover:text-zinc-900 hover:bg-zinc-100 transition-colors cursor-pointer"
+                className="rounded-lg p-1.5 text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-[#1E2024] transition-colors cursor-pointer"
                 aria-label="Close dialog"
               >
                 <X className="h-4 w-4" />
