@@ -71,7 +71,7 @@ export const MOROCCO_REGIONS: Record<string, MoroccoAgroRegion> = {
     docHref: "/docs/nasa-earth",
     docOrder: "02",
     whatIsThis:
-      "La station d'ingestion des données climatiques globales. Elle démontre comment les flux de rayonnement solaire, température et pluie sont collectés sans station météo privée coûteuse.",
+      "Le pôle de démonstration pour l'ingestion des données climatiques régionales. Il illustre comment les flux de rayonnement solaire, température et pluie sont collectés sans nécessiter de station météo privée coûteuse.",
     agriculturalChallenge:
       "Gestion des fluctuations pluviométriques et optimisation de l'eau sur les grands vergers d'agrumes et périmètres irrigués.",
     nasaDataFeed: "NASA POWER (Rayonnement solaire ALLSKY, Température T2M, Pluviométrie)",
@@ -111,7 +111,7 @@ export const MOROCCO_REGIONS: Record<string, MoroccoAgroRegion> = {
     docHref: "/docs/earth-trials",
     docOrder: "04",
     whatIsThis:
-      "La station d'essais et de simulation en conditions climatiques extrêmes. Elle permet d'éprouver la résistance des modèles face aux vagues de chaleur estivales.",
+      "Le pôle d'essais pour la simulation en conditions climatiques extrêmes. Il permet d'éprouver la résistance des modèles biophysiques face aux vagues de chaleur estivales.",
     agriculturalChallenge:
       "Arboriculture d'oliveraies soumise à des températures supérieures à 45°C et des quotas d'irrigation très restreints.",
     nasaDataFeed: "Indicateurs de Stress Thermique & Bilan de Sécheresse Aiguë",

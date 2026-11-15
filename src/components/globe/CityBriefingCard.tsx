@@ -111,7 +111,7 @@ export function CityBriefingCard({
       <div className="pt-2 border-t border-white/10 flex items-center justify-between gap-3 text-xs font-mono">
         <div className="flex items-center gap-1.5 text-slate-400 text-[11px]">
           <ShieldAlert className="h-3.5 w-3.5 text-teal-400" />
-          <span>Station Active · Phase 1</span>
+          <span>Selected Region · Demonstration Area</span>
         </div>
 
         {onNextCity && (

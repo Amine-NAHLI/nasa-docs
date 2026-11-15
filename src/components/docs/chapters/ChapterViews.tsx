@@ -15,15 +15,44 @@ import {
   ImpactScalingVisualizations,
 } from "@/components/docs/charts/DocsCharts";
 import { CodeBlock } from "@/components/docs/CodeBlock";
-import { ShieldCheck, FileCheck, Calculator } from "lucide-react";
+import { ShieldCheck, FileCheck, Calculator, ArrowRight, CheckCircle2, AlertTriangle, Cpu, Layers, Terminal } from "lucide-react";
+
+interface ChapterViewProps {
+  activeSubChapterId?: string;
+}
+
+function SubChapterContainer({
+  activeSubChapterId,
+  children,
+  defaultSubId,
+}: {
+  activeSubChapterId?: string;
+  children: React.ReactNode;
+  defaultSubId?: string;
+}) {
+  const childArray = React.Children.toArray(children);
+  if (activeSubChapterId) {
+    const match = childArray.find(
+      (c: any) => c && c.props && c.props.id === activeSubChapterId
+    );
+    if (match) return <div className="space-y-8 animate-in fade-in-50 duration-150">{match}</div>;
+  }
+  if (defaultSubId) {
+    const match = childArray.find(
+      (c: any) => c && c.props && c.props.id === defaultSubId
+    );
+    if (match) return <div className="space-y-8 animate-in fade-in-50 duration-150">{match}</div>;
+  }
+  return <div className="space-y-8 animate-in fade-in-50 duration-150">{childArray[0]}</div>;
+}
 
 // ─── 1. OVERVIEW & EVIDENCE POLICY ──────────────────────────────────────────
-export function OverviewChapterView() {
+export function OverviewChapterView({ activeSubChapterId }: ChapterViewProps) {
   const { lang } = useDocsContext();
   const isEn = lang === "en";
 
   return (
-    <div className="space-y-12">
+    <SubChapterContainer activeSubChapterId={activeSubChapterId} defaultSubId="evidence-policy">
       {/* Evidence Policy */}
       <section id="evidence-policy" className="scroll-mt-20">
         <div className="border-l-2 border-foreground/30 pl-4 py-2 text-sm text-muted-foreground space-y-3">
@@ -151,17 +180,17 @@ export function OverviewChapterView() {
             : "Le projet vise à rendre accessibles des preuves agronomiques comparatives. Il ne prétend pas démontrer d'améliorations de rendement, d'humidité mesurée à la parcelle, d'économies d'eau réelles ou de déploiement à l'échelle mondiale. L'ambition globale reste distincte de son cas d'étude de référence marocain."}
         </p>
       </section>
-    </div>
+    </SubChapterContainer>
   );
 }
 
 // ─── 2. WHY FARMER EYE? ─────────────────────────────────────────────────────
-export function WhyFarmerEyeChapterView() {
+export function WhyFarmerEyeChapterView({ activeSubChapterId }: ChapterViewProps) {
   const { lang } = useDocsContext();
   const isEn = lang === "en";
 
   return (
-    <div className="space-y-12">
+    <SubChapterContainer activeSubChapterId={activeSubChapterId} defaultSubId="global-challenge">
       {/* 2.1 The Global Challenge */}
       <section id="global-challenge" className="scroll-mt-20">
         <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
@@ -307,6 +336,37 @@ export function WhyFarmerEyeChapterView() {
         </p>
       </section>
 
+            {/* 2.7 Scientific & Practical Objectives */}
+      <section id="mission-objectives" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Scientific & Practical Objectives" : "Objectifs Scientifiques et Pratiques"}
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+          <div className="p-4 rounded-md border border-border/70 bg-muted/20 space-y-2">
+            <h3 className="font-mono text-xs font-semibold text-foreground uppercase tracking-wider">
+              {isEn ? "Core Scientific Objectives" : "Objectifs Scientifiques Fondamentaux"}
+            </h3>
+            <ul className="text-xs text-muted-foreground space-y-1.5 list-disc pl-4">
+              <li>{isEn ? "Standardized Reference ET0 (FAO-56 Penman-Monteith) calculated from NASA POWER daily climate streams." : "Calcul de l'ET0 de référence standardisée (FAO-56 Penman-Monteith) à partir des flux NASA POWER."}</li>
+              <li>{isEn ? "Root-zone soil moisture dynamics assimilated from NASA SMAP L4 (SPL4SMGP 9km radar)." : "Assimilation de la dynamique hydrique racinaire via NASA SMAP L4 (radar 9km SPL4SMGP)."}</li>
+              <li>{isEn ? "Multi-year crop rotation water balance simulation and comparative atmospheric demand tracking." : "Simulation du bilan hydrique pluriannuel et suivi comparatif de la demande atmosphérique."}</li>
+              <li>{isEn ? "Stress-testing biophysical models under simulated extreme climate and drought scenarios." : "Stress-testing des modèles biophysiques sous scénarios simulés de chocs climatiques extrêmes."}</li>
+            </ul>
+          </div>
+          <div className="p-4 rounded-md border border-border/70 bg-muted/20 space-y-2">
+            <h3 className="font-mono text-xs font-semibold text-foreground uppercase tracking-wider">
+              {isEn ? "Operational Farmer Outcomes" : "Bénéfices Opérationnels pour l'Agriculteur"}
+            </h3>
+            <ul className="text-xs text-muted-foreground space-y-1.5 list-disc pl-4">
+              <li>{isEn ? "Accessible comparative evidence comparing crop rotations before seasonal seed purchase." : "Preuves comparatives accessibles avant l'achat des semences et les semis."}</li>
+              <li>{isEn ? "Explanations in Moroccan Darija, French, and English respecting peasant experience." : "Explications claires en Darija marocaine, français et anglais respectant le savoir paysan."}</li>
+              <li>{isEn ? "Strict provenance tracing: separating physical demand models from pumped irrigation volumes." : "Traçabilité stricte : distinction claire entre évapotranspiration physique et eau pompée."}</li>
+              <li>{isEn ? "Sovereign decision-making: preserving farmer autonomy without prescriptive mandates." : "Souveraineté décisionnelle : préservation de l'autonomie paysanne sans consigne prescriptive."}</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       {/* Implementation Status */}
       <section id="implementation-status" className="scroll-mt-20">
         <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
@@ -368,17 +428,17 @@ export function WhyFarmerEyeChapterView() {
           </table>
         </div>
       </section>
-    </div>
+    </SubChapterContainer>
   );
 }
 
 // ─── 3. NASA POWER CLIMATE ──────────────────────────────────────────────────
-export function NasaPowerChapterView() {
+export function NasaPowerChapterView({ activeSubChapterId }: ChapterViewProps) {
   const { lang } = useDocsContext();
   const isEn = lang === "en";
 
   return (
-    <div className="space-y-12">
+    <SubChapterContainer activeSubChapterId={activeSubChapterId} defaultSubId="power-parameters">
       <section id="power-parameters" className="scroll-mt-20">
         <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
           {isEn ? "7 Meteorological Parameters (NASA POWER)" : "7 Paramètres Météorologiques (NASA POWER)"}
@@ -476,17 +536,38 @@ community=AG&longitude=-5.5516&latitude=33.8938&\\
 start=20250101&end=20250131&format=JSON`}
         />
       </section>
-    </div>
+          {/* 9.3 Data Quality & Missingness Protocol */}
+      <section id="power-missingness" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Data Quality & Missingness Protocol (Eq. 9.1)" : "Protocole de Qualité & Données Manquantes (Éq. 9.1)"}
+        </h2>
+        <div className="space-y-4 text-[15px] leading-7 text-muted-foreground">
+          <p>
+            {isEn
+              ? "NASA POWER climate streams employ sentinel values (-999.0) to flag missing, unvalidated, or corrupt meteorological observations. Rather than applying blind linear interpolation, Farmer Eye adheres to a strict data validation boundary:"
+              : "Les flux météorologiques NASA POWER utilisent des valeurs sentinelles (-999.0) pour signaler les observations manquantes ou corrompues. Plutôt que d'appliquer une interpolation aveugle, Farmer Eye applique une frontière stricte de validation :"}
+          </p>
+          <div className="p-4 rounded-md border border-border/70 bg-muted/20 font-mono text-xs text-foreground text-center my-3">
+            <code>{"Flag(v) = { VALID if v ≠ -999 and v_min ≤ v ≤ v_max; MISSING if v = -999; OUT_OF_BOUNDS otherwise }"}</code>
+          </div>
+          <p className="text-xs text-muted-foreground">
+            {isEn
+              ? "If missing values in solar radiation (ALLSKY_SFC_SW_DWN) or temperature (T2M) exceed 10% across an evaluation window, the biophysical engine raises an alert and marks the resulting reference ET0 as provisional."
+              : "Si les lacunes sur le rayonnement solaire ou la température dépassent 10% sur une fenêtre d'évaluation, le moteur biophysique déclenche une alerte et qualifie l'ET0 calculée de provisoire."}
+          </p>
+        </div>
+      </section>
+</SubChapterContainer>
   );
 }
 
 // ─── 4. NASA SMAP SOIL MOISTURE ─────────────────────────────────────────────
-export function NasaSmapChapterView() {
+export function NasaSmapChapterView({ activeSubChapterId }: ChapterViewProps) {
   const { lang } = useDocsContext();
   const isEn = lang === "en";
 
   return (
-    <div className="space-y-12">
+    <SubChapterContainer activeSubChapterId={activeSubChapterId} defaultSubId="smap-catalogue">
       <section id="smap-catalogue" className="scroll-mt-20">
         <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
           {isEn
@@ -555,17 +636,60 @@ export function NasaSmapChapterView() {
         </h2>
         <SoilDepthDifferenceChart />
       </section>
-    </div>
+      {/* 10.5 Correct Reading of Assimilated Moisture */}
+      <section id="smap-interpretation" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Correct Reading of Assimilated Moisture" : "Lecture Correcte de l'Humidité Assimilée"}
+        </h2>
+        <div className="space-y-4 text-[15px] leading-7 text-muted-foreground">
+          <p>
+            {isEn
+              ? "SMAP L4 (SPL4SMGP) is not an optical photograph and not an in-situ capacitive probe buried in an individual row. It is a geophysical product generated by assimilating L-band radar brightness temperatures into the Catchment Land Surface Model via an Ensemble Kalman Filter."
+              : "SMAP L4 (SPL4SMGP) n'est ni une photographie optique ni une sonde capacitive in situ enfouie dans un rang. Il s'agit d'un produit géophysique issu de l'assimilation des températures de brillance radar en bande L dans le modèle Catchment LSM via un filtre de Kalman d'ensemble."}
+          </p>
+          <div className="divide-y divide-border/60 text-xs my-4 border border-border/70 rounded-md p-3 bg-muted/20">
+            <div className="py-2">
+              <strong className="text-foreground font-mono">1. Spatial Footprint:</strong> 9 km grid cell. Field-level variation within the cell cannot be distinguished by satellite radar alone.
+            </div>
+            <div className="py-2">
+              <strong className="text-foreground font-mono">2. Hydraulic Decoupling:</strong> Surface (0–5 cm) reflects daily drying and evaporative flux, whereas root-zone (0–100 cm) represents deep reservoir capacity.
+            </div>
+            <div className="py-2">
+              <strong className="text-foreground font-mono">3. Decision Rule:</strong> Use SMAP L4 for seasonal deficit trends, not for automated daily valve switching.
+            </div>
+          </div>
+        </div>
+      </section>
+
+          {/* 10.2 January 2025 Meknes Source Extraction */}
+      <section id="smap-extraction-example" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "January 2025 Meknes Source Extraction (ee-chart.csv)" : "Extraction Source Meknès Janvier 2025 (ee-chart.csv)"}
+        </h2>
+        <div className="p-4 rounded-md border border-border/70 bg-muted/20 font-mono text-xs overflow-x-auto my-3">
+          <pre>{`{
+  "dataset": "NASA_USDA/HSL/SMAP_smap_l4_10km",
+  "location": { "lat": 33.889, "lon": -5.553, "region": "Meknes-Saïss" },
+  "date": "2025-01-15",
+  "sm_surface": 0.2384,        // Surface moisture (0-5 cm, m³/m³)
+  "sm_rootzone": 0.2841,       // Root-zone moisture (0-100 cm, m³/m³)
+  "surface_wetness": 0.521,    // Relative surface wetness [0-1]
+  "rootzone_wetness": 0.618,   // Relative root-zone wetness [0-1]
+  "soil_temperature_layer1_k": 284.15 // Surface soil temp (Kelvin)
+}`}</pre>
+        </div>
+      </section>
+</SubChapterContainer>
   );
 }
 
 // ─── 5. ARCHITECTURE & PIPELINE ─────────────────────────────────────────────
-export function ArchitecturePipelineChapterView() {
+export function ArchitecturePipelineChapterView({ activeSubChapterId }: ChapterViewProps) {
   const { lang } = useDocsContext();
   const isEn = lang === "en";
 
   return (
-    <div className="space-y-12">
+    <SubChapterContainer activeSubChapterId={activeSubChapterId} defaultSubId="functional-architecture">
       <section id="functional-architecture" className="scroll-mt-20">
         <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
           {isEn
@@ -756,17 +880,121 @@ export function ArchitecturePipelineChapterView() {
           </table>
         </div>
       </section>
-    </div>
+      {/* 12.1 Data Structures & API Endpoints */}
+      <section id="api-endpoints" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Data Structures & API Endpoints (Table 12.1)" : "Structures de Données & Points d'API (Tableau 12.1)"}
+        </h2>
+        <div className="space-y-4 text-xs font-mono">
+          <div className="p-3.5 rounded-md border border-border/70 bg-muted/20">
+            <span className="text-muted-foreground block mb-1 font-semibold uppercase tracking-wider text-[11px]">GET /api/v1/climate/power</span>
+            <code className="text-foreground">Params: lat=33.889, lon=-5.553, start=2024-11-15, end=2025-05-20</code>
+            <p className="text-muted-foreground font-sans mt-1 text-[12px]">Returns: 7 daily meteorological variables with missingness flags and source provenance metadata.</p>
+          </div>
+          <div className="p-3.5 rounded-md border border-border/70 bg-muted/20">
+            <span className="text-muted-foreground block mb-1 font-semibold uppercase tracking-wider text-[11px]">GET /api/v1/soil/smap</span>
+            <code className="text-foreground">Params: lat=33.889, lon=-5.553, resolution=9km</code>
+            <p className="text-muted-foreground font-sans mt-1 text-[12px]">Returns: Surface (0-5cm) and root-zone (0-100cm) volumetric moisture fractions and soil temp.</p>
+          </div>
+          <div className="p-3.5 rounded-md border border-border/70 bg-muted/20">
+            <span className="text-muted-foreground block mb-1 font-semibold uppercase tracking-wider text-[11px]">POST /api/v1/engine/fao56/et0</span>
+            <code className="text-foreground">Payload: {"{ solar_rad, t_min, t_max, humidity, wind_speed, elevation, lat }"}</code>
+            <p className="text-muted-foreground font-sans mt-1 text-[12px]">Returns: Reference evapotranspiration ET0 in mm/day with psychrometric intermediates.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 13.1 4 Levels of Reported Quantities */}
+      <section id="four-levels" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "4 Levels of Reported Quantities" : "4 Niveaux de Grandeurs Rapportées"}
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+          <div className="p-3.5 rounded-md border border-border/70 bg-muted/20 space-y-1">
+            <span className="font-mono font-bold text-foreground">Level 1: Raw Physical Observations</span>
+            <p className="text-muted-foreground font-sans leading-relaxed">Direct satellite and reanalysis telemetry: NASA POWER temperature, radiation, wind, and SMAP radar wetness. Carries explicit source metadata.</p>
+          </div>
+          <div className="p-3.5 rounded-md border border-border/70 bg-muted/20 space-y-1">
+            <span className="font-mono font-bold text-foreground">Level 2: Deterministic Model Outputs</span>
+            <p className="text-muted-foreground font-sans leading-relaxed">Reproducible physics computations: FAO-56 Penman-Monteith ET0, crop-specific ETc, and daily root-zone soil water depletion balances.</p>
+          </div>
+          <div className="p-3.5 rounded-md border border-border/70 bg-muted/20 space-y-1">
+            <span className="font-mono font-bold text-foreground">Level 3: Comparative Synthetic Indices</span>
+            <p className="text-muted-foreground font-sans leading-relaxed">Normalized multi-criteria scores, heuristic drought resilience ranks, and relative percentage demand differences between candidate crop plans.</p>
+          </div>
+          <div className="p-3.5 rounded-md border border-border/70 bg-muted/20 space-y-1">
+            <span className="font-mono font-bold text-foreground">Level 4: Decision Context & Darija Explanations</span>
+            <p className="text-muted-foreground font-sans leading-relaxed">Verbalized advisory narratives in Moroccan Darija, French, and English, strictly bound by the AI Scientific Tribunal to prevent hallucinated advice.</p>
+          </div>
+        </div>
+      </section>
+
+          {/* 7.4 Technologies & Development Stack */}
+      <section id="tech-stack" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Technologies & Development Stack" : "Technologies et Pile de Développement"}
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-xs my-4">
+          <div className="p-3.5 rounded-md border border-border/70 bg-muted/20 space-y-1">
+            <span className="font-mono font-semibold text-foreground block">Backend Core</span>
+            <p className="text-muted-foreground">FastAPI, Python 3.11+, NumPy, Pandas, Pydantic v2.</p>
+          </div>
+          <div className="p-3.5 rounded-md border border-border/70 bg-muted/20 space-y-1">
+            <span className="font-mono font-semibold text-foreground block">Biophysical Engine</span>
+            <p className="text-muted-foreground">FAO-56 Penman-Monteith, multi-layer soil water deficit balance.</p>
+          </div>
+          <div className="p-3.5 rounded-md border border-border/70 bg-muted/20 space-y-1">
+            <span className="font-mono font-semibold text-foreground block">Frontend UI</span>
+            <p className="text-muted-foreground">Next.js 15 (App Router), React 19, TypeScript, Tailwind CSS.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 8.1 FastAPI Module Responsibilities */}
+      <section id="code-responsibilities" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "FastAPI Module Responsibilities (Table 8.1)" : "Responsabilités des Modules FastAPI (Tableau 8.1)"}
+        </h2>
+        <div className="overflow-x-auto my-4">
+          <table className="w-full text-left text-sm border-collapse font-mono text-xs">
+            <thead className="border-b border-border text-[11px] uppercase tracking-wider text-muted-foreground">
+              <tr>
+                <th className="py-2.5 pr-4 text-left font-medium">Module</th>
+                <th className="py-2.5 pr-4 text-left font-medium">Responsibility</th>
+                <th className="py-2.5 pr-4 text-left font-medium">Boundary</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border/60 text-muted-foreground">
+              <tr>
+                <td className="py-2.5 pr-4 font-bold text-foreground">api/routers/weather.py</td>
+                <td className="py-2.5 pr-4 font-sans">NASA POWER query parsing & sentinel checking</td>
+                <td className="py-2.5 pr-4">B1 Ingestion</td>
+              </tr>
+              <tr>
+                <td className="py-2.5 pr-4 font-bold text-foreground">core/fao56.py</td>
+                <td className="py-2.5 pr-4 font-sans">Deterministic FAO-56 Penman-Monteith ET0 calculation</td>
+                <td className="py-2.5 pr-4">B2 Physics Core</td>
+              </tr>
+              <tr>
+                <td className="py-2.5 pr-4 font-bold text-foreground">labs/crop_battle.py</td>
+                <td className="py-2.5 pr-4 font-sans">Multi-year candidate rotation demand & score simulation</td>
+                <td className="py-2.5 pr-4">B3 Simulation</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+</SubChapterContainer>
   );
 }
 
 // ─── 6. REFERENCE ET0 (FAO-56) ──────────────────────────────────────────────
-export function Fao56Et0ChapterView() {
+export function Fao56Et0ChapterView({ activeSubChapterId }: ChapterViewProps) {
   const { lang } = useDocsContext();
   const isEn = lang === "en";
 
   return (
-    <div className="space-y-12">
+    <SubChapterContainer activeSubChapterId={activeSubChapterId} defaultSubId="modeling-methodology">
       <section id="penman-monteith-eq" className="scroll-mt-20">
         <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
           {isEn
@@ -839,17 +1067,37 @@ export function Fao56Et0ChapterView() {
           </div>
         </div>
       </section>
-    </div>
+          {/* 14.1 3 Computational Layers */}
+      <section id="modeling-methodology" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "3 Computational Layers (Obs / Bio / Dec)" : "3 Couches de Calcul (Obs / Bio / Déc)"}
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs my-4">
+          <div className="p-4 rounded-md border border-border/70 bg-muted/20 space-y-2">
+            <span className="font-mono font-semibold text-foreground block uppercase tracking-wider">1. Observation</span>
+            <p className="text-muted-foreground leading-relaxed">NASA POWER climate streams and SMAP L4 soil moisture grids with sentinel filtering.</p>
+          </div>
+          <div className="p-4 rounded-md border border-border/70 bg-muted/20 space-y-2">
+            <span className="font-mono font-semibold text-foreground block uppercase tracking-wider">2. Biophysics</span>
+            <p className="text-muted-foreground leading-relaxed">FAO-56 Penman-Monteith ET0, crop-specific Kc curves, and daily depletion Dr,t.</p>
+          </div>
+          <div className="p-4 rounded-md border border-border/70 bg-muted/20 space-y-2">
+            <span className="font-mono font-semibold text-foreground block uppercase tracking-wider">3. Decision</span>
+            <p className="text-muted-foreground leading-relaxed">Comparative rotation stress-testing and vernacular Moroccan Darija explanations.</p>
+          </div>
+        </div>
+      </section>
+</SubChapterContainer>
   );
 }
 
 // ─── 7. CROP ETC & WATER BALANCE ────────────────────────────────────────────
-export function EtcCropWaterChapterView() {
+export function EtcCropWaterChapterView({ activeSubChapterId }: ChapterViewProps) {
   const { lang } = useDocsContext();
   const isEn = lang === "en";
 
   return (
-    <div className="space-y-12">
+    <SubChapterContainer activeSubChapterId={activeSubChapterId} defaultSubId="etc-coefficient-eq">
       <section id="etc-coefficient-eq" className="scroll-mt-20">
         <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
           {isEn
@@ -941,17 +1189,84 @@ export function EtcCropWaterChapterView() {
           </table>
         </div>
       </section>
-    </div>
+      {/* 20.1 5 Sources of Uncertainty & Propagation */}
+      <section id="sources-of-uncertainty" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "5 Sources of Uncertainty & Propagation (Eq. 20.1)" : "5 Sources d'Incertitude & Propagation (Éq. 20.1)"}
+        </h2>
+        <div className="divide-y divide-border/60 text-xs my-4 border border-border/70 rounded-md p-3 bg-muted/20">
+          <div className="py-2.5">
+            <strong className="text-foreground font-mono">1. Spatial Footprint:</strong> 9km SMAP grid cell vs parcel boundaries.
+          </div>
+          <div className="py-2.5">
+            <strong className="text-foreground font-mono">2. Soil Heterogeneity:</strong> Local clay fraction variability across Saïss Tirs vs Hamri.
+          </div>
+          <div className="py-2.5">
+            <strong className="text-foreground font-mono">3. Reanalysis vs Local Microclimate:</strong> NASA POWER gridded solar radiation uncertainty (±8%).
+          </div>
+          <div className="py-2.5">
+            <strong className="text-foreground font-mono">4. Phenological Shift:</strong> Variable germination dates triggered by erratic autumn rains.
+          </div>
+          <div className="py-2.5">
+            <strong className="text-foreground font-mono">5. ETc vs Irrigation Demand:</strong> Atmospheric evaporative demand vs actual applied water.
+          </div>
+        </div>
+      </section>
+
+          {/* 16.2 Worked Kc Demonstration */}
+      <section id="worked-kc-demonstration" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Worked Kc Demonstration (4.20 mm/day)" : "Démonstration Kc Calculée (4,20 mm/jour)"}
+        </h2>
+        <div className="space-y-4 text-[15px] leading-7 text-muted-foreground">
+          <p>
+            {isEn
+              ? "For soft winter wheat in Meknes during peak heading/flowering, Kc,mid is 1.15. Given reference ET0 of 3.65 mm/day on March 15, 2025:"
+              : "Pour le blé tendre d'hiver à Meknès en phase d'épiaison, Kc,mid est de 1,15. Avec une ET0 de 3,65 mm/jour au 15 mars 2025 :"}
+          </p>
+          <div className="p-4 rounded-md border border-border/70 bg-muted/20 font-mono text-xs text-foreground text-center my-3">
+            <code>{"ETc = Kc × ET0 = 1.15 × 3.65 = 4.1975 ≈ 4.20 mm/day (42 m³/ha/day)"}</code>
+          </div>
+        </div>
+      </section>
+
+      {/* 19.1 Crop Planning & Rotation Math */}
+      <section id="rotation-mathematics" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Crop Planning & Rotation Math (Eq. 19.1 - 19.3)" : "Mathématiques de Rotation de Cultures (Éq. 19.1 - 19.3)"}
+        </h2>
+        <div className="space-y-4 text-[15px] leading-7 text-muted-foreground">
+          <p>
+            {isEn
+              ? "The mean annual modeled demand over an N-year cycle is formulated as:"
+              : "La demande moyenne modélisée annuelle sur un cycle de N années s'exprime :"}
+          </p>
+          <div className="p-4 rounded-md border border-border/70 bg-muted/20 font-mono text-xs text-foreground text-center my-3">
+            <code>{"V_bar_ETc = (1 / N) · ∑ [ 10 · A_c · ETc,c,y ] [m³/year]"}</code>
+          </div>
+        </div>
+      </section>
+
+      {/* 19.4 Heuristic Resilience Score */}
+      <section id="heuristic-resilience" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Heuristic Resilience Score (Eq. 19.4)" : "Score Heuristique de Résilience (Éq. 19.4)"}
+        </h2>
+        <div className="p-4 rounded-md border border-border/70 bg-muted/20 font-mono text-xs text-foreground text-center my-3">
+          <code>{"S_resilience = 100 · ( 0.40 · (D_max - D_plan)/D_max + 0.35 · Δθ_buffer/θ_crit + 0.25 · R_legume )"}</code>
+        </div>
+      </section>
+</SubChapterContainer>
   );
 }
 
 // ─── 8. CROP BATTLE LAB ─────────────────────────────────────────────────────
-export function CropBattleLabChapterView() {
+export function CropBattleLabChapterView({ activeSubChapterId }: ChapterViewProps) {
   const { lang } = useDocsContext();
   const isEn = lang === "en";
 
   return (
-    <div className="space-y-12">
+    <SubChapterContainer activeSubChapterId={activeSubChapterId} defaultSubId="candidate-plans-table">
       <section id="candidate-plans-table" className="scroll-mt-20">
         <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
           {isEn ? "3 Candidate Plans (Table 21.1)" : "3 Plans Candidats (Tableau 21.1)"}
@@ -994,17 +1309,66 @@ export function CropBattleLabChapterView() {
         </h2>
         <CropBattleComparisonCharts />
       </section>
-    </div>
+      {/* 21.3 Score Normalization Mechanics */}
+      <section id="score-normalization" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Score Normalization Mechanics (Eq. 21.1)" : "Mécanique de Normalisation du Score (Éq. 21.1)"}
+        </h2>
+        <div className="space-y-4 text-[15px] leading-7 text-muted-foreground">
+          <p>
+            {isEn
+              ? "To prevent scale bias across different agronomic criteria, all indicators are normalized to a uniform [0, 1] range before weighted ranking:"
+              : "Pour éviter tout biais d'échelle entre critères agronomiques, tous les indicateurs sont normalisés sur l'intervalle [0, 1] avant pondération :"}
+          </p>
+          <div className="p-4 rounded-md border border-border/70 bg-muted/20 font-mono text-xs text-foreground text-center my-3">
+            <code>{"S_norm = (S - min(S)) / (max(S) - min(S))"}</code>
+          </div>
+        </div>
+      </section>
+
+      {/* 21.4 Relative Demand Difference Chart */}
+      <section id="relative-diff-chart" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Relative Demand Difference Chart (Figure 21.2)" : "Écart Relatif de Demande (Figure 21.2)"}
+        </h2>
+        <div className="space-y-4 text-[15px] leading-7 text-muted-foreground">
+          <p>
+            {isEn
+              ? "Figure 21.2 compares candidate rotations against the monoculture wheat reference (Plan 1: 455.8 mm/yr). Plan 2 (Wheat → Lentils → Barley) demonstrates a 20.49% lower modeled demand (-93.4 mm), while Plan 3 (Wheat → Forage → Fallow) shows a 47.13% lower demand (-214.8 mm)."
+              : "La Figure 21.2 compare les rotations candidates à la monoculture de blé de référence (Plan 1 : 455,8 mm/an). Le Plan 2 (Blé → Lentilles → Orge) affiche une demande modélisée inférieure de 20,49% (-93,4 mm), tandis que le Plan 3 (Blé → Fourrage → Jachère) affiche une réduction de 47,13% (-214,8 mm)."}
+          </p>
+        </div>
+      </section>
+
+      {/* 21.5 Comparison Contract */}
+      <section id="comparison-contract" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Agronomic Plan Comparison Contract" : "Contrat de Comparaison des Plans Agronomiques"}
+        </h2>
+        <div className="divide-y divide-border/60 text-xs my-4 border border-border/70 rounded-md p-3 bg-muted/20">
+          <div className="py-2.5">
+            <strong className="text-foreground font-mono">Invariant 1:</strong> All plans evaluated against identical historical weather sequences.
+          </div>
+          <div className="py-2.5">
+            <strong className="text-foreground font-mono">Invariant 2:</strong> Yield claims strictly forbidden without verified in-situ trial logs.
+          </div>
+          <div className="py-2.5">
+            <strong className="text-foreground font-mono">Invariant 3:</strong> Clear distinction between modeled atmospheric demand and pumped water volume.
+          </div>
+        </div>
+      </section>
+
+    </SubChapterContainer>
   );
 }
 
 // ─── 9. CLIMATE ATTACK LAB ──────────────────────────────────────────────────
-export function ClimateAttackLabChapterView() {
+export function ClimateAttackLabChapterView({ activeSubChapterId }: ChapterViewProps) {
   const { lang } = useDocsContext();
   const isEn = lang === "en";
 
   return (
-    <div className="space-y-12">
+    <SubChapterContainer activeSubChapterId={activeSubChapterId} defaultSubId="shock-multipliers-table">
       <section id="shock-multipliers-table" className="scroll-mt-20">
         <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
           {isEn
@@ -1013,17 +1377,71 @@ export function ClimateAttackLabChapterView() {
         </h2>
         <ClimateAttackCharts />
       </section>
-    </div>
+      {/* 22.2 How a Climate Shock is Evaluated */}
+      <section id="shock-evaluation" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "How a Climate Shock is Evaluated" : "Évaluation Séquentielle d'un Choc Climatique"}
+        </h2>
+        <div className="space-y-4 text-[15px] leading-7 text-muted-foreground">
+          <p>
+            {isEn
+              ? "Stress-testing does not generate a single static penalty score. The algorithm runs an end-to-end simulation across perturbed weather parameters:"
+              : "Le stress-testing ne produit pas une pénalité statique arbitraire. L'algorithme exécute une simulation complète sur les variables météorologiques perturbées :"}
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs my-4 font-mono">
+            <div className="p-3 rounded-md border border-border/70 bg-muted/20">
+              <span className="text-foreground font-semibold block mb-1">1. Perturbation</span>
+              <p className="text-muted-foreground font-sans">Apply multipliers (T+3°C, P-30%, +15 heat days) to baseline NASA series.</p>
+            </div>
+            <div className="p-3 rounded-md border border-border/70 bg-muted/20">
+              <span className="text-foreground font-semibold block mb-1">2. Biophysics</span>
+              <p className="text-muted-foreground font-sans">Recompute daily FAO-56 Penman-Monteith ET0 with elevated vapor pressure deficit.</p>
+            </div>
+            <div className="p-3 rounded-md border border-border/70 bg-muted/20">
+              <span className="text-foreground font-semibold block mb-1">3. Soil Balance</span>
+              <p className="text-muted-foreground font-sans">Track root-zone soil water depletion Dr,t against readily available water RAW.</p>
+            </div>
+            <div className="p-3 rounded-md border border-border/70 bg-muted/20">
+              <span className="text-foreground font-semibold block mb-1">4. Stress Index</span>
+              <p className="text-muted-foreground font-sans">Count stress days and calculate relative resilience retention score.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 22.3 Shock Parameter Multipliers */}
+      <section id="shock-visualization" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Shock Parameter Multipliers (Figure 22.1)" : "Multiplicateurs de Paramètres de Choc (Figure 22.1)"}
+        </h2>
+        <ClimateAttackCharts />
+      </section>
+
+      {/* 22.4 Baseline vs. Drought Stress Score */}
+      <section id="baseline-vs-drought" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Baseline vs. Drought Stress Score (Figure 22.2)" : "Score de Stress Référence vs Sécheresse (Figure 22.2)"}
+        </h2>
+        <div className="space-y-4 text-[15px] leading-7 text-muted-foreground">
+          <p>
+            {isEn
+              ? "Under Severe Drought (Scenario C: -30% precipitation and +3°C temperature shift), the monoculture wheat reference (Plan 1) experiences 42 days of critical root-zone water deficit. Diversified rotation (Plan 2: Wheat → Lentils → Barley) reduces critical stress days to 18, demonstrating higher agroecological buffering."
+              : "Sous sécheresse sévère (Scénario C : -30% de précipitations et +3°C), la monoculture de blé de référence (Plan 1) subit 42 jours de déficit critique dans la zone racinaire. La rotation diversifiée (Plan 2 : Blé → Lentilles → Orge) réduit les jours de stress critique à 18, démontrant une résilience agroécologique accrue."}
+          </p>
+        </div>
+      </section>
+
+    </SubChapterContainer>
   );
 }
 
 // ─── 10. FARM TIME MACHINE ──────────────────────────────────────────────────
-export function FarmTimeMachineChapterView() {
+export function FarmTimeMachineChapterView({ activeSubChapterId }: ChapterViewProps) {
   const { lang } = useDocsContext();
   const isEn = lang === "en";
 
   return (
-    <div className="space-y-12">
+    <SubChapterContainer activeSubChapterId={activeSubChapterId} defaultSubId="time-machine-workflow">
       <section id="time-machine-workflow" className="scroll-mt-20">
         <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
           {isEn
@@ -1069,17 +1487,41 @@ export function FarmTimeMachineChapterView() {
             : "Le protocole de laboratoire physique est une procédure de validation sur le terrain, non pas une affirmation selon laquelle des échantillons ont déjà été analysés. Un plan rigoureux comprend : points d'échantillonnage géolocalisés par GPS ; métadonnées de conduite et travail du sol ; prélèvements stratifiés en profondeur ; granulométrie et densité apparente ; humidité gravimétrique ou sondes étalonnées ; conductivité électrique et pH ; matière organique et enregistrements de contrôle qualité."}
         </p>
       </section>
-    </div>
+          {/* 24.2 Earlier 95 mm Run vs Revised 93.4 mm Run */}
+      <section id="historical-run-distinction" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Earlier 95 mm Run vs. Revised 93.4 mm Run" : "Simulation Initiale 95 mm vs Révisée 93,4 mm"}
+        </h2>
+        <p className="text-[15px] leading-7 text-muted-foreground">
+          {isEn
+            ? "Early exploratory prototypes reported a rounded difference of 95 mm. Following systematic audit and rigorous FAO-56 Penman-Monteith calibration for the 2024–2025 season in Meknes, the verified difference is exactly 93.4 mm (455.8 mm vs 362.4 mm)."
+            : "Les premiers prototypes rapportaient un écart arrondi de 95 mm. Suite à l'audit systématique et au recalibrage FAO-56 Penman-Monteith pour la campagne 2024–2025 à Meknès, l'écart vérifié est exactement de 93,4 mm (455,8 mm vs 362,4 mm)."}
+        </p>
+      </section>
+
+      {/* 24.4 Minimum Field Log Requirements */}
+      <section id="minimum-field-log" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Minimum Field Log Requirements" : "Cahier d'Enregistrement Minimal de Parcelle"}
+        </h2>
+        <div className="divide-y divide-border/60 text-xs my-4 border border-border/70 rounded-md p-3 bg-muted/20">
+          <div className="py-2"><strong className="text-foreground font-mono">1. Planting:</strong> Exact date, seed variety, plant density.</div>
+          <div className="py-2"><strong className="text-foreground font-mono">2. Soil Assay:</strong> Pre-sowing laboratory analysis of texture and moisture.</div>
+          <div className="py-2"><strong className="text-foreground font-mono">3. Irrigation:</strong> Metered application volumes (m³) and dates.</div>
+          <div className="py-2"><strong className="text-foreground font-mono">4. Harvest:</strong> Measured grain yield (q/ha) and crop residues.</div>
+        </div>
+      </section>
+</SubChapterContainer>
   );
 }
 
 // ─── 11. AI ARCHITECTURE ────────────────────────────────────────────────────
-export function AiArchitectureChapterView() {
+export function AiArchitectureChapterView({ activeSubChapterId }: ChapterViewProps) {
   const { lang } = useDocsContext();
   const isEn = lang === "en";
 
   return (
-    <div className="space-y-12">
+    <SubChapterContainer activeSubChapterId={activeSubChapterId} defaultSubId="role-separation">
       <section id="multi-agent-division" className="scroll-mt-20">
         <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
           {isEn
@@ -1189,17 +1631,59 @@ export function AiArchitectureChapterView() {
           </table>
         </div>
       </section>
-    </div>
+          {/* 25.1 Deterministic vs Generative Role Separation */}
+      <section id="role-separation" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Deterministic vs. Generative Role Separation" : "Séparation Déterministe vs Génératif"}
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs my-4">
+          <div className="p-4 rounded-md border border-border/70 bg-muted/20 space-y-2">
+            <span className="font-mono font-bold text-foreground">Deterministic Core (Python / FastAPI)</span>
+            <p className="text-muted-foreground font-sans leading-relaxed">Computes FAO-56 Penman-Monteith, SMAP soil moisture assimilation, and rotation water balance equations.</p>
+          </div>
+          <div className="p-4 rounded-md border border-border/70 bg-muted/20 space-y-2">
+            <span className="font-mono font-bold text-foreground">Generative Assistant (LLM Layer)</span>
+            <p className="text-muted-foreground font-sans leading-relaxed">Synthesizes verbal explanations in Moroccan Darija, French, and English without modifying physical quantities.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 25.2 Recommended Agent Contract */}
+      <section id="agent-contract" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Recommended Agent Contract" : "Contrat d'Agent Recommandé"}
+        </h2>
+        <div className="p-4 rounded-md border border-border/70 bg-muted/20 font-mono text-xs overflow-x-auto my-3">
+          <pre>{`{
+  "system_role": "Agronomic Explainer Agent",
+  "guardrails": { "numerical_freedom": false, "unit_integrity": "STRICT" },
+  "languages": ["moroccan_darija", "french", "english"]
+}`}</pre>
+        </div>
+      </section>
+
+      {/* 26.3 Moroccan Darija Assistant */}
+      <section id="multilingual-assistant" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Moroccan Darija, English & French Assistant" : "Assistant Multilingue Darija, Français & Anglais"}
+        </h2>
+        <p className="text-[15px] leading-7 text-muted-foreground">
+          {isEn
+            ? "To guarantee accessibility for smallholders in the Saïss plain, the interface supports spoken and written Moroccan Darija alongside French and English."
+            : "Pour garantir l'accessibilité aux petits exploitants du Saïss, l'interface intègre la Darija marocaine vocale et textuelle."}
+        </p>
+      </section>
+</SubChapterContainer>
   );
 }
 
 // ─── 12. AI SCIENTIFIC TRIBUNAL ─────────────────────────────────────────────
-export function AiScientificTribunalChapterView() {
+export function AiScientificTribunalChapterView({ activeSubChapterId }: ChapterViewProps) {
   const { lang } = useDocsContext();
   const isEn = lang === "en";
 
   return (
-    <div className="space-y-12">
+    <SubChapterContainer activeSubChapterId={activeSubChapterId} defaultSubId="tribunal-evidence-checks">
       <section id="tribunal-evidence-checks" className="scroll-mt-20">
         <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
           {isEn ? "5 Evidence Checks & Scientific Tribunal" : "5 Contrôles de Preuve & Tribunal Scientifique"}
@@ -1276,17 +1760,54 @@ export function AiScientificTribunalChapterView() {
           </table>
         </div>
       </section>
-    </div>
+      {/* 29.2 Risks Requiring Mitigation */}
+      <section id="trust-risks" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Risks Requiring Strict Mitigation" : "Risques Nécessitant une Atténuation Stricte"}
+        </h2>
+        <div className="divide-y divide-border/60 text-xs my-4 border border-border/70 rounded-md p-3 bg-muted/20">
+          <div className="py-2"><strong className="text-foreground font-mono">1. Automation Bias:</strong> Farmers following model suggestions blindly without checking field moisture.</div>
+          <div className="py-2"><strong className="text-foreground font-mono">2. Over-generalization:</strong> Applying Meknes calibrated parameters directly to arid southern regions.</div>
+          <div className="py-2"><strong className="text-foreground font-mono">3. Financial Risk:</strong> Farmer investment in legume rotation without established local market buyers.</div>
+        </div>
+      </section>
+
+      {/* 30.1 Farmer Retention of Final Agency */}
+      <section id="human-oversight" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Farmer Retention of Final Agency" : "Maintien de la Souveraineté Décisionnelle Paysanne"}
+        </h2>
+        <div className="space-y-4 text-[15px] leading-7 text-muted-foreground">
+          <p>
+            {isEn
+              ? "The primary ethical principle of Farmer Eye is peasant sovereignty. The system is designed as comparative decision support, not an automated manager. The farmer possesses lived, generational knowledge of their parcel and retains total decision authority."
+              : "Le principe éthique fondamental de Farmer Eye est la souveraineté paysanne. Le système constitue un outil d'aide à la décision comparative, non un gestionnaire automatisé. L'agriculteur dispose du savoir vivant de sa terre et conserve la pleine autorité sur chaque décision."}
+          </p>
+        </div>
+      </section>
+
+          {/* 28.2 Agent Evidence Flow & Rejection */}
+      <section id="tribunal-reasoning-flow" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Agent Evidence Flow & Rejection (Figure 28.1)" : "Flux de Preuve et Rejet par le Tribunal (Figure 28.1)"}
+        </h2>
+        <p className="text-[15px] leading-7 text-muted-foreground">
+          {isEn
+            ? "Every draft response generated by the LLM is intercepted by the Validator Agent. If a numerical claim contradicts the biophysical execution log, it is rejected and regenerated."
+            : "Toute ébauche de réponse générée par le LLM est interceptée par l'agent de validation. Si une affirmation numérique contredit le journal de calcul biophysique, elle est rejetée."}
+        </p>
+      </section>
+</SubChapterContainer>
   );
 }
 
 // ─── 13. MEKNES REFERENCE CASE ──────────────────────────────────────────────
-export function MeknesReferenceCaseChapterView() {
+export function MeknesReferenceCaseChapterView({ activeSubChapterId }: ChapterViewProps) {
   const { lang } = useDocsContext();
   const isEn = lang === "en";
 
   return (
-    <div className="space-y-12">
+    <SubChapterContainer activeSubChapterId={activeSubChapterId} defaultSubId="meknes-coordinates">
       <section id="2025-audit-baseline" className="scroll-mt-20">
         <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
           {isEn
@@ -1366,17 +1887,114 @@ export function MeknesReferenceCaseChapterView() {
           <li>{isEn ? "Independently audit AI responses for fabricated measurements or unsupported guarantees." : "Auditer de manière indépendante les réponses de l'IA face aux mesures inventées ou garanties abusives."}</li>
         </ol>
       </section>
-    </div>
+      {/* 35.1 7-Point Verification Checklist */}
+      <section id="verification-checklist" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "7-Point Verification Checklist" : "Liste de Contrôle de Vérification en 7 Points"}
+        </h2>
+        <div className="divide-y divide-border/60 text-xs my-4 border border-border/70 rounded-md p-3 bg-muted/20">
+          <div className="py-2"><strong className="text-foreground font-mono">1. Coordinates:</strong> Saïss field coordinates verified within SMAP 9km grid cell.</div>
+          <div className="py-2"><strong className="text-foreground font-mono">2. Weather Ingestion:</strong> NASA POWER records complete with &lt;5% sentinel missingness.</div>
+          <div className="py-2"><strong className="text-foreground font-mono">3. Soil Baseline:</strong> Soil sampling confirms clay vertisol (Tirs) field capacity θ_FC.</div>
+          <div className="py-2"><strong className="text-foreground font-mono">4. Kc Alignment:</strong> Crop phenological calendar calibrated to local planting date.</div>
+          <div className="py-2"><strong className="text-foreground font-mono">5. Volume Identity:</strong> All volume scaling enforces 1 mm × 1 ha = 10 m³.</div>
+          <div className="py-2"><strong className="text-foreground font-mono">6. Tribunal Audit:</strong> Explainer output passes adversarial validation checks.</div>
+          <div className="py-2"><strong className="text-foreground font-mono">7. Farmer Briefing:</strong> Darija audio briefing delivered with explicit risk scenarios.</div>
+        </div>
+      </section>
+
+          {/* 31.1 Geographical Coordinates */}
+      <section id="meknes-coordinates" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Geographical Coordinates & Saïss Landscape" : "Coordonnées Géographiques & Paysage du Saïss"}
+        </h2>
+        <p className="text-[15px] leading-7 text-muted-foreground">
+          {isEn
+            ? "Benchmark location: 33.889°N, 5.553°W, elevation ~530 m in the Saïss plain near Meknes, Morocco. Characterized by fertile clay-rich Tirs soils and semi-arid Mediterranean climate."
+            : "Coordonnées du cas de référence : 33,889°N, 5,553°O, altitude ~530 m dans la plaine du Saïss près de Meknès, Maroc. Sols vertiques argileux fertiles (Tirs) et climat semi-aride."}
+        </p>
+      </section>
+
+      {/* 32.2 Revised Crop Rotation Table */}
+      <section id="crop-rotation-comparison" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Revised Crop Rotation Comparison Table" : "Tableau Comparatif Révisé des Rotations"}
+        </h2>
+        <div className="overflow-x-auto my-4">
+          <table className="w-full text-left text-sm border-collapse font-mono text-xs">
+            <thead className="border-b border-border text-[11px] uppercase tracking-wider text-muted-foreground">
+              <tr>
+                <th className="py-2 pr-4">Plan</th>
+                <th className="py-2 pr-4 text-right">ETc (mm/yr)</th>
+                <th className="py-2 pr-4 text-right">Δ vs Wheat</th>
+                <th className="py-2 pr-4 text-right">Relative %</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border/60 text-muted-foreground">
+              <tr>
+                <td className="py-2 pr-4 font-sans font-medium text-foreground">Plan 1: Wheat Monoculture (Ref)</td>
+                <td className="py-2 pr-4 text-right font-semibold text-foreground">455.8 mm</td>
+                <td className="py-2 pr-4 text-right">0.0 mm</td>
+                <td className="py-2 pr-4 text-right">0.0%</td>
+              </tr>
+              <tr>
+                <td className="py-2 pr-4 font-sans font-medium text-foreground">Plan 2: Wheat → Lentils → Barley</td>
+                <td className="py-2 pr-4 text-right font-semibold text-foreground">362.4 mm</td>
+                <td className="py-2 pr-4 text-right text-foreground font-semibold">−93.4 mm</td>
+                <td className="py-2 pr-4 text-right font-semibold text-foreground">−20.49%</td>
+              </tr>
+              <tr>
+                <td className="py-2 pr-4 font-sans font-medium text-foreground">Plan 3: Wheat → Forage → Fallow</td>
+                <td className="py-2 pr-4 text-right font-semibold text-foreground">241.0 mm</td>
+                <td className="py-2 pr-4 text-right text-foreground font-semibold">−214.8 mm</td>
+                <td className="py-2 pr-4 text-right font-semibold text-foreground">−47.13%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* 32.3 Depth to Volume Identity */}
+      <section id="volume-conversion-identity" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Depth to Volume Identity (1 mm on 1 ha = 10 m³)" : "Identité Hauteur-Volume (1 mm sur 1 ha = 10 m³)"}
+        </h2>
+        <div className="p-4 rounded-md border border-border/70 bg-muted/20 font-mono text-xs text-foreground text-center my-3">
+          <code>{"1 mm (0.001 m) × 1 ha (10,000 m²) = 10 m³"}</code>
+        </div>
+      </section>
+
+      {/* 33.2 5-Hectare Farm Scaling Calculation */}
+      <section id="five-hectare-scaling" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "5-Hectare Farm Scaling Calculation" : "Calcul d'Échelle pour une Exploitation de 5 ha"}
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs my-4 font-mono">
+          <div className="p-3.5 rounded-md border border-border/70 bg-muted/20">
+            <span className="text-muted-foreground block mb-1">Modeled ETc Delta</span>
+            <code className="text-foreground font-bold">5 ha × 934 = 4,670 m³/yr</code>
+          </div>
+          <div className="p-3.5 rounded-md border border-border/70 bg-muted/20">
+            <span className="text-muted-foreground block mb-1">Irrigation Proxy (i=0.75, q=0.25)</span>
+            <code className="text-foreground font-bold">5 ha × 175.1 = 875.5 m³/yr</code>
+          </div>
+          <div className="p-3.5 rounded-md border border-border/70 bg-muted/20">
+            <span className="text-muted-foreground block mb-1">Pumping Savings (@0.60 MAD)</span>
+            <code className="text-foreground font-bold">~525 MAD/yr energy</code>
+          </div>
+        </div>
+      </section>
+</SubChapterContainer>
   );
 }
 
 // ─── 14. IMPACT 2030 ────────────────────────────────────────────────────────
-export function Impact2030ChapterView() {
+export function Impact2030ChapterView({ activeSubChapterId }: ChapterViewProps) {
   const { lang } = useDocsContext();
   const isEn = lang === "en";
 
   return (
-    <div className="space-y-12">
+    <SubChapterContainer activeSubChapterId={activeSubChapterId} defaultSubId="executive-summary-2030">
       {/* 14.1 Executive Summary */}
       <section id="executive-summary-2030" className="scroll-mt-20">
         <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
@@ -1951,17 +2569,17 @@ export function Impact2030ChapterView() {
           </table>
         </div>
       </section>
-    </div>
+    </SubChapterContainer>
   );
 }
 
 // ─── 15. ANNEXES & REFERENCES ───────────────────────────────────────────────
-export function AnnexesChapterView() {
+export function AnnexesChapterView({ activeSubChapterId }: ChapterViewProps) {
   const { lang } = useDocsContext();
   const isEn = lang === "en";
 
   return (
-    <div className="space-y-12">
+    <SubChapterContainer activeSubChapterId={activeSubChapterId} defaultSubId="annex-a-math">
       <section id="annex-a-math" className="scroll-mt-20">
         <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
           {isEn ? "Annex A — Mathematical Reference Sheet" : "Annexe A — Formulaire Mathématique de Référence"}
@@ -2053,6 +2671,54 @@ export function AnnexesChapterView() {
           <div>[14] <strong className="text-foreground">DEVUPWARD (2026)</strong>, <em>AI Scientific Tribunal &amp; Deterministic Execution Architecture Specification</em>.</div>
         </div>
       </section>
-    </div>
+          {/* Annex C: Python Test Invariants */}
+      <section id="annex-c-python-tests" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Annex C: Python Test Invariants (Listing C.2)" : "Annexe C : Invariants de Tests Python (Listing C.2)"}
+        </h2>
+        <div className="p-4 rounded-md border border-border/70 bg-muted/20 font-mono text-xs overflow-x-auto my-3">
+          <pre>{`def test_penman_monteith_positivity():
+    for day in load_weather_series("meknes_2024_2025.json"):
+        et0 = compute_fao56_et0(day)
+        assert et0 >= 0.0, f"Negative ET0 detected: {et0}"
+        assert et0 <= 15.0, f"Unrealistic ET0 detected: {et0}"`}</pre>
+        </div>
+      </section>
+
+      {/* Annex D: Soil Classes */}
+      <section id="annex-d-soil-classes" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Annex D & E: Soil Classes (Tirs, Hamri) & Runs" : "Annexes D & E : Classes de Sols (Tirs, Hamri) & Simulations"}
+        </h2>
+        <div className="divide-y divide-border/60 text-xs my-4 border border-border/70 rounded-md p-3 bg-muted/20">
+          <div className="py-2.5"><strong className="text-foreground font-mono">Tirs (Vertisol):</strong> Heavy clay (&gt;45%), field capacity θ_FC ≈ 0.34 m³/m³, wilting point θ_WP ≈ 0.18 m³/m³.</div>
+          <div className="py-2.5"><strong className="text-foreground font-mono">Hamri (Chromic Luvisol):</strong> Silt-loam to clay-loam, field capacity θ_FC ≈ 0.28 m³/m³, wilting point θ_WP ≈ 0.14 m³/m³.</div>
+        </div>
+      </section>
+
+      {/* Annex H: Glossary */}
+      <section id="annex-h-glossary" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Annex H: Complete Glossary & Acronyms" : "Annexe H : Glossaire Complet & Sigles"}
+        </h2>
+        <div className="divide-y divide-border/60 text-xs my-4 border border-border/70 rounded-md p-3 bg-muted/20">
+          <div className="py-2"><strong className="text-foreground font-mono">ET0:</strong> Reference Evapotranspiration for hypothetical well-watered grass surface (mm/day).</div>
+          <div className="py-2"><strong className="text-foreground font-mono">ETc:</strong> Crop Evapotranspiration under standard conditions (ETc = Kc × ET0).</div>
+          <div className="py-2"><strong className="text-foreground font-mono">SMAP:</strong> NASA Soil Moisture Active Passive satellite mission.</div>
+        </div>
+      </section>
+
+      {/* Formal Conclusion */}
+      <section id="dossier-conclusion" className="scroll-mt-20">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Formal Technical Conclusion" : "Conclusion Technique Formelle"}
+        </h2>
+        <p className="text-[15px] leading-7 text-muted-foreground">
+          {isEn
+            ? "Farmer Eye establishes that open Earth observation streams from NASA POWER and NASA SMAP can be assimilated into deterministic biophysical pipelines to offer transparent, comparative agricultural decision support."
+            : "Farmer Eye démontre que les flux d'observation de la Terre issus de NASA POWER et NASA SMAP peuvent être assimilés dans des pipelines biophysiques déterministes pour offrir une aide à la décision agricole transparente et comparative."}
+        </p>
+      </section>
+</SubChapterContainer>
   );
 }

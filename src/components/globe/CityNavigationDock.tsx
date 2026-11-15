@@ -18,17 +18,17 @@ export function CityNavigationDock({
 }: CityNavigationDockProps) {
   return (
     <nav
-      aria-label="Navigation des Stations Orbitales Marocaines"
+      aria-label="Navigation des Régions de Démonstration"
       className={cn(
         "flex items-center gap-2 p-2 rounded-2xl bg-[#030712]/85 border border-teal-500/25 backdrop-blur-2xl shadow-[0_10px_40px_rgba(0,0,0,0.8),0_0_20px_rgba(20,184,166,0.15)] overflow-x-auto max-w-full select-none",
         className
       )}
     >
-      {/* Cosmic Station Emblem & Label */}
+      {/* Region Emblem & Label */}
       <div className="flex items-center gap-2 px-3 py-1 rounded-xl bg-teal-950/40 border border-teal-500/20 text-xs font-mono text-teal-300 font-bold uppercase shrink-0">
         <Orbit className="h-4 w-4 text-teal-400 animate-spin-slow" />
-        <span className="tracking-wider hidden sm:inline">STATIONS ORBITALES</span>
-        <span className="sm:hidden">STATIONS</span>
+        <span className="tracking-wider hidden sm:inline">EXPLORE REGIONS</span>
+        <span className="sm:hidden">REGIONS</span>
       </div>
 
       {/* Planetary Station Nodes */}
