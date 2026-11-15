@@ -1,6 +1,5 @@
-import React from "react";
-import { DocRegionView } from "@/components/globe/DocRegionView";
+import { redirect } from "next/navigation";
 
-export default function DocsOverviewPage() {
-  return <DocRegionView regionId="overview" />;
+export default function DocsPage() {
+  redirect("/");
 }

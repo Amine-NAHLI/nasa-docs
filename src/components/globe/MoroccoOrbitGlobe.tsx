@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import * as maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import { MoroccoAgroRegion } from "@/config/morocco-regions";
+import { MOROCCO_REGIONS, MoroccoAgroRegion } from "@/config/morocco-regions";
 import { CityBriefingCard } from "./CityBriefingCard";
 import { CityNavigationDock } from "./CityNavigationDock";
 import {
@@ -46,12 +46,21 @@ const SATELLITE_STYLE: maplibregl.StyleSpecification = {
   ],
 };
 
+export interface MoroccoOrbitGlobeControls {
+  flyToRegion: (region: MoroccoAgroRegion) => void;
+  resetOrbit: () => void;
+  zoomIn: () => void;
+  zoomOut: () => void;
+}
+
 interface MoroccoOrbitGlobeProps {
   initialRegion?: MoroccoAgroRegion;
   onRegionChange?: (region: MoroccoAgroRegion) => void;
   isHeroMode?: boolean;
   onEnterSite?: () => void;
   className?: string;
+  autoZoomToFes?: boolean;
+  onControlsReady?: (controls: MoroccoOrbitGlobeControls) => void;
 }
 
 export function MoroccoOrbitGlobe({
@@ -60,6 +69,8 @@ export function MoroccoOrbitGlobe({
   isHeroMode = false,
   onEnterSite,
   className = "",
+  autoZoomToFes = false,
+  onControlsReady,
 }: MoroccoOrbitGlobeProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
@@ -69,9 +80,7 @@ export function MoroccoOrbitGlobe({
   const isSpinningRef = useRef(true);
   const isInteractingRef = useRef(false);
   const [isRotating, setIsRotating] = useState(true);
-  const [currentRegion, setCurrentRegion] = useState<MoroccoAgroRegion | null>(
-    initialRegion || null
-  );
+  const [currentRegion, setCurrentRegion] = useState<MoroccoAgroRegion | null>(null);
   const [showBriefingCard, setShowBriefingCard] = useState(false);
   const [currentPitch, setCurrentPitch] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -132,13 +141,13 @@ export function MoroccoOrbitGlobe({
       // Drop pin immediately
       setMarkerAt(region.coordinates, region.name.split("·")[0].trim());
 
-      // Parabolic flight: if already zoomed, maplibre automatically unzooms and re-zooms!
+      // Parabolic flight: starts in space and zooms down into city
       map.flyTo({
         center: region.coordinates,
         zoom: region.zoom,
         pitch: region.pitch,
         bearing: region.bearing,
-        duration: 3400, // 3.4s smooth descent
+        duration: 3800, // 3.8s majestic descent
         curve: 1.42, // Parabolic NASA flight curve
         speed: 0.85,
         essential: true,
@@ -152,6 +161,44 @@ export function MoroccoOrbitGlobe({
     [onRegionChange, setMarkerAt]
   );
 
+  // Orbit Reset to Deep Space
+  const handleResetOrbit = useCallback(() => {
+    if (markerRef.current) markerRef.current.remove();
+    setCurrentRegion(null);
+    setShowBriefingCard(false);
+
+    mapRef.current?.flyTo({
+      center: [0, 24],
+      zoom: 1.6,
+      pitch: 0,
+      bearing: 0,
+      duration: 2600,
+      essential: true,
+    });
+
+    setTimeout(() => {
+      isSpinningRef.current = true;
+      setIsRotating(true);
+    }, 2700);
+  }, []);
+
+  // Expose controls to parent if requested
+  useEffect(() => {
+    if (!onControlsReady) return;
+    onControlsReady({
+      flyToRegion,
+      resetOrbit: handleResetOrbit,
+      zoomIn: () => mapRef.current?.zoomIn(),
+      zoomOut: () => mapRef.current?.zoomOut(),
+    });
+  }, [onControlsReady, flyToRegion, handleResetOrbit]);
+
+  // Handle external initialRegion change
+  useEffect(() => {
+    if (!initialRegion || !mapRef.current) return;
+    flyToRegion(initialRegion);
+  }, [initialRegion, flyToRegion]);
+
   // Initialize MapLibre
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
@@ -159,10 +206,10 @@ export function MoroccoOrbitGlobe({
     const map = new maplibregl.Map({
       container: containerRef.current,
       style: SATELLITE_STYLE,
-      center: initialRegion ? initialRegion.coordinates : [0, 24],
-      zoom: initialRegion ? initialRegion.zoom : 1.8,
-      pitch: initialRegion ? initialRegion.pitch : 0,
-      bearing: initialRegion ? initialRegion.bearing : 0,
+      center: [0, 24],
+      zoom: 1.6,
+      pitch: 0,
+      bearing: 0,
       attributionControl: false,
     });
 
@@ -198,9 +245,15 @@ export function MoroccoOrbitGlobe({
 
       map.resize();
 
-      if (initialRegion) {
-        setMarkerAt(initialRegion.coordinates, initialRegion.name.split("·")[0].trim());
-        setShowBriefingCard(true);
+      // Trigger automatic zoom to Fès if requested or if initialRegion passed
+      if (autoZoomToFes) {
+        setTimeout(() => {
+          flyToRegion(MOROCCO_REGIONS.overview);
+        }, 1200);
+      } else if (initialRegion) {
+        setTimeout(() => {
+          flyToRegion(initialRegion);
+        }, 800);
       }
     });
 
@@ -244,9 +297,10 @@ export function MoroccoOrbitGlobe({
       map.remove();
       mapRef.current = null;
     };
-  }, [initialRegion, setMarkerAt]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  // Smooth Orbit Spin (in space)
+  // Smooth Orbit Spin (requestAnimationFrame)
   useEffect(() => {
     isSpinningRef.current = isRotating;
     if (!isRotating) {
@@ -267,7 +321,7 @@ export function MoroccoOrbitGlobe({
         const z = mapRef.current.getZoom();
         if (z < 5) {
           const c = mapRef.current.getCenter();
-          c.lng -= 2.6 * dt;
+          c.lng -= 2.8 * dt;
           mapRef.current.jumpTo({ center: c });
         }
       }
@@ -283,26 +337,6 @@ export function MoroccoOrbitGlobe({
       }
     };
   }, [isRotating]);
-
-  // Reset Orbit to Deep Space
-  const handleResetOrbit = () => {
-    if (markerRef.current) markerRef.current.remove();
-    setShowBriefingCard(false);
-
-    mapRef.current?.flyTo({
-      center: [0, 24],
-      zoom: 1.8,
-      pitch: 0,
-      bearing: 0,
-      duration: 2600,
-      essential: true,
-    });
-
-    setTimeout(() => {
-      isSpinningRef.current = true;
-      setIsRotating(true);
-    }, 2700);
-  };
 
   const handleTogglePitch = () => {
     if (!mapRef.current) return;
@@ -322,30 +356,18 @@ export function MoroccoOrbitGlobe({
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,5,0.45)_100%)]" />
 
       {/* Top-Left: Mission & Orbital Telemetry HUD */}
-      <div className="absolute top-4 left-4 z-20 pointer-events-none max-w-xs space-y-2">
-        <div className="flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-slate-950/80 border border-teal-500/30 backdrop-blur-xl shadow-xl">
-          <div className="w-2.5 h-2.5 rounded-full bg-teal-400 animate-pulse" />
-          <div className="flex flex-col">
-            <span className="text-[10px] font-mono text-teal-300 font-bold uppercase tracking-wider">
-              Farmer Eye · Orbital View
-            </span>
-            <span className="text-[9px] font-mono text-slate-400">
-              NASA POWER & SMAP Telemetry
-            </span>
-          </div>
-        </div>
-
-        <div className="p-3 rounded-xl bg-slate-950/75 border border-white/10 backdrop-blur-md font-mono text-xs text-slate-300 space-y-1.5 shadow-lg">
-          <div className="flex justify-between items-center text-[10px]">
-            <span className="text-slate-500 uppercase flex items-center gap-1">
-              <Compass className="w-3 h-3 text-teal-400" /> Altitude
+      <div className="absolute top-20 left-5 z-20 pointer-events-none max-w-xs space-y-2">
+        <div className="p-3.5 rounded-xl bg-slate-950/85 border border-white/10 backdrop-blur-md font-mono text-xs text-slate-300 space-y-2 shadow-2xl">
+          <div className="flex justify-between items-center text-[11px]">
+            <span className="text-slate-500 uppercase flex items-center gap-1.5">
+              <Compass className="w-3.5 h-3.5 text-teal-400" /> Altitude
             </span>
             <span ref={altitudeRef} className="text-teal-300 font-bold tabular-nums">
               20,000 km
             </span>
           </div>
 
-          <div className="flex justify-between items-center text-[10px]">
+          <div className="flex justify-between items-center text-[11px]">
             <span className="text-slate-500 uppercase">Coordonnées</span>
             <span ref={coordsRef} className="text-slate-200 font-medium tabular-nums">
               34.03°N, 4.98°W
@@ -353,9 +375,9 @@ export function MoroccoOrbitGlobe({
           </div>
 
           {currentRegion && (
-            <div className="pt-1.5 border-t border-white/10 text-[10px] flex items-center justify-between text-teal-300 font-semibold truncate">
+            <div className="pt-2 border-t border-white/10 text-[11px] flex items-center justify-between text-teal-300 font-semibold truncate">
               <span className="text-slate-500">Cible :</span>
-              <span className="truncate max-w-[150px]">{currentRegion.name}</span>
+              <span className="truncate max-w-[170px]">{currentRegion.name}</span>
             </div>
           )}
         </div>
