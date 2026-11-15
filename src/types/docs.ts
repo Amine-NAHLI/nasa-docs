@@ -3,7 +3,7 @@ export interface DocNavItem {
   href: string;
   description?: string;
   isImplemented: boolean;
-  badge?: "Phase 1" | "Coming Soon" | "Experimental";
+  badge?: string;
 }
 
 export interface DocNavGroup {
