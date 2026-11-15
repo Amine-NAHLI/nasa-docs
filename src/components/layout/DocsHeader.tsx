@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { DocsSearchModal } from "@/components/docs/DocsSearchModal";
 import { useDocsContext } from "@/context/DocsContext";
-import { Search, Menu, Sun, Moon } from "lucide-react";
+import { Search, Menu, Sun, Moon, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface DocsHeaderProps {
@@ -124,6 +124,17 @@ export function DocsHeader({ onOpenMobileNav }: DocsHeaderProps) {
                 FR
               </button>
             </div>
+
+            {/* Download PDF Button (Dynamic EN / FR) */}
+            <a
+              href={isEn ? "/farmer-eye-complete-dossier.pdf" : "/farmer-eye-complete-dossier-fr.pdf"}
+              download={isEn ? "Farmer-Eye-Complete-Dossier-EN.pdf" : "Farmer-Eye-Dossier-Complet-FR.pdf"}
+              className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-border/70 hover:bg-muted/50 text-xs text-muted-foreground hover:text-foreground transition-colors font-mono cursor-pointer"
+              title={isEn ? "Download Complete Technical Dossier (PDF - English)" : "Télécharger le Dossier Technique Complet (PDF - Français)"}
+            >
+              <Download className="h-3.5 w-3.5 opacity-70" />
+              <span className="text-[11px] font-sans font-medium">PDF ({isEn ? "EN" : "FR"})</span>
+            </a>
 
             {/* Sun / Moon Theme Toggle */}
             <button

@@ -680,29 +680,33 @@ const LOCALIZED_DOSSIER: LocalizedCategoryData[] = [
     ],
   },
   {
-    title: { en: "AI INTELLIGENCE & VALIDATION", fr: "IA & VALIDATION SCIENTIFIQUE" },
+    title: { en: "SUPER INTELLIGENCE (SI) & VALIDATION", fr: "SUPER-INTELLIGENCE (SI) & VALIDATION" },
     chapters: [
       {
         id: "ai-architecture",
         badge: "Ch. 25-27",
-        title: { en: "Multi-Agent AI Architecture", fr: "Architecture IA Multi-Agents" },
-        category: { en: "AI INTELLIGENCE & VALIDATION", fr: "IA & VALIDATION SCIENTIFIQUE" },
+        title: { en: "Multi-Agent Super Intelligence (SI)", fr: "Super-Intelligence Multi-Agents (SI)" },
+        category: { en: "SUPER INTELLIGENCE (SI) & VALIDATION", fr: "SUPER-INTELLIGENCE (SI) & VALIDATION" },
         description: {
-          en: "OpenAI integration, multi-agent roles, multilingual Darija/EN/FR assistant, and anti-hallucination tests.",
-          fr: "Intégration OpenAI, rôles multi-agents, assistant Darija/FR/EN et tests anti-hallucination.",
+          en: "Sept. 29, 2026 Executive Order compliance, multi-agent SI roles, multilingual Darija/EN/FR assistant, and anti-hallucination tests.",
+          fr: "Conformité Décret du 29/09/2026, rôles multi-agents SI, assistant Darija/FR/EN et tests anti-hallucination.",
         },
         subChapters: [
           {
+            id: "si-executive-order",
+            title: { en: "NASA SI Mandate & Sept. 29, 2026 Order", fr: "Mandat NASA SI & Décret du 29 Sept. 2026" },
+          },
+          {
             id: "role-separation",
-            title: { en: "Deterministic vs Generative Role Separation", fr: "Séparation Déterministe vs Génératif" },
+            title: { en: "Deterministic vs Generative SI Role Separation", fr: "Séparation Déterministe vs SI Générative" },
           },
           {
             id: "agent-contract",
-            title: { en: "Recommended Agent Contract", fr: "Contrat d'agent recommandé" },
+            title: { en: "Recommended SI Agent Contract", fr: "Contrat d'agent SI recommandé" },
           },
           {
             id: "multi-agent-division",
-            title: { en: "Division of Agent Responsibilities (Figure 26.1)", fr: "Répartition des responsabilités (Fig. 26.1)" },
+            title: { en: "Division of SI Responsibilities (Figure 26.1)", fr: "Répartition des rôles SI (Fig. 26.1)" },
           },
           {
             id: "multilingual-assistant",
@@ -719,11 +723,11 @@ const LOCALIZED_DOSSIER: LocalizedCategoryData[] = [
       {
         id: "ai-scientific-tribunal",
         badge: "Ch. 28-30",
-        title: { en: "AI Scientific Tribunal & Trust", fr: "Tribunal Scientifique IA & Confiance" },
-        category: { en: "AI INTELLIGENCE & VALIDATION", fr: "IA & VALIDATION SCIENTIFIQUE" },
+        title: { en: "SI Scientific Tribunal & Trust", fr: "Tribunal Scientifique SI & Confiance" },
+        category: { en: "SUPER INTELLIGENCE (SI) & VALIDATION", fr: "SUPER-INTELLIGENCE (SI) & VALIDATION" },
         description: {
-          en: "Internal verification tribunal, evidence checks, deterministic vs generative matrix, and human oversight.",
-          fr: "Tribunal de vérification interne, contrôles de preuve, matrice de confiance et supervision humaine.",
+          en: "Internal verification tribunal, evidence checks, deterministic vs generative SI matrix, and human oversight.",
+          fr: "Tribunal de vérification interne, contrôles de preuve, matrice de confiance SI et supervision humaine.",
         },
         subChapters: [
           {
@@ -736,7 +740,7 @@ const LOCALIZED_DOSSIER: LocalizedCategoryData[] = [
           },
           {
             id: "deterministic-vs-generative",
-            title: { en: "Deterministic Science vs. Generative AI", fr: "Science déterministe vs IA générative" },
+            title: { en: "Deterministic Science vs. Generative SI", fr: "Science déterministe vs SI générative" },
           },
           {
             id: "trust-risks",
@@ -753,16 +757,16 @@ const LOCALIZED_DOSSIER: LocalizedCategoryData[] = [
     ],
   },
   {
-    title: { en: "EXPERIMENTAL RESULTS", fr: "RÉSULTATS EXPÉRIMENTAUX" },
+    title: { en: "FIELD PILOT BENCHMARK", fr: "BANC D'ESSAI PILOTE DE TERRAIN" },
     chapters: [
       {
         id: "meknes-reference-case",
         badge: "Ch. 31-35",
-        title: { en: "Meknes Case & Walkthrough", fr: "Cas de Référence Meknès & Audit" },
-        category: { en: "EXPERIMENTAL RESULTS", fr: "RÉSULTATS EXPÉRIMENTAUX" },
+        title: { en: "Field Pilot Benchmark (Meknes)", fr: "Banc d'Essai Pilote (Meknès)" },
+        category: { en: "FIELD PILOT BENCHMARK", fr: "BANC D'ESSAI PILOTE DE TERRAIN" },
         description: {
-          en: "Meknes/Saïss 2025 baseline, step-by-step depth-to-volume math, 5-ha scaling, and 52-test pytest audit.",
-          fr: "Référence Meknès/Saïss 2025, conversion hauteur-volume, extrapolation 5 ha et audit pytest (52 tests).",
+          en: "Real-world field validation of the global biophysical engine in the semi-arid Saïss basin: step-by-step math, 5-ha scaling, and 52-test automated audit.",
+          fr: "Validation empirique terrain du moteur biophysique global dans le bassin semi-aride du Saïss : calculs pas à pas, extrapolation 5 ha et audit de 52 tests.",
         },
         subChapters: [
           {

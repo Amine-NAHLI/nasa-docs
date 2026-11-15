@@ -1505,18 +1505,65 @@ export function FarmTimeMachineChapterView({ activeSubChapterId }: ChapterViewPr
   );
 }
 
-// ─── 11. AI ARCHITECTURE ────────────────────────────────────────────────────
+// ─── 11. SUPER INTELLIGENCE (SI) ARCHITECTURE ──────────────────────────────
 export function AiArchitectureChapterView({ activeSubChapterId }: ChapterViewProps) {
   const { lang } = useDocsContext();
   const isEn = lang === "en";
 
   return (
-    <SubChapterContainer activeSubChapterId={activeSubChapterId} defaultSubId="role-separation">
+    <SubChapterContainer activeSubChapterId={activeSubChapterId} defaultSubId="si-executive-order">
+      {/* 25.0 Compliance with September 29, 2026 Executive Order & NASA SI Mandate */}
+      <section id="si-executive-order" className="scroll-mt-20 space-y-4">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn
+            ? "NASA Space Apps 2026 Mandate: Super Intelligence (SI) Framework"
+            : "Mandat NASA Space Apps 2026 : Cadre de la Super-Intelligence (SI)"}
+        </h2>
+        <div className="p-4 rounded-md border border-border/70 bg-muted/20 space-y-3 text-sm leading-relaxed text-muted-foreground">
+          <div className="flex items-center gap-2 text-foreground font-mono text-xs font-semibold">
+            <span className="w-2 h-2 rounded-full bg-emerald-500" />
+            <span>{isEn ? "U.S. Executive Order of September 29, 2026 Compliance" : "Conformité avec le Décret Exécutif US du 29 Septembre 2026"}</span>
+          </div>
+          <blockquote className="border-l-2 border-primary pl-3 italic text-foreground text-xs font-mono">
+            {isEn
+              ? "“In accordance with the September 29, 2026 U.S. Executive Order, the executive branch shall use the terms 'Super Intelligence' [or SI] in lieu of 'Artificial Intelligence' and 'AI.'”"
+              : "« Conformément au décret exécutif américain du 29 septembre 2026, la branche exécutive doit utiliser les termes 'Super-Intelligence' [ou SI] en lieu et place d' 'Intelligence Artificielle' et d' 'IA.' »"}
+          </blockquote>
+          <p>
+            {isEn
+              ? "Super Intelligence (SI) refers to computer systems that perform tasks typically associated with human reasoning, decision-making, learning, and problem-solving. This includes large language models (LLMs), conversational assistants, foundational agronomic reasoning engines, and automated code-synthesis tools."
+              : "La Super-Intelligence (SI) désigne les systèmes informatiques accomplissant des tâches habituellement associées au raisonnement humain, à la prise de décision, à l'apprentissage et à la résolution de problèmes. Cela englobe les grands modèles de langage (LLM), les assistants conversationnels, les moteurs de raisonnement agronomique et les outils de génération de code."}
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono pt-2">
+            <div className="p-3 rounded border border-border/60 bg-background">
+              <span className="text-foreground font-semibold block mb-1">
+                {isEn ? "SI Utilization in Farmer Eye Development" : "Utilisation de la SI dans le Projet"}
+              </span>
+              <p className="text-muted-foreground font-sans text-[11px]">
+                {isEn
+                  ? "SI tools were leveraged to accelerate innovation and streamline development: biophysical equation synthesis, conversational Darija modeling, and multi-perspective risk audits."
+                  : "Les outils SI ont accéléré le développement : modélisation biophysique, formulation conversationnelle en Darija marocaine et audits multi-perspectives de résilience."}
+              </p>
+            </div>
+            <div className="p-3 rounded border border-border/60 bg-background">
+              <span className="text-foreground font-semibold block mb-1">
+                {isEn ? "The Deterministic SI Boundary" : "Frontière Déterministe de la SI"}
+              </span>
+              <p className="text-muted-foreground font-sans text-[11px]">
+                {isEn
+                  ? "SI is strictly barred from hallucinating hydrological quantities. All ET0, Kc, and depletion numbers are computed by deterministic Python math; SI serves solely as an explanatory and multi-agent synthesis layer."
+                  : "La SI a l'interdiction formelle d'inventer des chiffres hydrologiques. Tous les calculs d'ET0, Kc et bilans sont déterministes ; la SI agit exclusivement comme couche explicative et multi-agents."}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="multi-agent-division" className="scroll-mt-20">
         <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
           {isEn
-            ? "Division of Agent Responsibilities (Figure 26.1)"
-            : "Répartition des Rôles Multi-Agents (Figure 26.1)"}
+            ? "Division of Super Intelligence (SI) Responsibilities (Figure 26.1)"
+            : "Répartition des Rôles de la Super-Intelligence (SI) (Figure 26.1)"}
         </h2>
         <div className="divide-y divide-border/60 text-sm my-4">
           <div className="py-3 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-6">
@@ -1709,7 +1756,7 @@ export function AiScientificTribunalChapterView({ activeSubChapterId }: ChapterV
 
       <section id="deterministic-vs-generative" className="scroll-mt-20">
         <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
-          {isEn ? "Deterministic Science vs. Generative AI" : "Science Déterministe vs IA Générative"}
+          {isEn ? "Deterministic Science vs. Generative Super Intelligence (SI)" : "Science Déterministe vs Super-Intelligence (SI) Générative"}
         </h2>
         <div className="overflow-x-auto my-4">
           <table className="w-full text-left text-sm border-collapse">
@@ -1717,7 +1764,7 @@ export function AiScientificTribunalChapterView({ activeSubChapterId }: ChapterV
               <tr>
                 <th className="py-2.5 pr-4 text-left font-medium">{isEn ? "Task" : "Tâche"}</th>
                 <th className="py-2.5 pr-4 text-left font-medium">{isEn ? "Deterministic Implementation" : "Implémentation Déterministe"}</th>
-                <th className="py-2.5 pr-4 text-left font-medium">{isEn ? "Generative Interpretation" : "Interprétation Générative"}</th>
+                <th className="py-2.5 pr-4 text-left font-medium">{isEn ? "Generative SI Interpretation" : "Interprétation par la SI Générative"}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border/60 text-muted-foreground">
