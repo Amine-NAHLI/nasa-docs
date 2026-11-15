@@ -64,38 +64,35 @@ export function Modal({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-slate-950/80 backdrop-blur-md"
+            className="fixed inset-0 bg-black/40 backdrop-blur-xs"
             onClick={onClose}
           />
 
           {/* Modal Container */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            initial={{ opacity: 0, scale: 0.98, y: 8 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            exit={{ opacity: 0, scale: 0.98, y: 8 }}
+            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className={cn(
-              "relative w-full rounded-2xl border border-white/15 bg-[#0B1728] p-6 shadow-2xl text-slate-100 z-10 my-8 overflow-hidden",
+              "relative w-full rounded-xl border border-zinc-200 bg-white p-6 shadow-2xl text-zinc-900 z-10 my-8 overflow-hidden",
               maxWClasses[maxWidth],
               className
             )}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Ambient accent inside modal */}
-            <div className="absolute -top-24 -right-24 w-60 h-60 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
-
             <div className="flex items-start justify-between gap-4 mb-4">
               <div>
-                {title && <h2 className="text-xl font-bold text-slate-100">{title}</h2>}
-                {description && <p className="text-sm text-slate-400 mt-1">{description}</p>}
+                {title && <h2 className="text-lg font-bold text-zinc-900">{title}</h2>}
+                {description && <p className="text-xs text-zinc-500 mt-0.5">{description}</p>}
               </div>
               <button
                 type="button"
                 onClick={onClose}
-                className="rounded-lg p-1.5 text-slate-400 hover:text-slate-100 hover:bg-white/10 transition-colors cursor-pointer"
+                className="rounded-lg p-1.5 text-zinc-400 hover:text-zinc-900 hover:bg-zinc-100 transition-colors cursor-pointer"
                 aria-label="Close dialog"
               >
-                <X className="h-5 w-5" />
+                <X className="h-4 w-4" />
               </button>
             </div>
 

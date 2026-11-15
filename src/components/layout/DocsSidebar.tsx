@@ -1,100 +1,99 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { docsNavigation } from "@/config/docs-nav";
+import { DOSSIER_NAVIGATION } from "@/data/dossier-pages";
 import { cn } from "@/lib/utils";
-import { BookOpen } from "lucide-react";
 
 interface DocsSidebarProps {
+  activeChapterId?: string;
+  activeSubChapterId?: string;
+  onSelectChapter?: (chapterId: string, subChapterId?: string) => void;
   onItemClick?: () => void;
   className?: string;
 }
 
-export function DocsSidebar({ onItemClick, className }: DocsSidebarProps) {
-  const pathname = usePathname();
+export function DocsSidebar({
+  activeChapterId = "why-farmer-eye",
+  activeSubChapterId,
+  onSelectChapter,
+  onItemClick,
+  className,
+}: DocsSidebarProps) {
+  const handleChapterClick = (chapterId: string) => {
+    if (onSelectChapter) onSelectChapter(chapterId);
+    if (onItemClick) onItemClick();
+  };
+
+  const handleSubChapterClick = (chapterId: string, subId: string) => {
+    if (onSelectChapter) onSelectChapter(chapterId, subId);
+    if (onItemClick) onItemClick();
+  };
 
   return (
     <aside
       className={cn(
-        "w-72 shrink-0 py-6 pr-4 space-y-8 select-none overflow-y-auto max-h-[calc(100vh-5rem)]",
+        "w-72 shrink-0 py-6 pl-6 pr-4 select-none overflow-y-auto max-h-[calc(100vh-3.5rem)] text-xs font-sans border-r border-zinc-200/80 bg-white",
         className
       )}
     >
-      <div className="px-3 pb-2 border-b border-white/10">
-        <div className="flex items-center gap-2 text-xs font-mono text-teal-400">
-          <BookOpen className="h-4 w-4" />
-          <span className="font-semibold uppercase tracking-wider">DOCS INDEX</span>
-        </div>
-        <p className="text-[11px] text-slate-500 mt-1">
-          Farmer Eye Scientific & Technical Hub
-        </p>
-      </div>
-
       <div className="space-y-6">
-        {docsNavigation.map((group) => (
-          <div key={group.id} className="space-y-2">
-            {/* Group Header */}
-            <div className="flex items-center gap-2 px-3 text-xs font-mono font-semibold tracking-wider text-slate-400 uppercase">
-              <span className="text-teal-400/80">{group.orderNumber}.</span>
-              <span>{group.title}</span>
-            </div>
+        {DOSSIER_NAVIGATION.map((category) => (
+          <div key={category.title} className="space-y-2">
+            {/* Category Header (Drizzle Style: Uppercase Bold) */}
+            <h3 className="text-[11px] font-bold text-zinc-900 tracking-wider uppercase font-sans px-1">
+              {category.title}
+            </h3>
 
-            {/* Group Items */}
-            <ul className="space-y-1">
-              {group.items.map((item) => {
-                const isActive = pathname === item.href;
+            {/* Continuous Tree Rail */}
+            <div className="border-l border-zinc-200 pl-3 space-y-1">
+              {category.chapters.map((chapter) => {
+                const isActive = activeChapterId === chapter.id;
 
-                if (item.isImplemented) {
-                  return (
-                    <li key={item.href}>
-                      <Link
-                        href={item.href}
-                        onClick={onItemClick}
-                        className={cn(
-                          "group flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-all",
-                          isActive
-                            ? "bg-teal-500/15 text-teal-300 border border-teal-500/30 font-semibold"
-                            : "text-slate-300 hover:text-white hover:bg-white/5"
-                        )}
-                      >
-                        <span className="truncate">{item.title}</span>
-                        {item.badge && (
-                          <span
-                            className={cn(
-                              "text-[10px] px-1.5 py-0.5 rounded font-mono shrink-0",
-                              isActive
-                                ? "bg-teal-400 text-slate-950 font-bold"
-                                : "bg-slate-800 text-teal-300 border border-teal-500/20"
-                            )}
-                          >
-                            {item.badge}
-                          </span>
-                        )}
-                      </Link>
-                    </li>
-                  );
-                }
-
-                // Unimplemented item: honest Coming Soon state
                 return (
-                  <li key={item.href}>
-                    <div
-                      className="flex items-center justify-between px-3 py-2 rounded-lg text-xs text-slate-500 hover:text-slate-400 transition-colors cursor-not-allowed group/item"
-                      title={`${item.title} — Scheduled for Phase 2`}
+                  <div key={chapter.id} className="relative">
+                    {/* Chapter Item */}
+                    <button
+                      type="button"
+                      onClick={() => handleChapterClick(chapter.id)}
+                      className={cn(
+                        "w-full text-left py-1 text-[13px] leading-snug transition-all flex items-center justify-between cursor-pointer group",
+                        isActive
+                          ? "-ml-[13px] pl-[11px] border-l-2 border-zinc-950 font-bold text-zinc-950"
+                          : "text-zinc-600 hover:text-zinc-950 font-normal"
+                      )}
                     >
-                      <span className="truncate group-hover/item:text-slate-300 transition-colors">
-                        {item.title}
-                      </span>
-                      <span className="text-[9px] uppercase font-mono px-1.5 py-0.5 rounded bg-slate-900 text-slate-500 border border-white/5 shrink-0">
-                        Soon
-                      </span>
-                    </div>
-                  </li>
+                      <span className="truncate">{chapter.title}</span>
+                    </button>
+
+                    {/* Nested Sub-Chapters (Drizzle Style) */}
+                    {isActive && chapter.subChapters && chapter.subChapters.length > 0 && (
+                      <div className="mt-1 mb-2 ml-1 pl-3.5 border-l border-zinc-200/90 space-y-1">
+                        {chapter.subChapters.map((sub) => {
+                          const isSubActive = activeSubChapterId === sub.id;
+
+                          return (
+                            <button
+                              key={sub.id}
+                              type="button"
+                              onClick={() => handleSubChapterClick(chapter.id, sub.id)}
+                              className={cn(
+                                "w-full text-left py-0.5 text-[12px] leading-relaxed transition-colors block cursor-pointer truncate",
+                                isSubActive
+                                  ? "text-zinc-950 font-semibold"
+                                  : "text-zinc-500 hover:text-zinc-900"
+                              )}
+                              title={sub.title}
+                            >
+                              {sub.title}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
                 );
               })}
-            </ul>
+            </div>
           </div>
         ))}
       </div>

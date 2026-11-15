@@ -1,103 +1,201 @@
 "use client";
 
-import React, { useRef } from "react";
-import dynamic from "next/dynamic";
-import { MOROCCO_REGIONS } from "@/config/morocco-regions";
-import { MoroccoOrbitGlobeControls } from "@/components/globe/MoroccoOrbitGlobe";
-import { Orbit, Compass, RotateCcw } from "lucide-react";
+import React, { useState } from "react";
+import { DocsHeader } from "@/components/layout/DocsHeader";
+import { DocsSidebar } from "@/components/layout/DocsSidebar";
+import {
+  DOSSIER_NAVIGATION,
+  getChapterById,
+} from "@/data/dossier-pages";
+import {
+  OverviewChapterView,
+  WhyFarmerEyeChapterView,
+  NasaPowerChapterView,
+  NasaSmapChapterView,
+  ArchitecturePipelineChapterView,
+  Fao56Et0ChapterView,
+  EtcCropWaterChapterView,
+  CropBattleLabChapterView,
+  ClimateAttackLabChapterView,
+  FarmTimeMachineChapterView,
+  AiArchitectureChapterView,
+  AiScientificTribunalChapterView,
+  MeknesReferenceCaseChapterView,
+  Impact2030ChapterView,
+  AnnexesChapterView,
+} from "@/components/docs/chapters/ChapterViews";
+import { ChevronRight, ArrowLeft, ArrowRight, ListFilter } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-// Dynamic import with ssr: false for MapLibre 3D Globe
-const MoroccoOrbitGlobe = dynamic(
-  () =>
-    import("@/components/globe/MoroccoOrbitGlobe").then((mod) => mod.MoroccoOrbitGlobe),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="w-screen h-screen bg-[#000004] flex items-center justify-center">
-        <div className="flex flex-col items-center gap-3 font-mono text-xs text-teal-400">
-          <Orbit className="h-8 w-8 animate-spin" />
-          <span className="tracking-widest uppercase">Initialisation de l&apos;Orbite 3D Terre...</span>
-        </div>
-      </div>
-    ),
-  }
-);
+export function DocsPage() {
+  const [activeChapterId, setActiveChapterId] = useState<string>("why-farmer-eye");
+  const [activeSubChapterId, setActiveSubChapterId] = useState<string | undefined>(undefined);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-export default function HomePage() {
-  const controlsRef = useRef<MoroccoOrbitGlobeControls | null>(null);
+  const currentChapter = getChapterById(activeChapterId) || getChapterById("why-farmer-eye")!;
 
-  const handleZoomToFes = () => {
-    if (controlsRef.current) {
-      controlsRef.current.flyToRegion(MOROCCO_REGIONS.overview);
+  const handleSelectChapter = (chapterId: string, subChapterId?: string) => {
+    setActiveChapterId(chapterId);
+    setActiveSubChapterId(subChapterId);
+    setMobileMenuOpen(false);
+
+    if (subChapterId) {
+      setTimeout(() => {
+        const el = document.getElementById(subChapterId);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+          window.history.pushState(null, "", `#${subChapterId}`);
+        }
+      }, 50);
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
-  const handleResetSpace = () => {
-    if (controlsRef.current) {
-      controlsRef.current.resetOrbit();
-    }
-  };
+  const prevChapter = currentChapter.prevId ? getChapterById(currentChapter.prevId) : undefined;
+  const nextChapter = currentChapter.nextId ? getChapterById(currentChapter.nextId) : undefined;
 
   return (
-    <main className="relative w-screen h-screen overflow-hidden bg-[#000004] text-white select-none">
-      {/* 3D Earth Orbit Globe: Stays in Space (no auto-zoom) until Visiter is clicked */}
-      <MoroccoOrbitGlobe
-        autoZoomToFes={false}
-        onControlsReady={(controls) => {
-          controlsRef.current = controls;
-        }}
-        className="w-full h-full"
-      />
+    <div className="min-h-screen flex flex-col bg-white text-zinc-900 font-sans selection:bg-emerald-100 selection:text-emerald-900">
+      {/* ─── 1. Fixed Top Header (Drizzle Style, 56px) ─────────────────────────── */}
+      <DocsHeader onOpenMobileNav={() => setMobileMenuOpen(!mobileMenuOpen)} />
 
-      {/* Top Floating Scientific Brand Header */}
-      <header className="absolute top-5 left-5 z-20 pointer-events-none flex flex-col gap-2">
-        <div className="flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-slate-950/85 border border-teal-500/30 backdrop-blur-xl shadow-2xl">
-          <div className="relative flex items-center justify-center w-8 h-8 rounded-xl bg-teal-500/10 border border-teal-400/30 text-teal-300">
-            <Orbit className="w-4 h-4 animate-spin-slow" />
-            <span className="absolute -top-1 -right-1 flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-400"></span>
-            </span>
-          </div>
+      {/* ─── 2. Main 2-Column Centralized Container (No Right Sidebar) ─────────── */}
+      <div className="flex-1 w-full max-w-7xl mx-auto flex">
+        {/* Left Column: Docs Sidebar with Tree Rail (280px / w-72) */}
+        <div
+          className={`lg:block shrink-0 ${
+            mobileMenuOpen
+              ? "fixed inset-0 z-50 bg-white p-4 block"
+              : "hidden"
+          }`}
+        >
+          <DocsSidebar
+            activeChapterId={activeChapterId}
+            activeSubChapterId={activeSubChapterId}
+            onSelectChapter={handleSelectChapter}
+            onItemClick={() => setMobileMenuOpen(false)}
+          />
+        </div>
 
-          <div>
+        {/* Center Column: Centralized Reading Experience (Max-W 860px) */}
+        <main className="flex-1 min-w-0 px-6 sm:px-12 lg:px-20 py-10 max-w-4xl mx-auto">
+          {/* Breadcrumbs (Drizzle Style) */}
+          <nav className="flex items-center gap-1.5 text-xs font-mono text-zinc-400 mb-6">
+            <button
+              type="button"
+              onClick={() => handleSelectChapter("overview")}
+              className="hover:text-zinc-900 transition-colors cursor-pointer"
+            >
+              Docs
+            </button>
+            <ChevronRight className="w-3.5 h-3.5 text-zinc-300" />
+            <span className="text-zinc-500">{currentChapter.category}</span>
+            <ChevronRight className="w-3.5 h-3.5 text-zinc-300" />
+            <span className="text-zinc-900 font-semibold">{currentChapter.title}</span>
+          </nav>
+
+          {/* Chapter Main Title Header (Drizzle Style) */}
+          <header className="space-y-3 pb-6 border-b border-zinc-200/80 mb-8">
             <div className="flex items-center gap-2">
-              <h1 className="text-sm font-mono font-extrabold tracking-widest uppercase text-white">
-                FARMER <span className="text-teal-400">EYE</span>
-              </h1>
-              <span className="px-1.5 py-0.5 text-[9px] font-mono font-bold rounded bg-teal-500/20 text-teal-300 border border-teal-500/30 uppercase">
-                NASA Space Apps
+              {currentChapter.badge && (
+                <span className="px-2 py-0.5 rounded text-[11px] font-mono uppercase tracking-wider bg-zinc-100 text-zinc-700 border border-zinc-200">
+                  {currentChapter.badge}
+                </span>
+              )}
+              <span className="text-xs font-mono text-zinc-400">
+                NASA Space Apps Challenge 2026 — DEVUPWARD
               </span>
             </div>
-            <p className="text-[10px] font-mono text-slate-300">
-              The Farmer&apos;s Second Eyes • DEVUPWARD
+
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-zinc-900">
+              {currentChapter.title}
+            </h1>
+
+            <p className="text-base sm:text-lg text-zinc-600 font-normal leading-relaxed">
+              {currentChapter.description}
             </p>
+
+            {/* Quick in-page sub-chapter jump links */}
+            {currentChapter.subChapters && currentChapter.subChapters.length > 0 && (
+              <div className="pt-2 flex flex-wrap items-center gap-1.5 text-xs font-mono text-zinc-500">
+                <span className="text-[11px] uppercase tracking-wider font-semibold text-zinc-400 flex items-center gap-1 mr-1">
+                  <ListFilter className="h-3 w-3" />
+                  Sections:
+                </span>
+                {currentChapter.subChapters.map((sub) => (
+                  <button
+                    key={sub.id}
+                    type="button"
+                    onClick={() => handleSelectChapter(currentChapter.id, sub.id)}
+                    className="px-2 py-0.5 rounded bg-zinc-50 hover:bg-zinc-100 hover:text-zinc-900 border border-zinc-200 text-[11.5px] transition-colors cursor-pointer"
+                  >
+                    {sub.title}
+                  </button>
+                ))}
+              </div>
+            )}
+          </header>
+
+          {/* Chapter Content Component */}
+          <div className="min-h-[500px]">
+            {activeChapterId === "overview" && <OverviewChapterView />}
+            {activeChapterId === "why-farmer-eye" && <WhyFarmerEyeChapterView />}
+            {activeChapterId === "nasa-power" && <NasaPowerChapterView />}
+            {activeChapterId === "nasa-smap" && <NasaSmapChapterView />}
+            {activeChapterId === "architecture-pipeline" && <ArchitecturePipelineChapterView />}
+            {activeChapterId === "fao-56-et0" && <Fao56Et0ChapterView />}
+            {activeChapterId === "etc-crop-water" && <EtcCropWaterChapterView />}
+            {activeChapterId === "crop-battle-lab" && <CropBattleLabChapterView />}
+            {activeChapterId === "climate-attack-lab" && <ClimateAttackLabChapterView />}
+            {activeChapterId === "farm-time-machine" && <FarmTimeMachineChapterView />}
+            {activeChapterId === "ai-architecture" && <AiArchitectureChapterView />}
+            {activeChapterId === "ai-scientific-tribunal" && <AiScientificTribunalChapterView />}
+            {activeChapterId === "meknes-reference-case" && <MeknesReferenceCaseChapterView />}
+            {activeChapterId === "impact-2030" && <Impact2030ChapterView />}
+            {activeChapterId === "annexes" && <AnnexesChapterView />}
           </div>
-        </div>
-      </header>
 
-      {/* Top-Center Floating Primary Controls: "Visiter Fès" triggers the zoom */}
-      <div className="absolute top-5 inset-x-0 z-20 pointer-events-auto flex justify-center items-center gap-3 px-4">
-        <button
-          type="button"
-          onClick={handleZoomToFes}
-          className="flex items-center gap-2.5 px-6 py-2.5 rounded-xl bg-teal-400 text-slate-950 font-mono font-bold text-xs uppercase tracking-wider shadow-[0_0_30px_rgba(32,201,189,0.5)] hover:bg-teal-300 hover:shadow-[0_0_40px_rgba(32,201,189,0.8)] transition-all cursor-pointer active:scale-95"
-          title="Visiter la ville de Fès et la plaine du Saïss en 3D"
-        >
-          <Compass className="w-4 h-4 text-slate-950 animate-pulse" />
-          <span>Visiter Fès (Saïss)</span>
-        </button>
+          {/* Bottom Pagination Links (Drizzle Style: Previous / Next) */}
+          <div className="mt-16 pt-8 border-t border-zinc-200 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {prevChapter ? (
+              <button
+                type="button"
+                onClick={() => handleSelectChapter(prevChapter.id)}
+                className="p-4 rounded-xl border border-zinc-200 bg-white hover:border-zinc-300 hover:bg-zinc-50/70 transition-all text-left group cursor-pointer"
+              >
+                <div className="flex items-center gap-1.5 text-xs text-zinc-400 group-hover:text-zinc-600 transition-colors">
+                  <ArrowLeft className="h-3.5 w-3.5" />
+                  <span>Previous</span>
+                </div>
+                <div className="font-semibold text-sm text-zinc-900 mt-1">
+                  {prevChapter.title}
+                </div>
+              </button>
+            ) : (
+              <div />
+            )}
 
-        <button
-          type="button"
-          onClick={handleResetSpace}
-          className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-950/80 hover:bg-slate-900 border border-white/10 text-slate-300 hover:text-white text-xs font-mono font-medium backdrop-blur-md transition-all cursor-pointer shadow-lg active:scale-95"
-          title="Dézoomer vers l'orbite spatiale profonde"
-        >
-          <RotateCcw className="w-3.5 h-3.5 text-teal-400" />
-          <span className="hidden sm:inline">Espace</span>
-        </button>
+            {nextChapter && (
+              <button
+                type="button"
+                onClick={() => handleSelectChapter(nextChapter.id)}
+                className="p-4 rounded-xl border border-zinc-200 bg-white hover:border-zinc-300 hover:bg-zinc-50/70 transition-all text-right group cursor-pointer"
+              >
+                <div className="flex items-center justify-end gap-1.5 text-xs text-zinc-400 group-hover:text-zinc-600 transition-colors">
+                  <span>Next</span>
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </div>
+                <div className="font-semibold text-sm text-zinc-900 mt-1">
+                  {nextChapter.title}
+                </div>
+              </button>
+            )}
+          </div>
+        </main>
       </div>
-    </main>
+    </div>
   );
 }
+
+export default DocsPage;
