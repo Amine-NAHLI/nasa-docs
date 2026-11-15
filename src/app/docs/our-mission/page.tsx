@@ -11,7 +11,14 @@ import { TechExplanation } from "@/components/docs/TechExplanation";
 import { ExplainerVideo } from "@/components/media/ExplainerVideo";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
-import { Eye, UserCheck, Users, ArrowRight } from "lucide-react";
+import {
+  Eye,
+  UserCheck,
+  Users,
+  ArrowRight,
+  ShieldCheck,
+  AlertTriangle,
+} from "lucide-react";
 
 export default function OurMissionPage() {
   const tocItems: TocItem[] = [
@@ -20,12 +27,13 @@ export default function OurMissionPage() {
     { id: "global-challenge", title: "3. The Global Agricultural Challenge", level: 2 },
     { id: "second-eyes-philosophy", title: "4. 'The Farmer's Second Eyes'", level: 2 },
     { id: "mission-briefing-video", title: "5. Mission Briefing Video", level: 2 },
-    { id: "role-of-nasa-observations", title: "6. The Role of NASA Observations", level: 2 },
+    { id: "role-of-nasa-observations", title: "6. The Role of NASA Data (POWER & SMAP)", level: 2 },
     { id: "role-of-scientific-modeling", title: "7. The Role of Agricultural Modeling", level: 2 },
     { id: "role-of-ai", title: "8. The Role of Artificial Intelligence", level: 2 },
     { id: "human-agency", title: "9. Why the Farmer Remains in Control", level: 2 },
-    { id: "impact-2030-vision", title: "10. The Impact 2030 Vision", level: 2 },
-    { id: "devupward-team", title: "11. The DEVUPWARD Team", level: 2 },
+    { id: "scientific-integrity", title: "10. Current Status, Simulations & Limitations", level: 2 },
+    { id: "impact-2030-vision", title: "11. The Impact 2030 Vision", level: 2 },
+    { id: "devupward-team", title: "12. The DEVUPWARD Team", level: 2 },
   ];
 
   return (
@@ -49,7 +57,7 @@ export default function OurMissionPage() {
             Our Mission: Empowering Human Agricultural Judgment
           </h1>
           <p className="text-lg text-slate-300 leading-relaxed font-sans">
-            How Farmer Eye fuses planetary NASA Earth observations, biophysical crop equations, and grounded artificial intelligence to give farmers an indispensable second perspective in an era of climate volatility.
+            How Farmer Eye fuses planetary NASA climate and soil observations, biophysical crop water modeling, and grounded artificial intelligence to give farmers an indispensable second perspective in an era of climate volatility.
           </p>
         </div>
 
@@ -60,14 +68,14 @@ export default function OurMissionPage() {
             1. What is Farmer Eye?
           </h2>
           <p className="text-slate-300 leading-relaxed">
-            <strong>Farmer Eye</strong> is an open-architecture agricultural decision-support system conceptualized and built by <strong>DEVUPWARD</strong> under the <strong>EARTH TRIALS | IMPACT 2030</strong> initiative for the NASA Space Apps Challenge.
+            <strong>Farmer Eye</strong> is an open-architecture agricultural decision-support system conceptualized and built independently by <strong>DEVUPWARD</strong> under the <strong>EARTH TRIALS | IMPACT 2030</strong> initiative for the <strong>NASA Space Apps Challenge</strong>.
           </p>
           <p className="text-slate-300 leading-relaxed">
-            The platform bridges the gap between orbit and soil. It ingests calibrated multispectral imagery, thermal radiance, and soil moisture measurements from NASA satellite constellations, processes them through biophysical agricultural science models, and translates the synthesis into clear, accessible recommendations for farmers and agronomists.
+            The platform bridges the gap between orbit and soil. It ingests calibrated meteorological feeds and soil moisture measurements from NASA open science programs, processes them through biophysical agricultural models, and translates the synthesis into clear, accessible recommendations for farmers and agronomists.
           </p>
 
-          <Callout type="note" title="Global Applicability">
-            While field demonstrations and calibration trials have been conducted in Morocco&apos;s Saïss Plain (Meknes), Farmer Eye is engineered as a universally transferable concept. Its algorithms are designed to adapt across Mediterranean, semi-arid, temperate, and sub-tropical farming systems globally.
+          <Callout type="note" title="Universal Applicability & Demonstration Context">
+            To ground mathematical models in realistic conditions, Farmer Eye utilizes an illustrative simulation scenario based on the Saïss Plain (Meknes, Morocco). However, the underlying architecture is universally transferable across global semi-arid, temperate, and sub-tropical agricultural basins.
           </Callout>
         </section>
 
@@ -117,7 +125,7 @@ export default function OurMissionPage() {
                 03. Information Divide
               </span>
               <p className="text-xs text-slate-300 leading-relaxed">
-                While commercial enterprises afford private drone fleets and sensor meshes, family smallholders lack simple access to satellite telemetry.
+                While commercial enterprises afford costly private sensor meshes, family smallholders lack simple access to planetary climate telemetry.
               </p>
             </div>
           </div>
@@ -143,15 +151,15 @@ export default function OurMissionPage() {
               </h3>
             </div>
             <p className="text-sm text-slate-200 leading-relaxed">
-              <strong>The First Eyes</strong> are the farmer&apos;s own eyes on the ground: the physical feel of topsoil, leaf color, root inspection, and intimate familiarity with every contour of the field. This can never be replaced by software.
+              <strong>The First Eyes</strong> are the farmer&apos;s own eyes on the ground: the physical feel of topsoil, leaf texture, root inspection, and intimate familiarity with every contour of the field. This can never be replaced by software.
             </p>
             <p className="text-sm text-slate-200 leading-relaxed">
-              <strong>The Second Eyes</strong> are the orbital and mathematical perspectives provided by Farmer Eye: invisible infrared reflectance, root-zone moisture anomalies from spaceborne radar, thermal evapotranspiration deficits, and regional weather forecast synthesis.
+              <strong>The Second Eyes</strong> are the planetary and mathematical perspectives provided by Farmer Eye: continuous solar radiation tracking, root-zone moisture percentiles from spaceborne microwave radar, reference evapotranspiration balances, and weather trend synthesis.
             </p>
           </div>
 
           <p className="text-slate-300 leading-relaxed">
-            By uniting both perspectives, the farmer gains complete situational awareness before catastrophic crop stress occurs.
+            By uniting both perspectives, the farmer gains complete environmental visibility before moisture deficits degrade crop yields.
           </p>
         </section>
 
@@ -172,49 +180,43 @@ export default function OurMissionPage() {
         <section id="role-of-nasa-observations" className="py-8 space-y-4 border-b border-white/10">
           <h2 className="text-2xl font-bold text-white font-mono flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-teal-400" />
-            6. The Role of NASA Earth Observations
+            6. The Role of NASA Data: POWER & SMAP
           </h2>
           <p className="text-slate-300 leading-relaxed">
-            NASA operates the world&apos;s most sophisticated Earth-observing satellite fleet. Farmer Eye harnesses public, open-science datasets from multiple missions:
+            Farmer Eye relies on publicly available, open-science datasets provided by NASA Earth science programs:
           </p>
 
           <div className="space-y-3 pt-2">
             <div className="p-4 rounded-xl border border-white/10 bg-slate-900/50 space-y-1">
               <div className="flex items-center justify-between">
-                <span className="font-semibold text-slate-100 text-sm">Landsat 8 & Landsat 9 (OLI/TIRS)</span>
-                <span className="text-[10px] font-mono text-teal-400 px-2 py-0.5 rounded bg-slate-800">30m Spatial</span>
+                <span className="font-semibold text-slate-100 text-sm">NASA POWER (Prediction Of Worldwide Energy Resources)</span>
+                <span className="text-[10px] font-mono text-teal-400 px-2 py-0.5 rounded bg-slate-800">Global Meteorological Grid</span>
               </div>
               <p className="text-xs text-slate-400 leading-relaxed">
-                Provides continuous 11-band multispectral surface reflectance and thermal infrared radiometry, enabling multi-decade vegetation health baselines and spatial canopy comparisons.
+                Provides continuous daily parameters including surface solar radiation, 2-meter air temperature (min/max), relative humidity, precipitation, and wind speed. These parameters serve as the physical foundation for reference evapotranspiration modeling.
               </p>
             </div>
 
             <div className="p-4 rounded-xl border border-white/10 bg-slate-900/50 space-y-1">
               <div className="flex items-center justify-between">
-                <span className="font-semibold text-slate-100 text-sm">SMAP (Soil Moisture Active Passive)</span>
-                <span className="text-[10px] font-mono text-teal-400 px-2 py-0.5 rounded bg-slate-800">L-Band Microwave</span>
+                <span className="font-semibold text-slate-100 text-sm">NASA SMAP (Soil Moisture Active Passive)</span>
+                <span className="text-[10px] font-mono text-teal-400 px-2 py-0.5 rounded bg-slate-800">L-Band Microwave Radar/Radiometer</span>
               </div>
               <p className="text-xs text-slate-400 leading-relaxed">
-                Measures volumetric water content in the top 5cm of soil and assimilates into root-zone (0-100cm) moisture estimates, penetrating dry weather and clouds.
-              </p>
-            </div>
-
-            <div className="p-4 rounded-xl border border-white/10 bg-slate-900/50 space-y-1">
-              <div className="flex items-center justify-between">
-                <span className="font-semibold text-slate-100 text-sm">ECOSTRESS (ISS Thermal Radiometer)</span>
-                <span className="text-[10px] font-mono text-teal-400 px-2 py-0.5 rounded bg-slate-800">70m High-Res Thermal</span>
-              </div>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Monitors plant temperature changes during different times of the diurnal cycle to detect moisture stress hours or days before visible leaf wilting occurs.
+                Delivers surface (0–5 cm) and root-zone (0–100 cm) volumetric soil moisture estimates. By utilizing microwave wavelengths that penetrate clouds and light vegetation cover, SMAP offers consistent, weather-independent soil moisture trends.
               </p>
             </div>
           </div>
 
+          <Callout type="info" title="Future Sensor Integration Roadmap (Phase 2)">
+            In subsequent development phases, Farmer Eye plans to explore incorporating high-resolution optical imagery (such as Landsat and Sentinel-2 for parcel-level vegetation indices) and thermal infrared data (such as ECOSTRESS for canopy temperature stress). These sensors represent roadmap goals and are not implemented in Phase 1.
+          </Callout>
+
           <SourceReference
-            citation="NASA Earth Science Division Open Data Program"
-            source="National Aeronautics and Space Administration"
+            citation="NASA Prediction Of Worldwide Energy Resources (POWER) Project"
+            source="NASA Langley Research Center"
             year="2026"
-            href="https://earthdata.nasa.gov/"
+            href="https://power.larc.nasa.gov/"
           />
         </section>
 
@@ -222,28 +224,29 @@ export default function OurMissionPage() {
         <section id="role-of-scientific-modeling" className="py-8 space-y-4 border-b border-white/10">
           <h2 className="text-2xl font-bold text-white font-mono flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-teal-400" />
-            7. The Role of Scientific Agricultural Modeling
+            7. The Role of Agricultural Biophysical Modeling
           </h2>
           <p className="text-slate-300 leading-relaxed">
-            Raw satellite pixels alone are not agricultural answers. A raw NDVI score of 0.65 means nothing without knowing crop type, canopy geometry, soil depth, and local temperature.
+            Raw meteorological numbers alone do not tell a farmer when to irrigate. Farmer Eye integrates physical equations to calculate crop water demand and track root-zone depletion.
           </p>
 
           <ScientificNote
             sourceName="Biophysical Modeling Engine"
-            formula="ET_c = K_c * ET_0"
+            satelliteMission="NASA POWER Meteorological Ingestion"
+            formula="ET0 = [0.408Δ(Rn - G) + γ(900/(T + 273))u2(es - ea)] / [Δ + γ(1 + 0.34u2)]"
           >
-            Farmer Eye implements the internationally accepted FAO-56 Penman-Monteith equation. By combining solar net radiation, ambient air temperature, wind velocity, and relative humidity, the engine calculates reference evapotranspiration (ET_0). Crop coefficients (K_c) tailored to phenological stages then estimate crop-specific water consumption (ET_c).
+            Farmer Eye implements the internationally accepted FAO-56 Penman-Monteith equation. By combining solar net radiation (Rn), air temperature (T), wind speed (u2), and vapor pressure deficit (es - ea), the engine calculates reference evapotranspiration (ET0). Crop coefficients (Kc) can then scale this baseline to estimate crop water requirements (ETc = Kc * ET0).
           </ScientificNote>
 
-          <TechExplanation summary="How Crop Water Stress Index (CWSI) is calculated">
+          <TechExplanation summary="Root-Zone Soil-Water Balance Depletion">
             <p className="mb-2">
-              CWSI evaluates canopy temperature relative to theoretical lower and upper bounds:
+              Soil moisture depletion (Dr) is tracked according to standard water balance principles:
             </p>
             <div className="p-2 rounded bg-slate-900 font-mono text-xs text-amber-300 mb-2">
-              CWSI = ((Tc - Ta) - (Tc - Ta)_lower) / ((Tc - Ta)_upper - (Tc - Ta)_lower)
+              Dr,i = Dr,i-1 - (P_i - RO_i) - I_i + ETc,i + DP_i
             </div>
             <p className="text-xs text-slate-400">
-              Where Tc is canopy surface temperature measured by thermal sensors and Ta is air temperature. A CWSI of 0 represents an abundantly watered crop freely transpiring, whereas 1.0 indicates complete stomatal closure and severe physiological drought stress.
+              Where Dr,i is root-zone depletion at the end of day i, P is rainfall, RO is surface runoff, I is net irrigation, ETc is crop evapotranspiration, and DP is deep percolation loss. Combining this theoretical balance with NASA SMAP root-zone observations provides a robust estimate of irrigation urgency.
             </p>
           </TechExplanation>
         </section>
@@ -255,24 +258,24 @@ export default function OurMissionPage() {
             8. The Role of Artificial Intelligence
           </h2>
           <p className="text-slate-300 leading-relaxed">
-            AI in Farmer Eye is strictly grounded. We reject black-box hallucination and unverified claims. Our AI models perform three explicit tasks:
+            AI in Farmer Eye is strictly grounded in biophysical parameters. We reject speculative generation or unverified claims. Our AI models perform three concrete interpretation tasks:
           </p>
 
           <div className="space-y-3 pt-1">
             <div className="p-4 rounded-xl border border-white/10 bg-slate-900/60 space-y-1">
               <span className="text-xs font-mono font-bold text-teal-400 block">
-                Task A: Multispectral Anomaly Segmentation
+                Task A: Multi-Parameter Stress Evaluation
               </span>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Automated detection of localized anomalies across farm parcels, identifying whether a drop in vigor is due to water deficit, soil salinity patches, or irrigation emitter clogging.
+                Evaluating atmospheric vapor pressure deficit alongside SMAP root-zone moisture percentiles to determine whether crops are currently entering water-deficit conditions.
               </p>
             </div>
             <div className="p-4 rounded-xl border border-white/10 bg-slate-900/60 space-y-1">
               <span className="text-xs font-mono font-bold text-teal-400 block">
-                Task B: Multi-Horizon Risk Simulation
+                Task B: Weather Forecast Tradeoff Analysis
               </span>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Probabilistic modeling of upcoming heatwaves combined with current soil moisture, calculating the risk profile of irrigating immediately versus delaying 48 hours to conserve water.
+                Comparing short-term precipitation probabilities against daily evapotranspiration rates to help growers evaluate whether to irrigate immediately or delay to conserve reservoir water.
               </p>
             </div>
             <div className="p-4 rounded-xl border border-white/10 bg-slate-900/60 space-y-1">
@@ -280,7 +283,7 @@ export default function OurMissionPage() {
                 Task C: Plain-Language Scientific Synthesis
               </span>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Translating gigabytes of raster mathematics into clear, respectful, plain-language summaries that can be reviewed in under 60 seconds on a mobile screen.
+                Translating physical differential equations and moisture percentiles into clear, respectful, plain-language summaries that can be reviewed in under 60 seconds on a mobile screen.
               </p>
             </div>
           </div>
@@ -293,7 +296,7 @@ export default function OurMissionPage() {
             9. Why the Farmer Remains the Decision-Maker
           </h2>
           <p className="text-slate-300 leading-relaxed">
-            In modern AgriTech, there is a dangerous temptation to promise total automation: automated irrigation valves triggering without human oversight, drone sprayers dispatching autonomously, and algorithms dictating harvesting schedules.
+            In modern AgriTech, there is a dangerous temptation to promise total automation: automated irrigation valves triggering without human oversight and algorithms dictating farm operations.
           </p>
 
           <div className="p-5 rounded-xl border border-amber-500/30 bg-amber-950/20 space-y-2">
@@ -305,16 +308,49 @@ export default function OurMissionPage() {
               No satellite or algorithm understands local economic constraints, micro-topography, market contracts, or family priorities as well as the grower who lives on the land.
             </p>
             <p className="text-sm text-slate-300 leading-relaxed">
-              Farmer Eye is designed explicitly as a <strong>Decision-Support System</strong>. It provides transparent data, confidence intervals, and scenario simulations. It never overrides human agency. The farmer remains the commander in the field.
+              Farmer Eye is designed explicitly as a <strong>Decision-Support System</strong>. It provides transparent data, confidence indicators, and scenario simulations. It never overrides human agency. The farmer remains the commander in the field.
             </p>
           </div>
         </section>
 
-        {/* 10. The Impact 2030 Vision */}
+        {/* 10. Current Status, Simulations & Limitations */}
+        <section id="scientific-integrity" className="py-8 space-y-4 border-b border-white/10">
+          <h2 className="text-2xl font-bold text-white font-mono flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-teal-400" />
+            10. Current Functionality, Simulations & Limitations
+          </h2>
+          <p className="text-slate-300 leading-relaxed">
+            In keeping with scientific integrity, we clearly outline what is active, what is simulated, and current project constraints:
+          </p>
+
+          <div className="space-y-3 pt-2">
+            <div className="p-4 rounded-xl border border-teal-500/30 bg-teal-950/20 space-y-1.5">
+              <div className="flex items-center gap-2 text-xs font-mono text-teal-400 font-bold">
+                <ShieldCheck className="h-4 w-4" />
+                <span>CURRENT FUNCTIONALITY (PHASE 1)</span>
+              </div>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Ingestion of NASA POWER meteorological datasets, NASA SMAP soil moisture percentiles, FAO-56 Penman-Monteith reference evapotranspiration modeling, and rule-grounded AI advisory text generation.
+              </p>
+            </div>
+
+            <div className="p-4 rounded-xl border border-amber-500/30 bg-amber-950/20 space-y-1.5">
+              <div className="flex items-center gap-2 text-xs font-mono text-amber-400 font-bold">
+                <AlertTriangle className="h-4 w-4" />
+                <span>DEMONSTRATION SIMULATIONS & LIMITATIONS</span>
+              </div>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                The Saïss Plain (Meknes) case study represents an illustrative simulation scenario to test mathematical behavior under semi-arid conditions. SMAP data operates at coarse regional resolution (~9–36 km), which captures broad root-zone trends rather than sub-meter parcel variations. We do not claim implemented field-level ground-truth validation or in-situ sensor networks at this stage.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* 11. The Impact 2030 Vision */}
         <section id="impact-2030-vision" className="py-8 space-y-4 border-b border-white/10">
           <h2 className="text-2xl font-bold text-white font-mono flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-teal-400" />
-            10. Our Future-Oriented Impact 2030 Vision
+            11. Our Future-Oriented Impact 2030 Vision
           </h2>
           <p className="text-slate-300 leading-relaxed">
             Under the <strong>EARTH TRIALS | IMPACT 2030</strong> initiative, our roadmap looks ahead to the next decade of agricultural adaptation:
@@ -347,23 +383,23 @@ export default function OurMissionPage() {
             </div>
             <div className="p-4 rounded-xl border border-white/10 bg-slate-900/60 space-y-1.5">
               <span className="text-xs font-mono font-bold text-amber-300 uppercase">
-                Goal 4: Open Scientific Calibration
+                Goal 4: High-Resolution Sensor Expansion
               </span>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Fostering collaborative ground-truth validation networks across international agronomic research institutions and universities.
+                Working toward future integration of high-resolution optical and thermal satellite constellations to enrich coarse regional data with field-level precision.
               </p>
             </div>
           </div>
         </section>
 
-        {/* 11. The DEVUPWARD Team */}
+        {/* 12. The DEVUPWARD Team */}
         <section id="devupward-team" className="py-8 space-y-4">
           <h2 className="text-2xl font-bold text-white font-mono flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-teal-400" />
-            11. The DEVUPWARD Team
+            12. The DEVUPWARD Team
           </h2>
           <p className="text-slate-300 leading-relaxed">
-            <strong>DEVUPWARD</strong> is a multi-disciplinary team of software engineers, remote sensing practitioners, and creative frontend developers participating in the <strong>NASA Space Apps Challenge</strong>.
+            <strong>DEVUPWARD</strong> is an independent multi-disciplinary team of software engineers, remote sensing practitioners, and creative frontend developers participating in the <strong>NASA Space Apps Challenge</strong>.
           </p>
 
           <div className="p-6 rounded-2xl border border-white/10 bg-[#0B1728]/80 space-y-4">
@@ -387,7 +423,7 @@ export default function OurMissionPage() {
 
             <div className="pt-2 flex flex-wrap gap-2 text-xs font-mono">
               <span className="px-2.5 py-1 rounded bg-slate-900 text-teal-300 border border-teal-500/20">
-                NASA Space Apps 2026
+                NASA Space Apps Challenge 2026
               </span>
               <span className="px-2.5 py-1 rounded bg-slate-900 text-amber-300 border border-amber-400/20">
                 EARTH TRIALS
@@ -396,6 +432,10 @@ export default function OurMissionPage() {
                 IMPACT 2030
               </span>
             </div>
+
+            <p className="text-[11px] font-mono text-slate-500 pt-1">
+              Disclaimer: Farmer Eye is an independent hackathon entry created for the NASA Space Apps Challenge and is not an official NASA program, agency product, or endorsed by NASA.
+            </p>
           </div>
 
           <div className="pt-6 flex items-center justify-between border-t border-white/10">

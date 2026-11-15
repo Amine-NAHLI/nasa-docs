@@ -50,7 +50,7 @@ export function HeroSection() {
 
           <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/60 border border-white/10 text-xs font-mono text-slate-300 backdrop-blur-sm">
             <Satellite className="h-3.5 w-3.5 text-teal-400" />
-            <span>NASA Space Apps Innovation</span>
+            <span>NASA Space Apps Challenge 2026</span>
           </div>
         </motion.div>
 
@@ -112,16 +112,16 @@ export function HeroSection() {
           className="pt-10 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto border-t border-white/10 text-left font-mono"
         >
           <div className="p-3 rounded-lg bg-slate-900/40 border border-white/5">
-            <span className="text-[10px] text-teal-400 uppercase block font-semibold">OBSERVATION</span>
-            <span className="text-xs sm:text-sm text-slate-200 font-medium">NASA Earth Satellites</span>
+            <span className="text-[10px] text-teal-400 uppercase block font-semibold">CLIMATE DATA</span>
+            <span className="text-xs sm:text-sm text-slate-200 font-medium">NASA POWER Feeds</span>
+          </div>
+          <div className="p-3 rounded-lg bg-slate-900/40 border border-white/5">
+            <span className="text-[10px] text-teal-400 uppercase block font-semibold">SOIL MOISTURE</span>
+            <span className="text-xs sm:text-sm text-slate-200 font-medium">NASA SMAP Radar</span>
           </div>
           <div className="p-3 rounded-lg bg-slate-900/40 border border-white/5">
             <span className="text-[10px] text-teal-400 uppercase block font-semibold">MODELING</span>
             <span className="text-xs sm:text-sm text-slate-200 font-medium">Biophysical Water Balance</span>
-          </div>
-          <div className="p-3 rounded-lg bg-slate-900/40 border border-white/5">
-            <span className="text-[10px] text-teal-400 uppercase block font-semibold">SYNTHESIS</span>
-            <span className="text-xs sm:text-sm text-slate-200 font-medium">AI Decision Augmentation</span>
           </div>
           <div className="p-3 rounded-lg bg-slate-900/40 border border-white/5">
             <span className="text-[10px] text-amber-300 uppercase block font-semibold">PHILOSOPHY</span>

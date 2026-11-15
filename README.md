@@ -3,13 +3,29 @@
 > **"The Farmer's Second Eyes."**  
 > Turning NASA Earth observations, agricultural science, and artificial intelligence into clearer farming decisions.
 
-Developed by **DEVUPWARD** under the **EARTH TRIALS | IMPACT 2030** scientific initiative for the **NASA Space Apps Challenge**.
+Developed independently by **DEVUPWARD** under the **EARTH TRIALS | IMPACT 2030** scientific initiative for the **NASA Space Apps Challenge**.
 
 ---
 
-## 🛰️ Project Overview
+## 🛰️ Project Overview & Scientific Basis
 
-Farmer Eye is an open-architecture agricultural decision-support system designed to empower farmers facing escalating climate uncertainty, drought, and groundwater depletion. By synthesizing macroscopic Earth observations (Landsat, Sentinel-2, MODIS, SMAP, ECOSTRESS), biophysical crop modeling (FAO-56 Penman-Monteith), and context-aware artificial intelligence, Farmer Eye acts as an indispensable "second eye" while honoring the farmer as the ultimate decision-maker on the land.
+Farmer Eye is an open-architecture agricultural decision-support system designed to empower farmers facing climate uncertainty, drought, and groundwater depletion.
+
+### Current Implemented Capabilities:
+- **NASA POWER Climate Data**: Daily surface solar radiation, air temperature (min/max), relative humidity, precipitation, and wind speed.
+- **NASA SMAP Soil Moisture**: Surface (0–5 cm) and root-zone (0–100 cm) volumetric water content percentiles from spaceborne L-band microwave radar/radiometer.
+- **Biophysical Agricultural Modeling**: FAO-56 Penman-Monteith reference evapotranspiration ($ET_0$) and root-zone water depletion balance calculations.
+- **Context-Aware AI Interpretation**: Grounded translation of physical moisture and weather metrics into plain-language agricultural summaries and risk assessments.
+- **Demonstration Scenario**: An illustrative Mediterranean semi-arid simulation case study based on the Saïss Plain (Meknes, Morocco).
+
+### Clarification on Planned Roadmap (Not Implemented in Phase 1):
+High-resolution optical multispectral imagery (Landsat 8/9, Sentinel-2), thermal stress radiometry (ECOSTRESS), spectral vegetation index processing (NDVI, NDWI), radiometric calibration, Crop Water Stress Index ($CWSI$), and field-level sensor networks represent planned research directions for future phases.
+
+---
+
+## ⚖️ NASA Branding & Challenge Notice
+
+Farmer Eye is an independent project created for the **NASA Space Apps Challenge** hackathon. It utilizes open public science data provided by NASA. Farmer Eye is not an official NASA agency program, and this website does not claim official affiliation with, sponsorship by, or endorsement from NASA.
 
 ---
 
@@ -18,7 +34,7 @@ Farmer Eye is an open-architecture agricultural decision-support system designed
 - **Framework**: Next.js 16 with App Router
 - **Language**: TypeScript in strict mode
 - **Styling**: Tailwind CSS
-- **Design System & Components**: shadcn/ui patterns, Lucide React icons
+- **Design System & Components**: Custom glass panels, Lucide React icons
 - **Animations**: Motion for React
 - **Documentation Engine**: Next.js MDX integration (`@next/mdx`)
 - **Package Manager**: npm
@@ -51,35 +67,20 @@ npm run start
 | Route | Description | Status |
 | :--- | :--- | :--- |
 | `/` | **Cinematic Homepage**: Full-screen hero, global challenge storytelling, perspective shift, interactive 5-stage pipeline, 6 scientific discipline cards, 2030 vision, and final CTA. | ✅ Production Ready |
-| `/docs` | **Documentation Hub Overview**: System orientation, 7 scientific discipline navigation, 3-step evaluation trail, Meknes demonstration case, and local search. | ✅ Production Ready |
-| `/docs/our-mission` | **Our Mission & Philosophy**: 11-section comprehensive scientific treatise covering the "Second Eyes" thesis, NASA missions, biophysical modeling, AI role, human agency, and DEVUPWARD team. | ✅ Production Ready |
+| `/docs` | **Documentation Hub Overview**: System orientation, 7 scientific discipline navigation, 3-step evaluation trail, Meknes simulation case study, and local search. | ✅ Production Ready |
+| `/docs/our-mission` | **Our Mission & Philosophy**: 12-section scientific manifesto covering the "Second Eyes" thesis, NASA POWER & SMAP data, biophysical modeling, AI interpretation, human agency, and limitations. | ✅ Production Ready |
 
 ---
 
-## 📂 Reusable Video & Brand Asset System
+## 🎨 Brand & Mascot System
 
-The codebase features a configurable TypeScript media registry (`src/config/media.ts`) and modular media components (`BrandLogo`, `ExplainerVideo`, `VideoModal`, `VideoPoster`).
+Place your official vector logos, brand marks, and team mascot in `public/brand/`:
+- `farmer-eye-logo.svg` or `farmer-eye-logo.png`: Primary Farmer Eye logo
+- `devupward-logo.svg` or `devupward-logo.png`: DEVUPWARD team insignia
+- `farmer-eye-mascot.png` or `farmer-eye-mascot.svg`: Team mascot
+- `favicon.ico`: Application browser icon
 
-### Where to Place Your Official Assets:
-
-1. **Official Logos & Mascot**:
-   - Location: `public/brand/`
-   - Files: `farmer-eye-logo.svg`, `devupward-logo.svg`, `earth-trials-2030.svg`, `farmer-eye-mascot.png`
-   - The UI automatically renders official vector assets from this directory.
-
-2. **Official Videos**:
-   - Location: `public/videos/`
-   - Files: `farmer-eye-cinematic-intro.mp4`, `farmer-eye-poster.jpg`, `farmer-eye-story-captions.vtt`
-   - To connect your video, edit `src/config/media.ts`:
-     ```typescript
-     "cinematic-intro": {
-       ...
-       videoUrl: "/videos/farmer-eye-cinematic-intro.mp4",
-       posterUrl: "/videos/farmer-eye-poster.jpg",
-       status: "available",
-     }
-     ```
-   - When no file is supplied (`status: "placeholder"`), the video player displays a scientific placeholder interface with technical specifications (4K UHD / 1080p, H.264, AAC).
+The `BrandLogo` component (`src/components/media/BrandLogo.tsx`) and navbar are pre-configured to render these assets cleanly with automatic fallback.
 
 ---
 
@@ -89,13 +90,13 @@ Press **⌘K** (macOS) or **Ctrl+K** (Windows/Linux) or click the search button 
 
 ---
 
-## 🔭 Phase 2 Roadmap
+## 🔭 Future Roadmap (Phase 2+)
 
-- **NASA Earth Intelligence**: Live ingestion pipelines for Landsat surface reflectance and SMAP soil moisture grids.
-- **Scientific Engine**: Interactive web-based FAO-56 Penman-Monteith and Crop Water Stress Index (CWSI) calculators.
-- **Earth Trials Demonstrator**: Interactive spatial map of the Saïss Plain / Meknes demonstration plots.
-- **AI Intelligence**: Context-aware reasoning sandbox and interactive scenario simulator.
-- **Results & Impact 2030**: Live indicators for water preservation and smallholder adoption.
+- **High-Resolution Optical Ingestion**: Exploring Landsat and Sentinel-2 tile processing for parcel-level canopy health.
+- **Thermal Infrared Stress**: Exploring ECOSTRESS diurnal thermal measurements.
+- **Interactive Biophysical Calculator**: Client-side FAO-56 Penman-Monteith tool.
+- **Field Demonstration Testbed**: Ground-truth sensor telemetry and localized calibration.
+- **Public API Route Handlers**: Open REST endpoints for agricultural researchers.
 
 ---
 
@@ -103,5 +104,5 @@ Press **⌘K** (macOS) or **Ctrl+K** (Windows/Linux) or click the search button 
 
 - **Team**: DEVUPWARD
 - **Scientific Initiative**: EARTH TRIALS | IMPACT 2030
-- **Competition**: NASA Space Apps Challenge
+- **Competition**: NASA Space Apps Challenge 2026
 - **Official Slogan**: *"The Farmer's Second Eyes."*

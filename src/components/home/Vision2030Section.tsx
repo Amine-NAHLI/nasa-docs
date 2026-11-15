@@ -44,7 +44,7 @@ export function Vision2030Section() {
           </h2>
 
           <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-sans">
-            Our initiative begins with scientific validation in pilot regions like Meknes, Morocco. But our horizon is truly global: building an open, accessible scientific bridge between orbiting Earth sensors and every grower facing an uncertain sky.
+            Our initiative uses semi-arid demonstration scenarios like the Saïss Plain (Meknes) to validate modeling concepts. But our horizon is truly global: building an open, accessible scientific bridge between orbiting Earth sensors and every grower facing an uncertain sky.
           </p>
         </div>
 
@@ -79,10 +79,10 @@ export function Vision2030Section() {
           </div>
           <div className="space-y-1 text-center sm:text-left">
             <span className="text-slate-200 font-semibold block uppercase">
-              Phase 1 Milestone Status
+              Phase 1 Milestone & Scientific Status
             </span>
             <span>
-              Farmer Eye is currently in scientific demonstration and architectural specification phase. Worldwide deployment and measurable impact goals are roadmap targets under development.
+              Farmer Eye is currently in scientific demonstration and architectural specification phase using NASA POWER climate data, NASA SMAP soil moisture, and biophysical modeling. Field-level ground-truth validation and high-resolution optical sensing represent roadmap targets.
             </span>
           </div>
         </div>

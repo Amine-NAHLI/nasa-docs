@@ -1,15 +1,17 @@
 # Official Brand Assets Directory
 
-Place your official vector logos, brand marks, and team mascot assets here.
+Drop your real Farmer Eye logo, DEVUPWARD team logo, and team mascot into this directory.
 
-### Expected Files:
-- `farmer-eye-logo.svg` (or `.png`): Primary Farmer Eye logo
-- `farmer-eye-mascot.png` (or `.svg`): Official mascot artwork (if available)
-- `devupward-logo.svg`: DEVUPWARD team insignia
-- `earth-trials-2030.svg`: EARTH TRIALS | IMPACT 2030 scientific badge
-- `favicon.ico`: Application browser icon
+### Asset Files Supported:
+- `farmer-eye-logo.svg` or `farmer-eye-logo.png`: Primary Farmer Eye logo
+- `devupward-logo.svg` or `devupward-logo.png`: DEVUPWARD team insignia
+- `farmer-eye-mascot.png` or `farmer-eye-mascot.svg`: Official project mascot
+- `favicon.ico`: Browser favicon
 
-### Guidelines:
-- High-resolution SVG format is preferred for logos.
-- For PNGs, use transparent backgrounds with at least 512x512 resolution.
-- Once replaced, the `BrandLogo` component (`src/components/media/BrandLogo.tsx`) and navbar will automatically render your official assets without code changes.
+### How the Website Handles Your Assets:
+- The website's `BrandLogo` component ([src/components/media/BrandLogo.tsx](file:///d:/nasa-docs/src/components/media/BrandLogo.tsx)) and `brandAssets` registry ([src/config/media.ts](file:///d:/nasa-docs/src/config/media.ts)) are pre-configured to render your real files immediately upon placement.
+- Supported formats: Vector SVG (preferred for crisp scaling) or high-resolution PNG with transparent background.
+- Automatic graceful fallback: If an image is missing or invalid, an elegant SVG fallback mark renders so the interface never breaks.
+
+### NASA Branding Notice:
+Farmer Eye is an independent project developed for the NASA Space Apps Challenge hackathon. In accordance with NASA regulations, do not use the official NASA meatball or worm insignia in a way that suggests NASA endorsement or official NASA agency affiliation.

@@ -10,23 +10,23 @@ export function IntroducingSection() {
   const pillars = [
     {
       icon: <Satellite className="h-5 w-5 text-teal-400" />,
-      title: "Macroscopic Earth Observation",
-      desc: "NASA satellites observe moisture anomalies, thermal signatures, and vegetative chlorophyll shifts long before symptoms become visible from the furrow.",
+      title: "NASA POWER Climate Data",
+      desc: "Ingests daily solar radiation, ambient air temperature, relative humidity, wind speed, and precipitation to establish accurate local meteorological baselines.",
     },
     {
       icon: <Eye className="h-5 w-5 text-amber-400" />,
-      title: "Biophysical Modeling",
-      desc: "Calculates actual evapotranspiration, root-zone saturation, and crop water stress using verified agronomic physics rather than generic assumptions.",
+      title: "NASA SMAP Soil Moisture",
+      desc: "Incorporates active-passive microwave measurements to track volumetric water content across surface (0-5cm) and root-zone soil profiles.",
     },
     {
       icon: <Brain className="h-5 w-5 text-emerald-400" />,
-      title: "Context-Aware AI Interpretation",
-      desc: "Converts complex multi-band rasters and differential equations into clear, plain-language agricultural summaries tailored to local conditions.",
+      title: "Biophysical Modeling & AI",
+      desc: "Computes reference evapotranspiration (ET0) using FAO-56 Penman-Monteith physics and uses AI to translate quantitative deficits into plain-language guidance.",
     },
     {
       icon: <UserCheck className="h-5 w-5 text-sky-400" />,
       title: "Uncompromising Human Agency",
-      desc: "The farmer remains the ultimate decision-maker. Farmer Eye never automates choices blindly; it acts as a trusted, augmented co-pilot.",
+      desc: "The farmer remains the ultimate decision-maker. Farmer Eye never automates choices blindly; it acts as a trusted, augmented decision co-pilot.",
     },
   ];
 
@@ -52,11 +52,11 @@ export function IntroducingSection() {
             </h2>
 
             <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-sans">
-              A grower walking an orchard notices dry foliage after stress has already commenced. By the time physical wilting is apparent, valuable yield has been compromised.
+              A grower walking an orchard notices dry foliage after stress has already commenced. By the time physical wilting is apparent, valuable yield and water efficiency have been compromised.
             </p>
 
             <p className="text-sm sm:text-base text-slate-400 leading-relaxed font-sans">
-              Farmer Eye connects high-altitude orbital spectroscopy to on-the-ground reality. It does not replace the farmer&apos;s hard-earned generational intuition—it arms that intuition with planetary measurements, helping farmers anticipate environmental volatility with scientific confidence.
+              Farmer Eye connects NASA planetary climate and soil moisture data to on-the-ground reality. It does not replace the farmer&apos;s hard-earned generational intuition—it arms that intuition with objective physical measurements, helping farmers anticipate water deficits with scientific confidence.
             </p>
 
             <div className="pt-2">

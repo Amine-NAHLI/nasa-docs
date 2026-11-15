@@ -16,7 +16,7 @@ export function Footer() {
           <div className="md:col-span-2 space-y-4">
             <BrandLogo size="lg" showSlogan />
             <p className="text-sm text-slate-400 leading-relaxed max-w-md pt-2">
-              Farmer Eye combines NASA Earth observations, biophysical agricultural models, and context-aware artificial intelligence into clearer decision-support for farmers facing climate uncertainty.
+              Farmer Eye combines NASA POWER climate data, NASA SMAP soil moisture measurements, biophysical agricultural models, and context-aware artificial intelligence into clearer decision-support for farmers facing climate uncertainty.
             </p>
 
             <div className="flex flex-wrap items-center gap-3 pt-2">
@@ -28,6 +28,10 @@ export function Footer() {
                 TEAM {siteConfig.team.name}
               </div>
             </div>
+
+            <p className="text-[11px] text-slate-500 max-w-md pt-1 leading-relaxed">
+              {siteConfig.challenge.disclaimer}
+            </p>
           </div>
 
           {/* Column 2: Documentation Navigation */}
@@ -67,31 +71,39 @@ export function Footer() {
           {/* Column 3: Science & Attribution */}
           <div className="space-y-3">
             <h4 className="text-xs font-mono uppercase tracking-widest text-slate-200 font-semibold">
-              Scientific Foundation
+              Data & Scientific Basis
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <a
-                  href="https://www.spaceappschallenge.org/"
+                  href="https://power.larc.nasa.gov/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-teal-300 transition-colors inline-flex items-center gap-1.5"
                 >
-                  <span>NASA Space Apps Challenge</span>
+                  <span>NASA POWER Climate Data</span>
                   <ExternalLink className="h-3 w-3 text-slate-500" />
                 </a>
               </li>
               <li>
-                <span className="text-slate-500">Landsat 8/9 & Sentinel-2</span>
+                <a
+                  href="https://smap.jpl.nasa.gov/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-teal-300 transition-colors inline-flex items-center gap-1.5"
+                >
+                  <span>NASA SMAP Soil Moisture</span>
+                  <ExternalLink className="h-3 w-3 text-slate-500" />
+                </a>
               </li>
               <li>
-                <span className="text-slate-500">SMAP Soil Moisture</span>
+                <span className="text-slate-500">FAO-56 Penman-Monteith (ET0)</span>
               </li>
               <li>
-                <span className="text-slate-500">ECOSTRESS Thermal Stress</span>
+                <span className="text-slate-500">Soil-Water Depletion Balance</span>
               </li>
               <li>
-                <span className="text-slate-500">Saïss Plain Demonstrator (Meknes)</span>
+                <span className="text-slate-500">Meknes Demonstration Scenario</span>
               </li>
             </ul>
           </div>
@@ -100,12 +112,12 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
           <p>
-            © {new Date().getFullYear()} Farmer Eye. Developed by {siteConfig.team.name} under {siteConfig.initiative.name}.
+            © {new Date().getFullYear()} Farmer Eye. Developed independently by {siteConfig.team.name} for the NASA Space Apps Challenge.
           </p>
           <div className="flex items-center gap-4">
             <span className="text-teal-400">English Only</span>
             <span>•</span>
-            <span className="text-slate-400">Global Ag-Science Initiative</span>
+            <span className="text-slate-400">Global Ag-Science Concept</span>
           </div>
         </div>
       </div>

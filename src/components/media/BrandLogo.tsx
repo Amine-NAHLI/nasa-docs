@@ -1,8 +1,11 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { brandAssets } from "@/config/media";
+import { Eye } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface BrandLogoProps {
@@ -18,6 +21,8 @@ export function BrandLogo({
   size = "md",
   href = "/",
 }: BrandLogoProps) {
+  const [imgError, setImgError] = useState(false);
+
   const sizeMap = {
     sm: { icon: 28, text: "text-base", sub: "text-[10px]" },
     md: { icon: 34, text: "text-lg", sub: "text-xs" },
@@ -31,15 +36,23 @@ export function BrandLogo({
       <div className="relative flex items-center justify-center">
         {/* Ambient pulse around logo */}
         <div className="absolute inset-0 rounded-full bg-teal-400/20 blur-md group-hover:bg-teal-400/35 transition-all" />
-        <div className="relative rounded-full border border-teal-500/30 p-1 bg-[#070D17]/90 shadow-md">
-          <Image
-            src={brandAssets.logoUrl}
-            alt="Farmer Eye Official Logo"
-            width={currentSize.icon}
-            height={currentSize.icon}
-            className="w-auto h-auto transition-transform duration-300 group-hover:scale-105"
-            priority
-          />
+        <div className="relative rounded-full border border-teal-500/30 p-1 bg-[#070D17]/90 shadow-md flex items-center justify-center">
+          {!imgError ? (
+            <Image
+              src={brandAssets.logoUrl}
+              alt="Farmer Eye Logo"
+              width={currentSize.icon}
+              height={currentSize.icon}
+              className="w-auto h-auto transition-transform duration-300 group-hover:scale-105"
+              onError={() => setImgError(true)}
+              priority
+              unoptimized
+            />
+          ) : (
+            <div className="p-1 text-teal-400">
+              <Eye className="h-5 w-5" />
+            </div>
+          )}
         </div>
       </div>
 
@@ -70,4 +83,41 @@ export function BrandLogo({
   }
 
   return content;
+}
+
+export function TeamLogo({ className }: { className?: string }) {
+  return (
+    <div className={cn("inline-flex items-center gap-2", className)}>
+      <Image
+        src={brandAssets.teamLogoUrl}
+        alt="DEVUPWARD Team Logo"
+        width={120}
+        height={30}
+        className="w-auto h-6 object-contain"
+        unoptimized
+      />
+    </div>
+  );
+}
+
+export function MascotSlot({ className }: { className?: string }) {
+  const [error, setError] = useState(false);
+
+  if (!brandAssets.mascotUrl || error) {
+    return null;
+  }
+
+  return (
+    <div className={cn("relative rounded-xl overflow-hidden p-2", className)}>
+      <Image
+        src={brandAssets.mascotUrl}
+        alt="Farmer Eye Team Mascot"
+        width={80}
+        height={80}
+        className="w-auto h-auto object-contain"
+        onError={() => setError(true)}
+        unoptimized
+      />
+    </div>
+  );
 }

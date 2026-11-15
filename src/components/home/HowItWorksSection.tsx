@@ -32,31 +32,31 @@ export function HowItWorksSection() {
   const stages: PipelineStage[] = [
     {
       step: "01",
-      name: "NASA Earth Observations",
-      shortLabel: "Satellite Ingestion",
+      name: "NASA Climate & Soil Ingestion",
+      shortLabel: "Data Ingestion",
       icon: <Satellite className="h-5 w-5 text-teal-400" />,
       summary:
-        "Continuous ingestion of high-resolution multispectral and radar imagery from Landsat 8/9, Sentinel-2, MODIS, SMAP, and ECOSTRESS constellations.",
+        "Daily automated ingestion of meteorological parameters from NASA POWER and L-band microwave soil moisture telemetry from the NASA SMAP mission.",
       detailedSpecs: {
-        inputs: "Raw Top-of-Atmosphere (TOA) and Surface Reflectance (SR) radiometry.",
-        processing: "Atmospheric correction, cloud masking (QA bands), and spatial tiling.",
-        output: "Georeferenced multi-band raster grids across target agricultural parcels.",
+        inputs: "Solar irradiance (ALLSKY_SFC_SW_DWN), T2M (temperature), RH2M (humidity), WS2M (wind), precipitation, and SMAP soil moisture.",
+        processing: "Coordinate-based geospatial extraction, quality-flag screening, and temporal alignment.",
+        output: "Standardized multi-parameter environmental time-series for the target agricultural parcel.",
       },
-      technologies: ["NASA Earthdata", "Landsat OLI/TIRS", "Sentinel-2 MSI", "SMAP L4"],
+      technologies: ["NASA POWER API", "NASA SMAP L4 Data", "JSON/GeoJSON Ingestion"],
     },
     {
       step: "02",
-      name: "Environmental Data Processing",
-      shortLabel: "Index Computation",
+      name: "Environmental Parameter Processing",
+      shortLabel: "Parameter Preparation",
       icon: <Layers className="h-5 w-5 text-sky-400" />,
       summary:
-        "Conversion of calibrated spectral bands into vegetation vigor (NDVI), canopy moisture stress (NDWI), and thermal anomaly layers.",
+        "Normalization and physical calibration of solar radiation, atmospheric vapor pressure deficit (VPD), and root-zone moisture saturation percentiles.",
       detailedSpecs: {
-        inputs: "Red, NIR, SWIR-1, SWIR-2, and Thermal Infrared band rasters.",
-        processing: "Harmonization, radiometric calibration, and time-series smoothing.",
-        output: "Normalized index layers and historical baseline deviation matrices.",
+        inputs: "Raw daily climate parameters and SMAP volumetric moisture (m³/m³).",
+        processing: "Saturation vapor pressure modeling, relative humidity correction, and soil moisture anomaly calculation.",
+        output: "Harmonized meteorological vectors and root-zone water availability index.",
       },
-      technologies: ["NDVI / NDWI Equations", "Savitzky-Golay Filter", "Bilinear Resampling"],
+      technologies: ["Vapor Pressure Deficit (VPD)", "Soil Moisture Percentiles", "Data Harmonization"],
     },
     {
       step: "03",
@@ -64,13 +64,13 @@ export function HowItWorksSection() {
       shortLabel: "Biophysical Modeling",
       icon: <Calculator className="h-5 w-5 text-amber-400" />,
       summary:
-        "Biophysical translation using the Penman-Monteith equation and soil-water balance modeling to quantify real evapotranspiration and root-zone deficits.",
+        "Biophysical translation using the standard FAO-56 Penman-Monteith equation to calculate reference evapotranspiration (ET0) and track daily soil-water deficits.",
       detailedSpecs: {
-        inputs: "Solar radiation, wind speed, vapor pressure, temperature, and crop coefficients (Kc).",
-        processing: "Daily water depletion tracking and crop phenology stage matching.",
-        output: "Crop Water Stress Index (CWSI) and millimeters of soil moisture deficit.",
+        inputs: "Net radiation, air temperature, wind speed at 2m, psychrometric constant, and crop coefficients (Kc).",
+        processing: "Daily evapotranspiration calculation and root-zone depletion balance equations.",
+        output: "Estimated crop evapotranspiration (ETc) and net soil-water deficit in millimeters.",
       },
-      technologies: ["FAO-56 Penman-Monteith", "Soil Water Balance", "Phenological GDD"],
+      technologies: ["FAO-56 Penman-Monteith", "Soil Water Depletion Balance", "Crop Coefficients (Kc)"],
     },
     {
       step: "04",
@@ -78,27 +78,27 @@ export function HowItWorksSection() {
       shortLabel: "Contextual Synthesis",
       icon: <BrainCircuit className="h-5 w-5 text-emerald-400" />,
       summary:
-        "Context-aware AI synthesizes quantitative physical indices with regional crop traits, weather forecasts, and historical stress patterns to produce actionable risk assessments.",
+        "Context-aware AI synthesizes calculated evapotranspiration, root-zone moisture levels, and short-term weather trends into clear, plain-language advisory summaries.",
       detailedSpecs: {
-        inputs: "Calculated CWSI, 7-day meteorological forecast, crop type, and soil texture.",
-        processing: "Multi-factor risk evaluation and scenario comparison.",
-        output: "Human-readable agronomic alerts and alternative irrigation strategies.",
+        inputs: "Calculated ET0, SMAP soil moisture index, short-term temperature forecasts, and crop growth stage.",
+        processing: "Rule-grounded evaluation, water-stress risk scoring, and multi-scenario comparison.",
+        output: "Plain-language agronomic summary and risk-graded irrigation advisories.",
       },
-      technologies: ["Context-Aware Reasoning", "Probabilistic Risk Models", "Grounded AI"],
+      technologies: ["Grounded AI Interpretation", "Water Stress Risk Scoring", "Scenario Evaluation"],
     },
     {
       step: "05",
       name: "Farmer Decision Support",
-      shortLabel: "Field Action",
+      shortLabel: "Farmer Action",
       icon: <CheckCircle className="h-5 w-5 text-teal-300" />,
       summary:
-        "Clear, unencumbered guidance delivered to the farmer: whether to irrigate today, hold water to preserve aquifer quota, or inspect specific stress hotspots in the grove.",
+        "Clear, unencumbered guidance delivered to the farmer: whether irrigation is advised today, how much water to allocate, or when to hold to conserve aquifer reserves.",
       detailedSpecs: {
-        inputs: "Interpreted recommendations and spatial risk heatmap.",
-        processing: "Localized prioritization based on farmer constraints.",
-        output: "Empowered human choice: the farmer decides with full visibility.",
+        inputs: "Advisory summary, water deficit metrics, and confidence level.",
+        processing: "Clean presentation tailored for quick review without technical jargon.",
+        output: "Empowered human choice: the farmer decides with complete environmental visibility.",
       },
-      technologies: ["Farmer Eye Web Hub", "SMS/Offline Summaries", "Localized Visual Maps"],
+      technologies: ["Farmer Eye Web Hub", "Accessible Mobile UI", "Actionable Guidance Cards"],
     },
   ];
 
@@ -119,7 +119,7 @@ export function HowItWorksSection() {
           </h2>
 
           <p className="text-base sm:text-lg text-slate-400 leading-relaxed font-sans">
-            From orbiting satellite radiometers to the farmer&apos;s morning inspection: click any stage below to inspect how planetary observations are transformed into grounded agricultural decisions.
+            From NASA climate feeds to the farmer&apos;s morning inspection: click any stage below to inspect how planetary observations are transformed into grounded agricultural decisions.
           </p>
         </div>
 

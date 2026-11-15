@@ -34,8 +34,8 @@ export const phase1SearchIndex: SearchResultItem[] = [
     section: "Homepage / Architecture Flow",
     href: "/#how-it-works",
     snippet:
-      "NASA Earth Observations → Environmental Data Processing → Scientific Agricultural Models → AI-Assisted Interpretation → Farmer Decision Support.",
-    keywords: ["pipeline", "flow", "landsat", "modis", "sentinel", "penman-monteith", "soil moisture", "stages"],
+      "NASA Earth Observations (POWER & SMAP) → Environmental Data Processing → Scientific Agricultural Models → AI-Assisted Interpretation → Farmer Decision Support.",
+    keywords: ["pipeline", "flow", "nasa power", "smap", "penman-monteith", "soil moisture", "stages"],
   },
   {
     id: "docs-overview",
@@ -52,8 +52,8 @@ export const phase1SearchIndex: SearchResultItem[] = [
     section: "Docs / Our Mission",
     href: "/docs/our-mission#what-is-farmer-eye",
     snippet:
-      "Farmer Eye is an open scientific decision-support system designed to empower farmers with planetary-scale Earth observations, biophysical crop modeling, and grounded AI.",
-    keywords: ["mission", "what is", "definition", "open science", "decision support"],
+      "Farmer Eye is an open scientific decision-support system designed to empower farmers with NASA POWER climate data, NASA SMAP soil moisture, biophysical modeling, and grounded AI.",
+    keywords: ["mission", "what is", "definition", "open science", "decision support", "nasa power", "smap"],
   },
   {
     id: "mission-second-eyes",
@@ -66,12 +66,12 @@ export const phase1SearchIndex: SearchResultItem[] = [
   },
   {
     id: "mission-nasa-role",
-    title: "The Role of NASA Earth Observations",
+    title: "The Role of NASA Observations (POWER & SMAP)",
     section: "Docs / Our Mission",
     href: "/docs/our-mission#role-of-nasa-observations",
     snippet:
-      "Multispectral satellite data (Landsat, Sentinel, ECOSTRESS, SMAP) provide objective radiometric baselines for vegetation vigor, moisture stress, and evapotranspiration.",
-    keywords: ["nasa", "landsat", "smap", "ecostress", "sentinel", "multispectral", "radiometric"],
+      "NASA POWER provides solar radiation, temperature, and precipitation parameters; NASA SMAP delivers active/passive microwave root-zone soil moisture metrics.",
+    keywords: ["nasa power", "smap", "soil moisture", "solar radiation", "meteorology", "precipitation"],
   },
   {
     id: "mission-scientific-models",
@@ -79,8 +79,8 @@ export const phase1SearchIndex: SearchResultItem[] = [
     section: "Docs / Our Mission",
     href: "/docs/our-mission#role-of-scientific-modeling",
     snippet:
-      "Connecting raw pixel reflectance to plant physiology: water balance calculations, soil thermal dynamics, and growing-degree-day phenology curves.",
-    keywords: ["scientific models", "biophysical", "crop modeling", "penman-monteith", "phenology", "agronomy"],
+      "Calculating reference evapotranspiration (ET0) via FAO-56 Penman-Monteith and tracking soil-water deficit dynamics against crop water requirements.",
+    keywords: ["scientific models", "biophysical", "crop modeling", "penman-monteith", "evapotranspiration", "water deficit"],
   },
   {
     id: "mission-ai-role",
@@ -88,8 +88,8 @@ export const phase1SearchIndex: SearchResultItem[] = [
     section: "Docs / Our Mission",
     href: "/docs/our-mission#role-of-ai",
     snippet:
-      "Translating complex petabytes of multispectral indices and mathematical differential equations into clear, plain-language actionable insights tailored to regional conditions.",
-    keywords: ["ai", "machine learning", "llm", "context-aware", "interpretation", "actionable insights"],
+      "Translating quantitative climate metrics and soil moisture calculations into clear, plain-language actionable insights tailored to regional conditions.",
+    keywords: ["ai", "machine learning", "interpretation", "actionable insights", "risk scoring"],
   },
   {
     id: "mission-team",
@@ -97,7 +97,7 @@ export const phase1SearchIndex: SearchResultItem[] = [
     section: "Docs / Our Mission",
     href: "/docs/our-mission#devupward-team",
     snippet:
-      "Developed by DEVUPWARD under the EARTH TRIALS | IMPACT 2030 initiative for the NASA Space Apps Challenge.",
+      "Developed independently by DEVUPWARD under the EARTH TRIALS | IMPACT 2030 initiative for the NASA Space Apps Challenge hackathon.",
     keywords: ["devupward", "team", "space apps", "earth trials", "impact 2030", "creators"],
   },
   {

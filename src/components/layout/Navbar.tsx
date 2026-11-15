@@ -56,6 +56,8 @@ export function Navbar() {
               <span className="text-teal-400 font-semibold">{siteConfig.initiative.name}</span>
               <span className="text-slate-600">|</span>
               <span className="text-amber-300/90">{siteConfig.team.name}</span>
+              <span className="text-slate-600">•</span>
+              <span className="text-slate-500">NASA Space Apps 2026</span>
             </div>
           </div>
 
