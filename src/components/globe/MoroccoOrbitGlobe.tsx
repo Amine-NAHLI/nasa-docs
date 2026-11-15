@@ -370,7 +370,7 @@ export function MoroccoOrbitGlobe({
           <div className="flex justify-between items-center text-[11px]">
             <span className="text-slate-500 uppercase">Coordonnées</span>
             <span ref={coordsRef} className="text-slate-200 font-medium tabular-nums">
-              34.03°N, 4.98°W
+              Orbite Spatiale
             </span>
           </div>
 

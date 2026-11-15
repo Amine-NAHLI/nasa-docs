@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 import dynamic from "next/dynamic";
 import { MOROCCO_REGIONS } from "@/config/morocco-regions";
 import { MoroccoOrbitGlobeControls } from "@/components/globe/MoroccoOrbitGlobe";
-import { Orbit, Rocket, RotateCcw } from "lucide-react";
+import { Orbit, Compass, RotateCcw } from "lucide-react";
 
 // Dynamic import with ssr: false for MapLibre 3D Globe
 const MoroccoOrbitGlobe = dynamic(
@@ -40,9 +40,9 @@ export default function HomePage() {
 
   return (
     <main className="relative w-screen h-screen overflow-hidden bg-[#000004] text-white select-none">
-      {/* 3D Earth Orbit Globe */}
+      {/* 3D Earth Orbit Globe: Stays in Space (no auto-zoom) until Visiter is clicked */}
       <MoroccoOrbitGlobe
-        autoZoomToFes={true}
+        autoZoomToFes={false}
         onControlsReady={(controls) => {
           controlsRef.current = controls;
         }}
@@ -69,29 +69,29 @@ export default function HomePage() {
                 NASA Space Apps
               </span>
             </div>
-            <p className="text-[10px] font-mono text-slate-400">
+            <p className="text-[10px] font-mono text-slate-300">
               The Farmer&apos;s Second Eyes • DEVUPWARD
             </p>
           </div>
         </div>
       </header>
 
-      {/* Top-Center Floating Primary Controls: Zoom into Fès */}
+      {/* Top-Center Floating Primary Controls: "Visiter Fès" triggers the zoom */}
       <div className="absolute top-5 inset-x-0 z-20 pointer-events-auto flex justify-center items-center gap-3 px-4">
         <button
           type="button"
           onClick={handleZoomToFes}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-teal-400 text-slate-950 font-mono font-bold text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(32,201,189,0.5)] hover:bg-teal-300 hover:shadow-[0_0_35px_rgba(32,201,189,0.7)] transition-all cursor-pointer active:scale-95"
-          title="Déclencher le zoom orbital parabolique vers la ville de Fès"
+          className="flex items-center gap-2.5 px-6 py-2.5 rounded-xl bg-teal-400 text-slate-950 font-mono font-bold text-xs uppercase tracking-wider shadow-[0_0_30px_rgba(32,201,189,0.5)] hover:bg-teal-300 hover:shadow-[0_0_40px_rgba(32,201,189,0.8)] transition-all cursor-pointer active:scale-95"
+          title="Visiter la ville de Fès et la plaine du Saïss en 3D"
         >
-          <Rocket className="w-4 h-4 text-slate-950" />
-          <span>Zoom vers la Ville de Fès (Saïss)</span>
+          <Compass className="w-4 h-4 text-slate-950 animate-pulse" />
+          <span>Visiter Fès (Saïss)</span>
         </button>
 
         <button
           type="button"
           onClick={handleResetSpace}
-          className="flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-slate-950/80 hover:bg-slate-900 border border-white/10 text-slate-300 hover:text-white text-xs font-mono font-medium backdrop-blur-md transition-all cursor-pointer shadow-lg active:scale-95"
+          className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-950/80 hover:bg-slate-900 border border-white/10 text-slate-300 hover:text-white text-xs font-mono font-medium backdrop-blur-md transition-all cursor-pointer shadow-lg active:scale-95"
           title="Dézoomer vers l'orbite spatiale profonde"
         >
           <RotateCcw className="w-3.5 h-3.5 text-teal-400" />
