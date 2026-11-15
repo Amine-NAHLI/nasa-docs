@@ -36,42 +36,42 @@ export function DocsSidebar({
   return (
     <aside
       className={cn(
-        "w-72 shrink-0 py-6 pl-6 pr-4 select-none overflow-y-auto h-full text-xs font-sans border-r border-zinc-200/80 dark:border-[#232529] bg-white dark:bg-[#0C0D0E] transition-colors",
+        "w-68 shrink-0 py-6 px-4 select-none overflow-y-auto h-full text-xs font-sans border-r border-border/60 bg-background transition-colors",
         className
       )}
     >
       <div className="space-y-6">
         {navigation.map((category) => (
-          <div key={category.title} className="space-y-2">
-            {/* Category Header (Drizzle Style: Uppercase Bold) */}
-            <h3 className="text-[11px] font-bold text-zinc-900 dark:text-zinc-300 tracking-wider uppercase font-sans px-1">
+          <div key={category.title} className="space-y-1">
+            {/* Category Header */}
+            <h3 className="text-[11px] font-semibold text-muted-foreground/80 tracking-wider uppercase font-mono px-2 py-1">
               {category.title}
             </h3>
 
-            {/* Continuous Tree Rail */}
-            <div className="border-l border-zinc-200 dark:border-zinc-800 pl-3 space-y-1">
+            {/* Chapter Items List */}
+            <div className="space-y-0.5">
               {category.chapters.map((chapter) => {
                 const isActive = activeChapterId === chapter.id;
 
                 return (
-                  <div key={chapter.id} className="relative">
-                    {/* Chapter Item */}
+                  <div key={chapter.id} className="space-y-0.5">
+                    {/* Chapter Link */}
                     <button
                       type="button"
                       onClick={() => handleChapterClick(chapter.id)}
                       className={cn(
-                        "w-full text-left py-1 text-[13px] leading-snug transition-all flex items-center justify-between cursor-pointer group",
+                        "w-full text-left py-1.5 px-2 rounded-md text-[13px] leading-snug transition-colors flex items-center justify-between cursor-pointer",
                         isActive
-                          ? "-ml-[13px] pl-[11px] border-l-2 border-zinc-950 dark:border-white font-bold text-zinc-950 dark:text-white"
-                          : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white font-normal"
+                          ? "bg-muted font-medium text-foreground"
+                          : "text-muted-foreground hover:text-foreground hover:bg-muted/40 font-normal"
                       )}
                     >
                       <span className="truncate">{chapter.title}</span>
                     </button>
 
-                    {/* Nested Sub-Chapters (Drizzle Style) */}
+                    {/* Sub-Chapters Indented List */}
                     {isActive && chapter.subChapters && chapter.subChapters.length > 0 && (
-                      <div className="mt-1 mb-2 ml-1 pl-3.5 border-l border-zinc-200/90 dark:border-zinc-800 space-y-1">
+                      <div className="ml-2.5 pl-2.5 my-1 border-l border-border/60 space-y-0.5">
                         {chapter.subChapters.map((sub) => {
                           const isSubActive = activeSubChapterId === sub.id;
 
@@ -81,10 +81,10 @@ export function DocsSidebar({
                               type="button"
                               onClick={() => handleSubChapterClick(chapter.id, sub.id)}
                               className={cn(
-                                "w-full text-left py-0.5 text-[12px] leading-relaxed transition-colors block cursor-pointer truncate",
+                                "w-full text-left py-1 px-1.5 rounded text-[12px] leading-relaxed transition-colors block cursor-pointer truncate",
                                 isSubActive
-                                  ? "text-zinc-950 dark:text-white font-semibold"
-                                  : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200"
+                                  ? "text-foreground font-medium bg-muted/40"
+                                  : "text-muted-foreground hover:text-foreground"
                               )}
                               title={sub.title}
                             >

@@ -21,7 +21,7 @@ export function Modal({
   title,
   description,
   children,
-  maxWidth = "2xl",
+  maxWidth = "xl",
   className,
 }: ModalProps) {
   const handleKeyDown = useCallback(
@@ -57,46 +57,57 @@ export function Modal({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 p-4 overflow-y-auto">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/40 backdrop-blur-xs"
+            transition={{ duration: 0.15 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-xs"
             onClick={onClose}
           />
 
           {/* Modal Container */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.98, y: 8 }}
+            initial={{ opacity: 0, scale: 0.98, y: -4 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.98, y: 8 }}
-            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            exit={{ opacity: 0, scale: 0.98, y: -4 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
             className={cn(
-              "relative w-full rounded-xl border border-zinc-200 dark:border-[#232529] bg-white dark:bg-[#141518] p-6 shadow-2xl text-zinc-900 dark:text-zinc-100 z-10 my-8 overflow-hidden transition-colors",
+              "relative w-full rounded-lg border border-border/80 bg-background p-5 text-foreground z-10 overflow-hidden shadow-xl",
               maxWClasses[maxWidth],
               className
             )}
-            onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-start justify-between gap-4 mb-4">
-              <div>
-                {title && <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">{title}</h2>}
-                {description && <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">{description}</p>}
+            {/* Header */}
+            {(title || description) && (
+              <div className="flex items-start justify-between pb-3 mb-3 border-b border-border/60">
+                <div>
+                  {title && (
+                    <h3 className="text-sm font-semibold text-foreground">
+                      {title}
+                    </h3>
+                  )}
+                  {description && (
+                    <p className="text-xs text-muted-foreground mt-0.5">
+                      {description}
+                    </p>
+                  )}
+                </div>
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="p-1 rounded text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer"
+                  aria-label="Close"
+                >
+                  <X className="h-4 w-4" />
+                </button>
               </div>
-              <button
-                type="button"
-                onClick={onClose}
-                className="rounded-lg p-1.5 text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-[#1E2024] transition-colors cursor-pointer"
-                aria-label="Close dialog"
-              >
-                <X className="h-4 w-4" />
-              </button>
-            </div>
+            )}
 
-            <div className="relative">{children}</div>
+            {/* Content */}
+            <div>{children}</div>
           </motion.div>
         </div>
       )}

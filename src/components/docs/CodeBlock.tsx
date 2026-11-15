@@ -14,7 +14,7 @@ interface CodeBlockProps {
 export function CodeBlock({
   filename,
   code,
-  language = "typescript",
+  language = "bash",
   className,
 }: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
@@ -28,15 +28,15 @@ export function CodeBlock({
   return (
     <div
       className={cn(
-        "rounded-lg border border-zinc-200 bg-zinc-50/90 overflow-hidden my-4 text-xs font-mono shadow-2xs",
+        "rounded-md border border-border/80 bg-zinc-50 dark:bg-zinc-950 overflow-hidden my-5 text-xs font-mono",
         className
       )}
     >
       {/* Top Header Bar */}
-      <div className="flex items-center justify-between px-3.5 py-1.5 border-b border-zinc-200 bg-zinc-100/70">
-        <div className="flex items-center gap-2 text-zinc-600">
-          <Terminal className="h-3.5 w-3.5 text-zinc-500" />
-          <span className="text-[11px] font-medium text-zinc-700">
+      <div className="flex items-center justify-between px-3.5 py-2 border-b border-border/60 bg-zinc-100/60 dark:bg-zinc-900/60 text-muted-foreground select-none">
+        <div className="flex items-center gap-2">
+          <Terminal className="h-3.5 w-3.5 text-muted-foreground" />
+          <span className="text-[11px] font-mono font-medium text-foreground/80">
             {filename || language}
           </span>
         </div>
@@ -45,13 +45,13 @@ export function CodeBlock({
         <button
           type="button"
           onClick={handleCopy}
-          className="flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] text-zinc-500 hover:text-zinc-900 hover:bg-zinc-200/60 transition-colors cursor-pointer"
+          className="flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] text-muted-foreground hover:text-foreground hover:bg-zinc-200/60 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
           aria-label="Copy code"
         >
           {copied ? (
             <>
-              <Check className="h-3 w-3 text-emerald-600" />
-              <span className="text-emerald-600 font-semibold">Copied!</span>
+              <Check className="h-3 w-3 text-emerald-600 dark:text-emerald-400" />
+              <span className="text-emerald-600 dark:text-emerald-400 font-medium">Copied</span>
             </>
           ) : (
             <>
@@ -63,7 +63,7 @@ export function CodeBlock({
       </div>
 
       {/* Code Area */}
-      <pre className="p-4 overflow-x-auto text-zinc-800 leading-relaxed font-mono text-[12.5px]">
+      <pre className="p-4 overflow-x-auto text-foreground/90 leading-relaxed font-mono text-[13px]">
         <code>{code}</code>
       </pre>
     </div>

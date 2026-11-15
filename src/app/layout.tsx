@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
 import { DocsProvider } from "@/context/DocsContext";
 
 const inter = Inter({
   variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   display: "swap",
 });
@@ -29,9 +35,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: siteConfig.team.name }],
   icons: {
-    icon: "/brand/farmer-eye-logo.svg",
-    shortcut: "/brand/farmer-eye-logo.svg",
-    apple: "/brand/farmer-eye-logo.svg",
+    icon: "/brand/farmer-eye-official.png",
+    shortcut: "/brand/farmer-eye-official.png",
+    apple: "/brand/farmer-eye-official.png",
   },
 };
 
@@ -41,7 +47,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} scroll-smooth`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${inter.variable} ${jetbrainsMono.variable} scroll-smooth`}
+      suppressHydrationWarning
+    >
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -49,7 +59,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-screen bg-white dark:bg-[#0C0D0E] text-zinc-900 dark:text-zinc-100 antialiased selection:bg-emerald-100 selection:text-emerald-900 dark:selection:bg-emerald-900/40 dark:selection:text-emerald-300 font-sans transition-colors duration-150">
+      <body className="min-h-screen bg-white dark:bg-black text-zinc-950 dark:text-zinc-100 antialiased selection:bg-zinc-200 selection:text-zinc-900 dark:selection:bg-zinc-800 dark:selection:text-zinc-100 font-sans transition-colors duration-150">
         <DocsProvider>{children}</DocsProvider>
       </body>
     </html>

@@ -544,32 +544,52 @@ const LOCALIZED_DOSSIER: LocalizedCategoryData[] = [
         },
         subChapters: [
           {
-            id: "global-expansion-conditions",
-            title: { en: "Conditions for Responsible Expansion", fr: "Conditions d'expansion responsable" },
+            id: "executive-summary-2030",
+            title: { en: "Executive Summary & Core Question", fr: "Résumé Exécutif & Question Centrale" },
           },
           {
-            id: "global-freshwater-chart",
-            title: { en: "Global Freshwater Withdrawals (Figure 36.1)", fr: "Prélèvements mondiaux d'eau douce (Fig. 36.1)" },
+            id: "global-macro-context",
+            title: { en: "Global Macro-Context: FAO & Labor Statistics", fr: "Contexte Mondial : Statistiques FAO & Emploi" },
           },
           {
-            id: "net-farm-economics",
-            title: { en: "Net-Farm Economics Formulation (Eq. 37.1)", fr: "Formulation économique nette par ferme (Éq. 37.1)" },
+            id: "how-farmer-eye-acts",
+            title: { en: "4-Step Action Loop & Scientific Boundaries", fr: "Boucle d'Action en 4 Étapes & Limites" },
           },
           {
-            id: "scaling-identities",
-            title: { en: "Mathematical Scaling Identities (Eq. 38.1 - 38.3)", fr: "Identités mathématiques d'extrapolation (Éq. 38.1-3)" },
+            id: "meknes-reference-benchmark",
+            title: { en: "Meknes Reference Benchmark (3 Strategies)", fr: "Cas de Référence de Meknès (3 Stratégies)" },
+          },
+          {
+            id: "deployment-model-equations",
+            title: { en: "Mathematical Scaling Identities (Eq. 10–17)", fr: "Modèle de Déploiement & Équations (Éq. 10–17)" },
           },
           {
             id: "conditional-scenarios-table",
-            title: { en: "Conditional Scenarios: Pilot / Regional / Multi-Region", fr: "Scénarios conditionnels : Pilote / Régional / Multi" },
+            title: { en: "3 Conditional Scenarios (Table 2 & Simulator)", fr: "3 Scénarios Conditionnels (Tableau 2 & Simulateur)" },
           },
           {
             id: "two-volumes-distinction",
-            title: { en: "ET-Demand Equivalent vs. Irrigation Proxy", fr: "Équivalent demande ETc vs approximation irrigation" },
+            title: { en: "Two Volumes: ETc Equivalent vs. Irrigation Proxy", fr: "Distinction Cruciale des Deux Volumes" },
+          },
+          {
+            id: "net-farm-economics",
+            title: { en: "Net-Farm Economics & Sensitivity Test (Table 3)", fr: "Économie Nette & Test de Sensibilité (Tableau 3)" },
           },
           {
             id: "transferability-sensitivity",
-            title: { en: "Transferability Factor & Adoption Sensitivity", fr: "Facteur de transférabilité & sensibilité d'adoption" },
+            title: { en: "Transferability Factor & Multi-Region Summation", fr: "Facteur de Transférabilité & Sommation Multi-Régions" },
+          },
+          {
+            id: "social-environmental-sdgs",
+            title: { en: "Social, Environmental & UN SDG Impact (2.4, 6.4, 2.3)", fr: "Impacts Sociaux, Environnementaux & ODD (2.4, 6.4, 2.3)" },
+          },
+          {
+            id: "impact-verification-plan",
+            title: { en: "4-Stage Verification Plan & Ground Truth", fr: "Protocole de Vérification en 4 Phases" },
+          },
+          {
+            id: "traceability-matrix",
+            title: { en: "Traceability Matrix: Origin of Every Number", fr: "Matrice de Traçabilité : Origine de Chaque Chiffre" },
           },
         ],
         prevId: "meknes-reference-case",

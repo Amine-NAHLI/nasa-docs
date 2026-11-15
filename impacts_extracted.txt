@@ -1,0 +1,601 @@
+
+
+=== PAGE 1 ===
+
+NASA EARTH OBSERVATIONS × AGRONOMY × AI
+FIELDShift AI
+EARTH TRIALS
+IMPACT 2030
+Perspectives economiques, hydriques, sociales
+et environnementales
+Rapport de prospective scientifique – Scenario 2030
+Version du 14 novembre 2026
+Cas de reference : Meknes, Maroc
+Les chiffres pour 2030 sont des projections conditionnelles, et non des impacts mesures.
+
+
+=== PAGE 2 ===
+
+FIELDShift AI
+Impact prospectif 2030
+Table des matières
+1
+Resume executif
+2
+2
+Problematique mondiale : pourquoi ce projet ?
+2
+2.1
+Eau, catastrophes et economie rurale . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2
+2.2
+Le probleme de decision . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2
+3
+Comment FIELDShift AI agit
+2
+4
+Cas de reference : simulation de Meknes
+3
+4.1
+Origine et statut des chiffres . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+4.2
+Calculs reproductibles . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+5
+D’ou viennent les formules agricoles ?
+4
+6
+Impact potentiel en 2030 : modele de deploiement
+4
+6.1
+Variables, definitions et hypotheses . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4
+6.2
+Equations de projection . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5
+6.3
+Trois scenarios chiffres pour 2030 . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5
+6.4
+Exemple detaille : scenario regional . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5
+7
+Impact economique : que peut-on reellement calculer ?
+5
+7.1
+Marge nette de la rotation complete
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+5
+7.2
+Test de sensibilite economique, sans donnees inventees . . . . . . . . . . . . . . . . .
+6
+8
+Sensibilite et limites de l’extrapolation globale
+6
+9
+Impact social, environnemental et horizon 2030
+7
+9.1
+Impact social testable
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+7
+9.2
+Impact environnemental testable . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+7
+9.3
+Lien avec les Objectifs de developpement durable . . . . . . . . . . . . . . . . . . . .
+7
+10 Plan de verification des impacts avant et pendant 2030
+7
+11 Traçabilite : origine de chaque chiffre
+8
+12 Conclusion
+8
+Sources et references
+9
+1
+
+
+=== PAGE 3 ===
+
+FIELDShift AI
+Impact prospectif 2030
+1 Resume executif
+Question centrale. Comment aider les agriculteurs a comparer des rotations culturales
+plus resilientes face aux aleas climatiques, en transformant les donnees de la NASA en choix
+comprehensibles, avant de prendre des risques economiques sur leur exploitation ?
+FIELDShift AI combine les donnees climatiques NASA POWER, l’humidite du sol NASA SMAP
+L4, un moteur de simulation agronomique inspire des principes FAO-56, des laboratoires virtuels de
+comparaison de rotations et un assistant fonde sur l’API OpenAI. Le projet vise l’aide a la decision,
+et non la garantie de rendements ou d’economies d’eau.
+Ce rapport construit trois scenarios hypothetiques de deploiement en 2030. Le scenario central
+suppose 10 000 agriculteurs atteints, une superficie moyenne de 5 ha, et 30 % de cette superficie
+effectivement engagee dans la rotation etudiee. Il conduit a 15 000 ha d’adoption theorique.
+Si, uniquement a titre illustratif, l’effet moyen simule sur ces hectares etait identique au cas de
+Meknes (93,4 mm/ha/an de reduction de demande ETc), cela representerait 14,01 millions de m3
+equivalents de demande evapotranspiratoire par an. Ce chiffre n’est pas une economie
+de prelevement d’eau mesuree.
+2 Problematique mondiale : pourquoi ce projet ?
+2.1 Eau, catastrophes et economie rurale
+Trois faits documentent l’ampleur du probleme :
+— Eau : l’agriculture represente environ 72 % des prelevements mondiaux d’eau douce, selon
+la FAO [1].
+— Risques economiques : la FAO estime les pertes mondiales dues aux catastrophes dans
+l’agriculture a 3,26 billions de dollars US sur 1991–2023, soit environ 99 milliards USD
+par an en moyenne historique. Ce n’est pas une prediction des pertes pour 2030 [2].
+— Emploi : pres de 1,4 milliard de personnes travaillaient dans les systemes agroalimentaires en
+2023, selon une mise a jour FAOSTAT publiee en 2026 [3].
+Ces indicateurs montrent l’importance mondiale de l’agriculture ; ils ne mesurent aucun impact
+direct de FIELDShift AI. La part de 72 % porte sur les prelevements, pas sur toute la consommation
+d’eau ni sur une reduction que notre application aurait deja obtenue.
+2.2 Le probleme de decision
+Les exploitations doivent choisir des cultures, des dates de semis et des rotations alors que
+l’humidite du sol, les pluies et les temperatures varient. Les donnees spatiales existent, mais une
+information sur une grille regionale ne constitue pas directement une recommandation pour une
+parcelle.
+Notre motivation : rendre les compromis lisibles (eau, risque, pratiques, couts), comparer
+plusieurs options avant la mise en culture et exposer les limites des modeles. Une meta-analyse de
+2025 portant sur 3 663 observations appariees souligne le potentiel de certaines rotations sur la
+production, la nutrition et les recettes (ameliorations globales de 14–27 % selon l’indicateur et la
+comparaison). Ce sont des resultats de recherche, pas des gains attribuables automatiquement a
+notre plateforme [4].
+3 Comment FIELDShift AI agit
+1. Observer : NASA POWER fournit des series meteorologiques journalieres ; SMAP L4 fournit
+notamment les humidites de surface (0–5 cm) et racinaire (0–100 cm), sur une grille d’environ 9
+2
+
+
+=== PAGE 4 ===
+
+FIELDShift AI
+Impact prospectif 2030
+km [5, 6].
+2. Simuler : les laboratoires Crop Battle, Climate Attack et Farm Time Machine comparent des
+alternatives sous des hypotheses identifiables.
+3. Expliquer : l’assistant OpenAI et le tribunal scientifique rendent les resultats accessibles,
+notamment en darija, tout en renvoyant aux donnees, hypotheses et incertitudes.
+4. Verifier sur le terrain : la decision appartient a l’agriculteur ; les mesures locales de sol, les
+quantites irriguees, les couts et les recoltes devront etre observes pour quantifier l’impact reel.
+Frontiere scientifique. NASA SMAP L4 est un produit de modele d’assimilation de
+donnees satellitaires, pas un capteur de chaque champ. Les indicateurs de resilience et
+les economies potentielles issus du simulateur ne sont pas des resultats de terrain valides.
+Les recommandations de fertilisation et de rendement necessitent des informations locales
+supplementaires.
+4 Cas de reference : simulation de Meknes
+4.1 Origine et statut des chiffres
+La base numerique utilisee ici provient du dernier compte rendu interne de validation fourni par
+l’equipe FIELDShift AI, pour une campagne de ble recoltee en 2025 (du 15 novembre 2024 au 20 mai
+2025) [11]. Les valeurs sont declarees par le simulateur du projet et non independamment
+validees par des essais en champ. Les deuxieme et troisieme annees de rotation reposent sur
+une hypothese de climat repete, et non sur trois annees meteorologiques independantes.
+Table 1 – Comparaison de demande evapotranspiratoire potentielle declaree pour Meknes (reference
+interne).
+Strategie
+ETc (mm/an)
+Ecart vs ble (mm/an)
+Ble chaque annee (reference)
+455,8
+0,0
+Ble →lentilles →orge
+362,4
+93,4
+Ble →fourrage →jachere
+241,0
+214,8
+4.2 Calculs reproductibles
+Pour la rotation diversifiee (plan 2) :
+∆ETc,2 = ETc,ble −ET c,rotation
+(1)
+= 455,8 −362,4 = 93,4 mm/ha/an .
+(2)
+Pour le systeme agroecologique (plan 3) :
+∆ETc,3 = 455,8 −241,0 = 214,8 mm/ha/an .
+(3)
+Les reductions relatives sont :
+r2 = 93,4
+455,8 × 100 = 20,49 % ,
+(4)
+r3 = 214,8
+455,8 × 100 = 47,13 % .
+(5)
+3
+
+
+=== PAGE 5 ===
+
+FIELDShift AI
+Impact prospectif 2030
+Conversion des unites : 1 hectare = 10 000 m2 ; 1 mm = 0,001 m. Ainsi :
+1 mm
+⏞⏟⏟⏞
+0,001 m
+×
+1 ha
+⏞⏟⏟⏞
+10 000 m2
+= 10 m3 .
+(6)
+Sur un hectare, les differences de demande ETc correspondent donc a 934 m3 equivalents/ha/an
+pour le plan 2 et 2 148 m3 equivalents/ha/an pour le plan 3.
+Attention aux mots « eau economisee ». Une baisse du ETc potentiel indique une baisse
+de la demande atmospherique estimee sous les cultures et calendriers compares. Elle ne prouve
+pas une baisse equivalent des prelevements, de la consommation nette du bassin, ni de la
+facture d’irrigation. Une jachere peut egalement reduire la production vendue : les choix
+doivent etre compares sur la rotation complete.
+5 D’ou viennent les formules agricoles ?
+Selon FAO-56, l’evapotranspiration potentielle d’une culture est approximee par :
+ETc,t = Kc,t ET0,t,
+ETc,saison =
+N
+∑︂
+t=1
+ETc,t.
+(7)
+ET0 est l’evapotranspiration de reference calculee a partir des conditions meteorologiques, et Kc
+depend du type de culture et de son stade phenologique [7]. L’evapotranspiration realisee peut etre
+reduite par le stress hydrique ; dans une formulation simplifiee :
+ETa,t = Ks,t ETc,t,
+0 ≤Ks,t ≤1,
+Dt = ETc,t −ETa,t.
+(8)
+Une partie du calcul utilise un bilan journalier du depletion racinaire Dr, dont les termes comprennent
+pluie infiltre, irrigation, evapotranspiration, remontee capillaire et drainage profond [8] :
+Dr,t = Dr,t−1 −(Pt −ROt) −It −CRt + ETa,t + DPt.
+(9)
+Important : la reserve facilement utilisable RAW = p TAW est un seuil de stress, pas une entree
+physique d’eau. Les parametres du sol, les coefficients de ruissellement, la profondeur racinaire et
+les pratiques reelles restent des sources d’incertitude.
+6 Impact potentiel en 2030 : modele de deploiement
+6.1 Variables, definitions et hypotheses
+Le modele ci-dessous ne predit pas le nombre reel d’utilisateurs. Il teste trois situations de
+deploiement choisies par l’equipe pour l’annee 2030, avec les variables :
+F
+Nombre d’agriculteurs atteints par le programme (hypothese).
+h
+Surface moyenne analysee par agriculteur (ha/agriculteur).
+a
+Fraction de surface ayant effectivement adopte la rotation etudiee (0–1).
+A2030
+Surface adoptee en 2030 (ha).
+d
+Reduction locale estimee du ETc potentiel (93,4 mm/ha/an dans le cas de reference).
+q
+Part des hectares adoptes disposant d’une irrigation concernee (0–1).
+i
+Economie d’irrigation simulee, si un protocole local la justifie (hypothese illustrative :
+50 mm/ha/an).
+m
+Variation de marge nette agricole par ha et par an (MAD/ha/an), inconnue sans
+enquete de terrain.
+4
+
+
+=== PAGE 6 ===
+
+FIELDShift AI
+Impact prospectif 2030
+6.2 Equations de projection
+A2030 = F × h × a
+[ ha],
+(10)
+VETc,2030 = A2030 × d × 10
+[ m3 equivalents/an],
+(11)
+V sim
+I,2030 = A2030 × q × i × 10
+[ m3/an],
+(12)
+∆Π2030 = A2030 × m
+[ MAD/an].
+(13)
+Portee : VETc est un equivalent volumique de demande potentielle, V sim
+I
+une sortie conditionnelle
+de modele d’irrigation, et ∆Π une consequence d’hypotheses economiques. Aucune de ces quantites
+n’est un impact observe en 2030.
+6.3 Trois scenarios chiffres pour 2030
+Hypotheses communes aux trois exemples : h = 5 ha, d = 93,4 mm/ha/an, q = 35 % et
+i = 50 mm/ha/an sur les seules surfaces irriguees concernees. Les valeurs F, a, h, q, i sont des
+hypotheses de prospective, pas des statistiques FAO ni des engagements prouves du projet.
+Table 2 – Impact conditionnel annuel en 2030 : scenario plan 2, sans correction geographique.
+Scenario
+F
+a
+A2030 (ha)
+VET c (m3/an)
+Pilote
+1 000
+20 %
+1 000
+934 000
+Regional
+10 000
+30 %
+15 000
+14 010 000
+Multi-regions
+50 000
+40 %
+100 000
+93 400 000
+Sous la seule hypothese illustrative d’une baisse d’irrigation de 50 mm/an sur 35 % des sur-
+faces adoptees, les volumes conditionnels seraient respectivement : 175 000, 2 625 000 et 17 500 000
+m3/an. Ils ne sont pas des economies constatees par compteur et ne doivent pas etre assimiles a
+VETc.
+6.4 Exemple detaille : scenario regional
+A2030 = 10 000 × 5 × 0,30 = 15 000 ha ,
+(14)
+VETc,2030 = 15 000 × 93,4 × 10 = 14 010 000 m3/an ,
+(15)
+Airriguee = 15 000 × 0,35 = 5 250 ha,
+(16)
+V sim
+I,2030 = 5 250 × 50 × 10 = 2 625 000 m3/an .
+(17)
+La difference entre VETc et V sim
+I
+est essentielle : le premier ne mesure pas l’eau extraite d’une nappe ;
+le second repose sur une hypothese d’economie de pompage a verifier.
+7 Impact economique : que peut-on reellement calculer ?
+7.1 Marge nette de la rotation complete
+L’impact sur le revenu ne peut pas etre deduit directement de la baisse de ETc. Pour une culture
+j de la rotation, on peut calculer :
+πj = Yj pj −Csemences,j −Cengrais,j −Ceau,j −Ctravail,j −Cautres,j,
+(18)
+5
+
+
+=== PAGE 7 ===
+
+FIELDShift AI
+Impact prospectif 2030
+Pilote
+Regional
+Multiregions
+0
+50
+100
+0.93
+14.01
+93.4
+Scenario hypothetique 2030
+Millions de m3 equivalents / an
+Figure 1 – Projection de la baisse de demande potentielle ETc (et non prelevements d’eau
+effectivement evites).
+ou Yj est le rendement commercialisable et pj le prix effectivement obtenu. Pour une rotation de
+trois campagnes :
+∆m = 1
+3
+3
+∑︂
+j=1
+πrotation,j −1
+3
+3
+∑︂
+j=1
+πreference,j.
+(19)
+Les valeurs de Yj, pj et des couts doivent etre collectees localement. La meta-analyse internationale
+[4] soutient l’interet de la diversification, mais ne constitue pas un coefficient de benefice
+garanti pour Meknes ou le monde en 2030.
+7.2 Test de sensibilite economique, sans donnees inventees
+Pour le scenario regional (A2030 = 15 000 ha), si la variation de marge nette m etait : Ces
+Table 3 – Calcul conditionnel de marge nette, avec valeurs de m fictives uniquement pour tester la
+formule.
+m (MAD/ha/an)
+∆Π2030 (MAD/an)
+Interpretation
+−200
+−3 000 000
+Perte hypothetique
+0
+0
+Effet nul
++200
++3 000 000
+Gain hypothetique
++500
++7 500 000
+Gain hypothetique
+montants ne sont ni des previsions de prix, ni des economies observees. Ils montrent les
+donnees a relever pour justifier un impact economique. Les couts du service FIELDShift AI et de
+l’accompagnement devraient egalement etre deduits pour calculer le benefice net collectif.
+8 Sensibilite et limites de l’extrapolation globale
+Appliquer sans correction la valeur de Meknes a l’ensemble du monde serait une erreur. Les
+rotations disponibles, la pluviometrie, les prix, les sols, les contraintes d’irrigation et les pratiques
+varient entre regions. Pour explorer cette incertitude, definissons un facteur de transferabilite
+purement exploratoire s :
+VETc,2030(s) = A2030 × (93,4 s) × 10.
+(20)
+Aucune de ces valeurs n’est une prevision probabiliste. Dans un vrai deploiement multi-
+6
+
+
+=== PAGE 8 ===
+
+FIELDShift AI
+Impact prospectif 2030
+Table 4 – Sensibilite du scenario regional a une hypothese non calibree de transferabilite.
+s (hypothese)
+Ecart local suppose (mm/ha/an)
+VETc (m3/an)
+0,50
+46,7
+7 005 000
+0,75
+70,05
+10 507 500
+1,00
+93,4
+14 010 000
+regional, il faudrait calculer dr pour chaque region r et sommer les effets :
+VETc,2030 = 10
+R
+∑︂
+r=1
+Ar,2030 dr,
+(21)
+avec des donnees locales et des intervalles d’incertitude. L’impact global serait ensuite la somme des
+zones effectivement adoptees et suivies, pas un pourcentage du total mondial de l’eau agricole.
+9 Impact social, environnemental et horizon 2030
+9.1 Impact social testable
+L’assistant en darija, francais et anglais peut rendre l’interpretation des donnees plus accessible.
+Les indicateurs de resultats pertinents sont : agriculteurs effectivement formes, taux de comprehension
+avant/apres, temps necessaire pour comparer des plans, part de femmes et de petites exploitations
+effectivement atteintes, et proportion de recommandations comprises et adoptees. Ces indicateurs
+doivent etre mesures, pas supposes.
+9.2 Impact environnemental testable
+Suivre, lorsque c’est possible : les prelevements d’irrigation via compteurs, les analyses de
+sols avant/apres (matiere organique, salinite, structure), les pratiques de rotation effectivement
+appliquees et les rendements obtenus. Une economie ETc ou un score de sante des sols ne prouve
+pas a lui seul une reduction de la surexploitation aquifere ni une hausse de carbone stocke. Aucune
+reduction de CO2 n’est quantifiee ici faute de donnees necessaires.
+9.3 Lien avec les Objectifs de developpement durable
+FIELDShift AI peut contribuer a l’ODD 2.4 (pratiques agricoles resilientes et durables), a
+l’ODD 6.4 (efficacite d’utilisation de l’eau) et, de maniere indirecte, a l’ODD 2.3 (productivite et
+revenus des petits producteurs), si des effets sont effectivement observes [9, 10].
+10 Plan de verification des impacts avant et pendant 2030
+1. Phase pilote : evaluer plusieurs exploitations dans des contextes differents ; mesurer superficie,
+pratiques, couts, production et volumes irrigues avant de recommander un deploiement.
+2. Comparaison : constituer un groupe de comparaison raisonnablement similaire (ou une experi-
+mentation randomisee si faisable) pour distinguer l’effet du projet des bonnes annees climatiques
+et des changements de prix.
+3. Mesures annuelles : suivre l’adoption effective (ha), la marge nette (MAD/ha), les prelevements
+d’irrigation (m3/ha) et la comprehension des recommandations.
+4. Bilan 2030 : publier les resultats mesures, les intervalles d’incertitude, le nombre de beneficiaires
+reels et les differences entre impacts mesures et simules.
+7
+
+
+=== PAGE 9 ===
+
+FIELDShift AI
+Impact prospectif 2030
+La promesse defendable du projet : nous ne pretendons pas avoir economise des milliards
+de metres cubes d’eau. Nous proposons une methode transparente pour aider les agriculteurs
+a tester et comprendre leurs options de rotation. Les chiffres de 2030 definissent ce qu’il serait
+possible de mesurer sous des hypotheses clairement exposees.
+11 Traçabilite : origine de chaque chiffre
+Valeur
+Statut
+Origine
+72 % eau douce
+Fait mondial documente
+FAO, gestion de l’eau [1]
+3,26 billions USD, 99 Mds/an
+Pertes historiques, non projec-
+tion 2030
+FAO, rapport 2025 [2]
+1,4 milliard de travailleurs
+(2023)
+Statistique mondiale publiee
+en 2026
+FAOSTAT [3]
+3 663 observations
+Resultat de recherche externe
+Nature Communications, 2025
+[4]
+455,8 / 362,4 / 241,0 mm
+Sorties du modele du projet,
+non validees en champ
+Rapport interne Meknes [11]
+93,4 et 214,8 mm
+Differences calculees
+Soustraction de sorties internes
+10 m3 par mm et par ha
+Conversion
+geometrique
+exacte
+0, 001 × 10 000
+10 000 agriculteurs ; 5 ha ;
+30 %
+Hypotheses du scenario regio-
+nal
+Choix illustratifs de prospective
+2030
+35 % irrigue ; 50 mm
+Hypotheses supplementaires
+non mesurees
+Illustration conditionnelle
+±200 et +500 MAD/ha
+Hypotheses economiques, pas
+des observations
+Test de sensibilite
+12 Conclusion
+La contribution plausible de FIELDShift AI a l’horizon 2030 est l’amelioration de la qualite
+et de l’accessibilite des decisions agricoles, en partant de donnees d’observation de la Terre
+et d’une modelisation explicite des compromis. Le scenario regional illustre une baisse potentielle
+de demande evapotranspiratoire de 14,01 millions de m3 equivalents par an sur 15 000 ha adoptes,
+sans pretendre a des economies d’eau effectivement constatees. La validation agronomique,
+economique et sociale necessite une evaluation de terrain avant toute promesse de contribution
+mesurable a l’economie agricole mondiale.
+8
+
+
+=== PAGE 10 ===
+
+FIELDShift AI
+Impact prospectif 2030
+Sources et references
+Références
+[1] FAO, Agricultural water management – Water scarcity, part des prelevements d’eau douce
+(72 %).
+https://www.fao.org/land-water/water/agricultural-water-management/
+water-scarcity/
+[2] FAO
+(2025),
+Disasters
+cost
+global
+agriculture
+USD
+3.26
+trillion
+over
+three
+de-
+cades,
+14
+novembre
+2025 ;
+periode
+1991–2023,
+environ
+99
+milliards
+USD/an.
+https://www.fao.org/newsroom/detail/disasters-cost-global-agriculture--3.
+26-trillion-over-three-decades--fao-report-reveals/en/
+[3] FAO/FAOSTAT (17 juin 2026), Employment indicators 2000–2025 (June 2026 update),
+effectifs
+des
+systemes
+agroalimentaires
+en
+2023.
+https://www.fao.org/statistics/
+highlights-archive/highlights-detail/employment-indicators-2000-2025-%
+28june-2026-update%29/
+[4] Mudare et al. (2025), Crop rotations synergize yield, nutrition, and revenue : a meta-analysis,
+Nature Communications. DOI : https://doi.org/10.1038/s41467-025-64567-9
+[5] NASA POWER, Daily API – meteorological and solar time series. https://power.larc.nasa.
+gov/docs/services/api/temporal/daily/
+[6] NASA/NSIDC, SMAP L4 SPL4SMGP Version 8 ; Earth Engine catalog, grille 9 km,
+cadence 3 h. https://developers.google.com/earth-engine/datasets/catalog/NASA_
+SMAP_SPL4SMGP_008 https://doi.org/10.5067/T5RUATAQREF8
+[7] Allen, Pereira, Raes & Smith (1998), Crop Evapotranspiration : Guidelines for Computing
+Crop Water Requirements, FAO Irrigation and Drainage Paper 56. https://www.fao.org/4/
+X0490E/X0490E00.htm
+[8] FAO-56, Chapter 8 – ETc under soil water stress conditions, coefficient Ks et bilan hydrique
+racinaire (equation 85). https://www.fao.org/4/X0490E/x0490e0e.htm
+[9] Nations Unies, Transformer notre monde : le Programme de developpement durable a l’horizon
+2030. https://sdgs.un.org/2030agenda
+[10] Nations Unies, Objectif 2 – Faim zero, cible 2.4. https://sdgs.un.org/goals/goal2
+[11] Equipe FIELDShift AI (2026), EARTH TRIALS – compte rendu de stabilisation de la simulation
+de Meknes, campagne 2024/2025 ; valeurs internes declarees (ETc ble 455,8 mm, rotation 362,4
+mm, agroecologie 241,0 mm), sans validation independante sur le terrain. Document transmis
+dans le cadre du projet.
+9
