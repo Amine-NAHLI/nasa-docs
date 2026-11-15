@@ -1477,17 +1477,7 @@ export function FarmTimeMachineChapterView({ activeSubChapterId }: ChapterViewPr
         </div>
       </section>
 
-      <section id="physical-soil-protocol" className="scroll-mt-20">
-        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
-          {isEn ? "Physical Soil Laboratory Protocol" : "Protocole d'Analyse Physique de Sol en Laboratoire"}
-        </h2>
-        <p className="text-[15px] leading-7 text-muted-foreground">
-          {isEn
-            ? "The physical laboratory plan is a field-validation protocol, not a claim that soil samples were already analyzed. A defensible plan includes: GPS-labeled sampling sites; crop and tillage metadata; depth-stratified samples; texture and bulk density; gravimetric moisture or calibrated volumetric probes; electrical conductivity and pH; organic matter; and laboratory quality-control records."
-            : "Le protocole de laboratoire physique est une procédure de validation sur le terrain, non pas une affirmation selon laquelle des échantillons ont déjà été analysés. Un plan rigoureux comprend : points d'échantillonnage géolocalisés par GPS ; métadonnées de conduite et travail du sol ; prélèvements stratifiés en profondeur ; granulométrie et densité apparente ; humidité gravimétrique ou sondes étalonnées ; conductivité électrique et pH ; matière organique et enregistrements de contrôle qualité."}
-        </p>
-      </section>
-          {/* 24.2 Earlier 95 mm Run vs Revised 93.4 mm Run */}
+      {/* 24.2 Earlier 95 mm Run vs Revised 93.4 mm Run */}
       <section id="historical-run-distinction" className="scroll-mt-20">
         <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
           {isEn ? "Earlier 95 mm Run vs. Revised 93.4 mm Run" : "Simulation Initiale 95 mm vs Révisée 93,4 mm"}

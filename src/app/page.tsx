@@ -22,6 +22,16 @@ import {
   Impact2030ChapterView,
   AnnexesChapterView,
 } from "@/components/docs/chapters/ChapterViews";
+import {
+  Esp32HardwareChapterView,
+  SoilMoistureSensorsChapterView,
+  WiringAndFirmwareChapterView,
+  SensorCalibrationChapterView,
+  IotTelemetryChapterView,
+  SmapVsGroundSensorsChapterView,
+  HardwareValidationChapterView,
+  PhysicalSoilLabChapterView,
+} from "@/components/docs/chapters/IotChapterViews";
 import { ChevronRight, ArrowLeft, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -145,8 +155,8 @@ export function DocsPage() {
 
         {/* Center Column: Typography-First Document Body (Single Sub-Chapter View) */}
         <main className="flex-1 min-w-0 px-6 sm:px-12 lg:px-16 py-10 max-w-4xl mx-auto">
-          {/* Breadcrumbs: Docs > Category > Chapter > Sub-Chapter */}
-          <nav className="flex items-center flex-wrap gap-1.5 text-xs font-mono text-muted-foreground mb-6 select-none">
+          {/* Breadcrumbs: Docs / Category / Chapter / Sub-Chapter */}
+          <nav className="flex items-center flex-wrap gap-2 text-xs font-mono text-muted-foreground mb-6 select-none" aria-label="Breadcrumb">
             <button
               type="button"
               onClick={() => handleSelectChapter("overview")}
@@ -154,9 +164,9 @@ export function DocsPage() {
             >
               Docs
             </button>
-            <ChevronRight className="w-3.5 h-3.5 opacity-50 shrink-0" />
-            <span className="truncate">{currentChapter.category}</span>
-            <ChevronRight className="w-3.5 h-3.5 opacity-50 shrink-0" />
+            <span className="text-muted-foreground/30 font-mono text-xs select-none">/</span>
+            <span className="truncate opacity-75">{currentChapter.category}</span>
+            <span className="text-muted-foreground/30 font-mono text-xs select-none">/</span>
             <button
               type="button"
               onClick={() => handleSelectChapter(currentChapter.id)}
@@ -166,7 +176,7 @@ export function DocsPage() {
             </button>
             {currentSubChapter && (
               <>
-                <ChevronRight className="w-3.5 h-3.5 opacity-50 shrink-0" />
+                <span className="text-muted-foreground/30 font-mono text-xs select-none">/</span>
                 <span className="text-foreground font-medium truncate">
                   {currentSubChapter.title}
                 </span>
@@ -213,6 +223,27 @@ export function DocsPage() {
             {activeChapterId === "architecture-pipeline" && (
               <ArchitecturePipelineChapterView activeSubChapterId={effectiveSubChapterId} />
             )}
+            {activeChapterId === "esp32-hardware" && (
+              <Esp32HardwareChapterView activeSubChapterId={effectiveSubChapterId} />
+            )}
+            {activeChapterId === "soil-moisture-sensors" && (
+              <SoilMoistureSensorsChapterView activeSubChapterId={effectiveSubChapterId} />
+            )}
+            {activeChapterId === "wiring-and-firmware" && (
+              <WiringAndFirmwareChapterView activeSubChapterId={effectiveSubChapterId} />
+            )}
+            {activeChapterId === "sensor-calibration" && (
+              <SensorCalibrationChapterView activeSubChapterId={effectiveSubChapterId} />
+            )}
+            {activeChapterId === "iot-telemetry" && (
+              <IotTelemetryChapterView activeSubChapterId={effectiveSubChapterId} />
+            )}
+            {activeChapterId === "smap-vs-ground-sensors" && (
+              <SmapVsGroundSensorsChapterView activeSubChapterId={effectiveSubChapterId} />
+            )}
+            {activeChapterId === "hardware-validation" && (
+              <HardwareValidationChapterView activeSubChapterId={effectiveSubChapterId} />
+            )}
             {activeChapterId === "fao-56-et0" && (
               <Fao56Et0ChapterView activeSubChapterId={effectiveSubChapterId} />
             )}
@@ -227,6 +258,9 @@ export function DocsPage() {
             )}
             {activeChapterId === "farm-time-machine" && (
               <FarmTimeMachineChapterView activeSubChapterId={effectiveSubChapterId} />
+            )}
+            {activeChapterId === "physical-soil-lab" && (
+              <PhysicalSoilLabChapterView activeSubChapterId={effectiveSubChapterId} />
             )}
             {activeChapterId === "ai-architecture" && (
               <AiArchitectureChapterView activeSubChapterId={effectiveSubChapterId} />

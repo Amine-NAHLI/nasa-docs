@@ -226,6 +226,249 @@ const LOCALIZED_DOSSIER: LocalizedCategoryData[] = [
           },
         ],
         prevId: "nasa-smap",
+        nextId: "esp32-hardware",
+      },
+    ],
+  },
+  {
+    title: { en: "IoT & FIELD SENSORS", fr: "IoT & CAPTEURS DE TERRAIN" },
+    chapters: [
+      {
+        id: "esp32-hardware",
+        badge: "IoT 1",
+        title: { en: "ESP32 Hardware Architecture", fr: "Architecture Matérielle ESP32" },
+        category: { en: "IoT & FIELD SENSORS", fr: "IoT & CAPTEURS DE TERRAIN" },
+        description: {
+          en: "Microcontroller architecture, ADC channels, electrical constraints, and localized environmental sensing role.",
+          fr: "Architecture microcontrôleur, canaux CAN, contraintes électriques et rôle dans la mesure environnementale locale.",
+        },
+        subChapters: [
+          {
+            id: "esp32-overview",
+            title: { en: "ESP32 Platform Overview", fr: "Présentation de la plateforme ESP32" },
+          },
+          {
+            id: "esp32-why-farmer-eye",
+            title: { en: "Relevance to Farmer Eye Architecture", fr: "Pertinence pour l'architecture Farmer Eye" },
+          },
+          {
+            id: "esp32-architecture",
+            title: { en: "Dual-Core Architecture & Peripherals", fr: "Architecture Dual-Core & Périphériques" },
+          },
+          {
+            id: "esp32-adc-subsystem",
+            title: { en: "ADC Capabilities & Non-Linearity", fr: "Capacités CAN & Non-linéarité" },
+          },
+          {
+            id: "esp32-power-workflow",
+            title: { en: "Power Supply & Acquisition Workflow", fr: "Alimentation & Cycle d'acquisition" },
+          },
+          {
+            id: "esp32-local-vs-cloud",
+            title: { en: "In-Situ Sensor vs Satellite Cloud", fr: "Capteur in-situ vs Données satellite" },
+          },
+          {
+            id: "esp32-limitations",
+            title: { en: "Hardware Deployment Limitations", fr: "Limites de déploiement matériel" },
+          },
+        ],
+        prevId: "architecture-pipeline",
+        nextId: "soil-moisture-sensors",
+      },
+      {
+        id: "soil-moisture-sensors",
+        badge: "IoT 2",
+        title: { en: "Soil Moisture Sensors", fr: "Capteurs d'Humidité du Sol" },
+        category: { en: "IoT & FIELD SENSORS", fr: "IoT & CAPTEURS DE TERRAIN" },
+        description: {
+          en: "Volumetric water content principles, capacitive vs resistive sensors, analog ADC reading, and soil matrix effects.",
+          fr: "Principes de teneur volumique en eau, capteurs capacitifs vs résistifs, lecture CAN et effets de matrice du sol.",
+        },
+        subChapters: [
+          {
+            id: "sensor-principles",
+            title: { en: "Volumetric Water Content (VWC) Principles", fr: "Principes de la Teneur Volumique en Eau" },
+          },
+          {
+            id: "capacitive-vs-resistive",
+            title: { en: "Capacitive vs Resistive Technology", fr: "Technologie Capacitive vs Résistive" },
+          },
+          {
+            id: "analog-digital-conversion",
+            title: { en: "Analog Voltage to Raw ADC Conversion", fr: "Tension analogique vers CAN brut" },
+          },
+          {
+            id: "soil-environmental-effects",
+            title: { en: "Texture, Salinity & Temperature Effects", fr: "Effets de texture, salinité & température" },
+          },
+          {
+            id: "sensor-depth-representativeness",
+            title: { en: "Sensor Depth & Spatial Representativeness", fr: "Profondeur & Représentativité spatiale" },
+          },
+          {
+            id: "sensor-drift-limitations",
+            title: { en: "Sensor Drift & Physics Limitations", fr: "Dérive du capteur & Limites physiques" },
+          },
+        ],
+        prevId: "esp32-hardware",
+        nextId: "wiring-and-firmware",
+      },
+      {
+        id: "wiring-and-firmware",
+        badge: "IoT 3",
+        title: { en: "Wiring & ESP32 Firmware", fr: "Câblage & Firmware ESP32" },
+        category: { en: "IoT & FIELD SENSORS", fr: "IoT & CAPTEURS DE TERRAIN" },
+        description: {
+          en: "Schematic architecture, GPIO pinout, Arduino/C++ acquisition lifecycle, and electrical safety constraints.",
+          fr: "Schéma d'architecture, broches GPIO, cycle d'acquisition Arduino/C++ et sécurité électrique.",
+        },
+        subChapters: [
+          {
+            id: "wiring-schematic",
+            title: { en: "Physical Wiring & Pinout Architecture", fr: "Câblage physique & Broches GPIO" },
+          },
+          {
+            id: "firmware-lifecycle",
+            title: { en: "Firmware Responsibilities & Lifecycle", fr: "Rôles du firmware & Cycle d'exécution" },
+          },
+          {
+            id: "firmware-code-reference",
+            title: { en: "C++/Arduino Reference Design Implementation", fr: "Implémentation de Référence C++/Arduino" },
+          },
+          {
+            id: "electrical-safety",
+            title: { en: "Electrical Safety & Protection Circuits", fr: "Sécurité électrique & Circuits de protection" },
+          },
+        ],
+        prevId: "soil-moisture-sensors",
+        nextId: "sensor-calibration",
+      },
+      {
+        id: "sensor-calibration",
+        badge: "IoT 4",
+        title: { en: "Sensor Calibration & Quality", fr: "Étalonnage Capteur & Qualité" },
+        category: { en: "IoT & FIELD SENSORS", fr: "IoT & CAPTEURS DE TERRAIN" },
+        description: {
+          en: "Dry/wet references, normalized index formula, multi-point calibration curves, and measurement uncertainty.",
+          fr: "Références sec/saturé, formule d'indice normalisé, courbes d'étalonnage et incertitude de mesure.",
+        },
+        subChapters: [
+          {
+            id: "calibration-necessity",
+            title: { en: "Necessity of Calibration in Agriculture", fr: "Nécessité de l'étalonnage agronomique" },
+          },
+          {
+            id: "dry-wet-references",
+            title: { en: "Dry and Wet Baseline Measurement Protocol", fr: "Protocole de mesure des références sec/humide" },
+          },
+          {
+            id: "normalized-index-formula",
+            title: { en: "Normalized Moisture Index Formula", fr: "Formule de l'indice d'humidité normalisé" },
+          },
+          {
+            id: "calibration-curves",
+            title: { en: "Soil-Specific Calibration Curves", fr: "Courbes d'étalonnage spécifiques au sol" },
+          },
+          {
+            id: "measurement-uncertainty",
+            title: { en: "Error Propagation & Quality Control", fr: "Propagation d'erreur & Contrôle qualité" },
+          },
+        ],
+        prevId: "wiring-and-firmware",
+        nextId: "iot-telemetry",
+      },
+      {
+        id: "iot-telemetry",
+        badge: "IoT 5",
+        title: { en: "IoT Telemetry & Connectivity", fr: "Télémétrie IoT & Connectivité" },
+        category: { en: "IoT & FIELD SENSORS", fr: "IoT & CAPTEURS DE TERRAIN" },
+        description: {
+          en: "JSON telemetry schema contract, HTTPS and MQTT transport, edge buffering, and validation pipelines.",
+          fr: "Schéma de contrat télémétrique JSON, protocoles HTTPS/MQTT, mise en tampon edge et validation.",
+        },
+        subChapters: [
+          {
+            id: "telemetry-overview",
+            title: { en: "IoT Telemetry Architecture Overview", fr: "Vue d'ensemble de la télémétrie IoT" },
+          },
+          {
+            id: "json-payload-contract",
+            title: { en: "Proposed JSON Telemetry Contract", fr: "Contrat de payload télémétrique JSON" },
+          },
+          {
+            id: "transport-protocols",
+            title: { en: "Transport Protocols: HTTPS vs MQTT", fr: "Protocoles de transport : HTTPS vs MQTT" },
+          },
+          {
+            id: "connectivity-resilience",
+            title: { en: "Network Resilience, Buffering & Security", fr: "Résilience réseau, mise en mémoire tampon & Sécurité" },
+          },
+        ],
+        prevId: "sensor-calibration",
+        nextId: "smap-vs-ground-sensors",
+      },
+      {
+        id: "smap-vs-ground-sensors",
+        badge: "IoT 6",
+        title: { en: "Ground Sensors vs NASA SMAP", fr: "Capteurs Sol vs NASA SMAP" },
+        category: { en: "IoT & FIELD SENSORS", fr: "IoT & CAPTEURS DE TERRAIN" },
+        description: {
+          en: "Spatial scale discrepancy (9km vs point), physics differences, root-depth decoupling, and complementary fusion framework.",
+          fr: "Écart d'échelle spatiale (9km vs ponctuel), physique de mesure, découplage racinaire et cadre de fusion.",
+        },
+        subChapters: [
+          {
+            id: "scale-discrepancy",
+            title: { en: "Spatial Resolution Discrepancy (9 km vs Point)", fr: "Écart de résolution spatiale (9 km vs Point)" },
+          },
+          {
+            id: "measurement-physics",
+            title: { en: "Measurement Physics & Sensing Depths", fr: "Physique de mesure & Profondeurs auscultées" },
+          },
+          {
+            id: "depth-decoupling",
+            title: { en: "Surface vs Root-Zone Dynamics", fr: "Dynamique de surface vs Zone racinaire" },
+          },
+          {
+            id: "complementary-framework",
+            title: { en: "Complementary Data Integration Framework", fr: "Cadre d'intégration de données complémentaires" },
+          },
+          {
+            id: "scientific-humility",
+            title: { en: "Rigorous Scientific Interpretation Rules", fr: "Règles rigoureuses d'interprétation scientifique" },
+          },
+        ],
+        prevId: "iot-telemetry",
+        nextId: "hardware-validation",
+      },
+      {
+        id: "hardware-validation",
+        badge: "IoT 7",
+        title: { en: "Hardware Evidence & Status", fr: "Preuves Matérielles & Statut" },
+        category: { en: "IoT & FIELD SENSORS", fr: "IoT & CAPTEURS DE TERRAIN" },
+        description: {
+          en: "Physical hardware inventory, evidence classification, serial monitor logging, and field deployment roadmap.",
+          fr: "Inventaire matériel physique, classification des preuves, journal série et feuille de route terrain.",
+        },
+        subChapters: [
+          {
+            id: "hardware-inventory",
+            title: { en: "Physical Hardware Inventory & Lab Status", fr: "Inventaire matériel physique & Statut de labo" },
+          },
+          {
+            id: "evidence-classification",
+            title: { en: "Rigorous 6-Tier Evidence Classification", fr: "Classification rigoureuse des preuves en 6 niveaux" },
+          },
+          {
+            id: "serial-monitor-logs",
+            title: { en: "Serial Monitor Diagnostic Output", fr: "Sortie de diagnostic sur moniteur série" },
+          },
+          {
+            id: "unresolved-steps",
+            title: { en: "Unresolved Milestones & Future Deployment", fr: "Étapes non résolues & Déploiement futur" },
+          },
+        ],
+        prevId: "smap-vs-ground-sensors",
         nextId: "fao-56-et0",
       },
     ],
@@ -260,7 +503,7 @@ const LOCALIZED_DOSSIER: LocalizedCategoryData[] = [
             title: { en: "Worked FAO-56 Numerical Example (4.99 mm/day)", fr: "Exemple numérique calculé FAO-56 (4,99 mm/j)" },
           },
         ],
-        prevId: "architecture-pipeline",
+        prevId: "hardware-validation",
         nextId: "etc-crop-water",
       },
       {
@@ -376,12 +619,12 @@ const LOCALIZED_DOSSIER: LocalizedCategoryData[] = [
       },
       {
         id: "farm-time-machine",
-        badge: "Ch. 23-24",
-        title: { en: "Farm Time Machine & Soil Lab", fr: "Farm Time Machine & Labo Sol" },
+        badge: "Ch. 23",
+        title: { en: "Farm Time Machine", fr: "Farm Time Machine" },
         category: { en: "EARTH TRIALS LABS", fr: "LABORATOIRES EARTH TRIALS" },
         description: {
-          en: "Historical climate replay, counterfactual agronomic comparison, and physical soil assay protocol.",
-          fr: "Rejeu climatique historique, comparaison contrefactuelle et protocole d'analyse de sol.",
+          en: "Historical climate replay, counterfactual agronomic comparison, and digital retrospective simulation lab.",
+          fr: "Laboratoire de simulation rétrospective, rejeu climatique historique et comparaison agronomique contrefactuelle.",
         },
         subChapters: [
           {
@@ -393,15 +636,45 @@ const LOCALIZED_DOSSIER: LocalizedCategoryData[] = [
             title: { en: "Earlier 95 mm Run vs Revised 93.4 mm Run", fr: "Simulation initiale 95 mm vs Révisée 93,4 mm" },
           },
           {
-            id: "physical-soil-protocol",
-            title: { en: "Physical Soil Laboratory Assay Protocol", fr: "Protocole d'analyse physique de sol en labo" },
-          },
-          {
             id: "minimum-field-log",
             title: { en: "Minimum Field Log Requirements", fr: "Cahier d'enregistrement minimal de parcelle" },
           },
         ],
         prevId: "climate-attack-lab",
+        nextId: "physical-soil-lab",
+      },
+      {
+        id: "physical-soil-lab",
+        badge: "Ch. 24",
+        title: { en: "Physical Soil Lab Protocol", fr: "Protocole Laboratoire de Sol" },
+        category: { en: "EARTH TRIALS LABS", fr: "LABORATOIRES EARTH TRIALS" },
+        description: {
+          en: "Soil core sampling, gravimetric-to-volumetric conversion, texture, EC, pH, and field calibration protocol.",
+          fr: "Échantillonnage de carottes de sol, conversion gravimétrique-volumétrique, texture, CE, pH et étalonnage terrain.",
+        },
+        subChapters: [
+          {
+            id: "soil-sampling-protocol",
+            title: { en: "Soil Core Sampling Protocol", fr: "Protocole de carottage de sol" },
+          },
+          {
+            id: "core-depths-texture",
+            title: { en: "Core Depths & Textural Classing", fr: "Profondeurs de prélèvement & Granulométrie" },
+          },
+          {
+            id: "gravimetric-volumetric",
+            title: { en: "Gravimetric to Volumetric Conversion", fr: "Conversion gravimétrique vers volumique" },
+          },
+          {
+            id: "physicochemical-indicators",
+            title: { en: "Physicochemical Soil Indicators (pH, EC, BD)", fr: "Indicateurs physico-chimiques (pH, CE, Da)" },
+          },
+          {
+            id: "field-validation-roadmap",
+            title: { en: "Field Validation Roadmap & Rigor", fr: "Feuille de route de validation terrain" },
+          },
+        ],
+        prevId: "farm-time-machine",
         nextId: "ai-architecture",
       },
     ],
@@ -440,7 +713,7 @@ const LOCALIZED_DOSSIER: LocalizedCategoryData[] = [
             title: { en: "6 Acceptance Criteria Tests (Table 27.1)", fr: "6 tests de critères d'acceptation (Tab. 27.1)" },
           },
         ],
-        prevId: "farm-time-machine",
+        prevId: "physical-soil-lab",
         nextId: "ai-scientific-tribunal",
       },
       {

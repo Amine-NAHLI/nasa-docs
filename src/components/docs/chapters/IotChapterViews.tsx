@@ -91,6 +91,22 @@ export function Esp32HardwareChapterView({ activeSubChapterId }: ChapterViewProp
               <p className="text-muted-foreground font-sans mt-1 text-[11px]">802.11 b/g/n + Bluetooth Low Energy.</p>
             </div>
           </div>
+
+          {/* Physical Hardware Photo */}
+          <div className="my-6 p-4 rounded-lg border border-border/70 bg-muted/20 text-center">
+            <div className="relative max-w-xs mx-auto h-52 flex items-center justify-center">
+              <img
+                src="/images/Capture_d_écran_2026-11-15_033322-removebg-preview.png"
+                alt="ESP-32 NodeMCU DevKit V1 Board"
+                className="max-h-48 w-auto object-contain mx-auto drop-shadow-sm transition-transform hover:scale-105 duration-300"
+              />
+            </div>
+            <p className="text-xs text-muted-foreground font-mono mt-3">
+              {isEn
+                ? "Physical Bench Unit: ESP-32 NodeMCU DevKit V1 (30-pin, CP2102 USB-to-UART bridge, ESP-WROOM-32 SoC)"
+                : "Unité Physique de Laboratoire : Module ESP-32 NodeMCU DevKit V1 (30 broches, pont CP2102, SoC ESP-WROOM-32)"}
+            </p>
+          </div>
         </div>
       </section>
 
@@ -305,6 +321,22 @@ export function SoilMoistureSensorsChapterView({ activeSubChapterId }: ChapterVi
           <div className="p-4 rounded-md border border-border/70 bg-muted/20 font-mono text-xs text-foreground text-center my-3">
             <code>{"θ_v = V_water / V_total [m³/m³]  <==>  θ_v(%) = (V_water / V_total) × 100%"}</code>
           </div>
+
+          {/* Physical Soil Moisture Sensor Photo */}
+          <div className="my-6 p-4 rounded-lg border border-border/70 bg-muted/20 text-center">
+            <div className="relative max-w-xs mx-auto h-52 flex items-center justify-center">
+              <img
+                src="/images/13637-01-removebg-preview.png"
+                alt="SparkFun Soil Moisture Sensor"
+                className="max-h-48 w-auto object-contain mx-auto drop-shadow-sm transition-transform hover:scale-105 duration-300"
+              />
+            </div>
+            <p className="text-xs text-muted-foreground font-mono mt-3">
+              {isEn
+                ? "Physical Bench Unit: SparkFun Soil Moisture Sensor (SEN-13637, Gold-Plated Prongs, 3-Pin Screw Terminal: VCC, GND, SIG)"
+                : "Unité Physique de Laboratoire : Sonde d'Humidité SparkFun (SEN-13637, broches dorées anticorrosion, bornier 3 vis : VCC, GND, SIG)"}
+            </p>
+          </div>
         </div>
       </section>
 
@@ -440,13 +472,29 @@ export function WiringAndFirmwareChapterView({ activeSubChapterId }: ChapterView
         </h2>
         <div className="p-4 rounded-md border border-border/70 bg-muted/20 font-mono text-xs overflow-x-auto my-3">
           <pre>{`+-------------------+                    +-----------------------+
-|  Capacitive Soil  |                    |    ESP32 DevKit v1    |
-|   Moisture v1.2   |                    |                       |
+|  SparkFun Soil    |                    |    ESP32 DevKit v1    |
+|  Moisture Sensor  |                    |                       |
 |                   |                    |                       |
 |   [ VCC (Red)   ] | ------------------ | [ 3V3 / GPIO 23 Power]|
 |   [ GND (Black) ] | ------------------ | [ GND                ]|
-|   [ AOUT(Yellow)] | ------------------ | [ GPIO 34 (ADC1_CH6) ]|
+|   [ SIG (Yellow)] | ------------------ | [ GPIO 34 (ADC1_CH6) ]|
 +-------------------+                    +-----------------------+`}</pre>
+        </div>
+
+        {/* Physical In-Situ Bench Test Setup Photo */}
+        <div className="my-6 p-4 rounded-lg border border-border/70 bg-muted/20 text-center">
+          <div className="relative max-w-md mx-auto h-72 flex items-center justify-center">
+            <img
+              src="/images/Capture_d_écran_2026-11-15_033441-removebg-preview.png"
+              alt="Physical Bench Test Setup: In-Situ Soil Probe, Wiring & Microcontroller Unit"
+              className="max-h-68 w-auto object-contain mx-auto rounded-md shadow-sm transition-transform hover:scale-[1.02] duration-300"
+            />
+          </div>
+          <p className="text-xs text-muted-foreground font-mono mt-3">
+            {isEn
+              ? "Physical Bench Test: Soil moisture probe inserted in plant substrate, 3-wire harness (VCC/GND/SIG), and live microcontroller telemetry display"
+              : "Banc d'Essai Physique : Sonde insérée dans le substrat racinaire, faisceau 3 fils (VCC/GND/SIG) et unité microcontrôleur avec écran de contrôle"}
+          </p>
         </div>
       </section>
 
@@ -859,21 +907,77 @@ export function HardwareValidationChapterView({ activeSubChapterId }: ChapterVie
             <tbody className="divide-y divide-border/60 text-muted-foreground">
               <tr>
                 <td className="py-2 pr-4 font-bold text-foreground">ESP32 Development Board</td>
-                <td className="py-2 pr-4 font-sans">NodeMCU / DevKit v1, 30-pin, CP2102 USB, Dual-Core LX6</td>
+                <td className="py-2 pr-4 font-sans">NodeMCU / DevKit v1, 30-pin, CP2102 USB-to-UART, Dual-Core Xtensa LX6</td>
                 <td className="py-2 pr-4 text-purple-600 dark:text-purple-400 font-semibold">Hardware Available</td>
               </tr>
               <tr>
                 <td className="py-2 pr-4 font-bold text-foreground">Soil Moisture Probe</td>
-                <td className="py-2 pr-4 font-sans">Capacitive Soil Moisture Sensor v1.2 / v2.0 analog probe</td>
+                <td className="py-2 pr-4 font-sans">SparkFun Soil Moisture Sensor (SEN-13637, gold-plated prongs, screw terminal)</td>
+                <td className="py-2 pr-4 text-purple-600 dark:text-purple-400 font-semibold">Hardware Available</td>
+              </tr>
+              <tr>
+                <td className="py-2 pr-4 font-bold text-foreground">Bench Test Rig</td>
+                <td className="py-2 pr-4 font-sans">In-situ potted soil testing rig with 3-wire harness & live TFT display unit</td>
                 <td className="py-2 pr-4 text-purple-600 dark:text-purple-400 font-semibold">Hardware Available</td>
               </tr>
               <tr>
                 <td className="py-2 pr-4 font-bold text-foreground">Firmware & Ingestion</td>
-                <td className="py-2 pr-4 font-sans">C++/Arduino reference architecture & TypeScript contract</td>
+                <td className="py-2 pr-4 font-sans">C++/Arduino reference architecture & TypeScript JSON contract</td>
                 <td className="py-2 pr-4 text-amber-600 dark:text-amber-400 font-semibold">Reference Design</td>
               </tr>
             </tbody>
           </table>
+        </div>
+
+        {/* Physical Evidence Photo Gallery */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 my-6">
+          <div className="p-3 rounded-lg border border-border/70 bg-muted/20 text-center flex flex-col items-center">
+            <div className="relative w-full h-40 flex items-center justify-center">
+              <img
+                src="/images/Capture_d_écran_2026-11-15_033322-removebg-preview.png"
+                alt="ESP-32 DevKit V1"
+                className="max-h-36 w-auto object-contain mx-auto transition-transform hover:scale-105 duration-300"
+              />
+            </div>
+            <span className="font-mono text-xs font-semibold text-foreground mt-2 block">
+              ESP-32 DevKit V1
+            </span>
+            <p className="text-[11px] text-muted-foreground mt-1 font-sans">
+              {isEn ? "30-pin Dual-Core LX6 board with CP2102 USB" : "Module 30 broches Dual-Core LX6 avec CP2102"}
+            </p>
+          </div>
+
+          <div className="p-3 rounded-lg border border-border/70 bg-muted/20 text-center flex flex-col items-center">
+            <div className="relative w-full h-40 flex items-center justify-center">
+              <img
+                src="/images/13637-01-removebg-preview.png"
+                alt="SparkFun Soil Moisture Sensor"
+                className="max-h-36 w-auto object-contain mx-auto transition-transform hover:scale-105 duration-300"
+              />
+            </div>
+            <span className="font-mono text-xs font-semibold text-foreground mt-2 block">
+              SparkFun SEN-13637
+            </span>
+            <p className="text-[11px] text-muted-foreground mt-1 font-sans">
+              {isEn ? "Gold-plated dual-prong sensor with terminal block" : "Sonde dorée anti-oxydation avec bornier à vis"}
+            </p>
+          </div>
+
+          <div className="p-3 rounded-lg border border-border/70 bg-muted/20 text-center flex flex-col items-center">
+            <div className="relative w-full h-40 flex items-center justify-center">
+              <img
+                src="/images/Capture_d_écran_2026-11-15_033441-removebg-preview.png"
+                alt="Bench Test In-Situ Setup"
+                className="max-h-36 w-auto object-contain mx-auto rounded transition-transform hover:scale-105 duration-300"
+              />
+            </div>
+            <span className="font-mono text-xs font-semibold text-foreground mt-2 block">
+              {isEn ? "In-Situ Bench Test" : "Banc d'Essai In-Situ"}
+            </span>
+            <p className="text-[11px] text-muted-foreground mt-1 font-sans">
+              {isEn ? "Live soil testing rig with active display telemetry" : "Test sur substrat végétal réel avec écran de télémétrie"}
+            </p>
+          </div>
         </div>
       </section>
 
