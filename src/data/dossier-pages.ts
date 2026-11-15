@@ -45,11 +45,11 @@ const LOCALIZED_DOSSIER: LocalizedCategoryData[] = [
       {
         id: "overview",
         badge: "Ch. 1",
-        title: { en: "Get started & Overview", fr: "Introduction & Vue d'ensemble" },
+        title: { en: "Get started & Global Scope", fr: "Introduction & Portée Globale" },
         category: { en: "MEET FARMER EYE", fr: "DÉCOUVRIR FARMER EYE" },
         description: {
-          en: "Executive Summary, team DEVUPWARD, and document status & evidence policy.",
-          fr: "Résumé exécutif, équipe DEVUPWARD, statut du document et politique de preuve.",
+          en: "Planetary scope, NASA constellations, team DEVUPWARD, and document status & evidence policy.",
+          fr: "Portée planétaire mondiale, constellations NASA, équipe DEVUPWARD, statut du document et politique de preuve.",
         },
         subChapters: [
           {
@@ -58,11 +58,15 @@ const LOCALIZED_DOSSIER: LocalizedCategoryData[] = [
           },
           {
             id: "executive-summary",
-            title: { en: "Executive Summary & Context", fr: "Résumé exécutif & contexte" },
+            title: { en: "Executive Summary & Team DEVUPWARD", fr: "Résumé exécutif & équipe DEVUPWARD" },
+          },
+          {
+            id: "planetary-scope",
+            title: { en: "Planetary Scope & Global Grids", fr: "Portée planétaire & grilles globales" },
           },
           {
             id: "key-reference-run",
-            title: { en: "Key Reference Comparison (Meknes)", fr: "Comparaison de référence (Meknès)" },
+            title: { en: "Empirical Benchmark Run (Saïss)", fr: "Banc d'essai pilote empirique (Saïss)" },
           },
         ],
         nextId: "why-farmer-eye",
@@ -834,7 +838,7 @@ const LOCALIZED_DOSSIER: LocalizedCategoryData[] = [
           },
           {
             id: "meknes-reference-benchmark",
-            title: { en: "Meknes Reference Benchmark (3 Strategies)", fr: "Cas de Référence de Meknès (3 Stratégies)" },
+            title: { en: "Field Pilot Benchmark (3 Strategies)", fr: "Banc d'Essai Pilote de Terrain (3 Stratégies)" },
           },
           {
             id: "deployment-model-equations",

@@ -103,7 +103,7 @@ export function Footer() {
                 <span className="text-slate-500">Soil-Water Depletion Balance</span>
               </li>
               <li>
-                <span className="text-slate-500">Meknes Demonstration Scenario</span>
+                <span className="text-slate-500">Global Earth Observation · Saïss Field Benchmark</span>
               </li>
             </ul>
           </div>
@@ -115,9 +115,9 @@ export function Footer() {
             © {new Date().getFullYear()} Farmer Eye. Developed independently by {siteConfig.team.name} for the NASA Space Apps Challenge.
           </p>
           <div className="flex items-center gap-4">
-            <span className="text-teal-400">English Only</span>
+            <span className="text-teal-400">English / Français</span>
             <span>•</span>
-            <span className="text-slate-400">Global Ag-Science Concept</span>
+            <span className="text-slate-400">Universal Planetary Architecture</span>
           </div>
         </div>
       </div>
