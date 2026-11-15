@@ -36,8 +36,8 @@ import { ChevronRight, ArrowLeft, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function DocsPage() {
-  const [activeChapterId, setActiveChapterId] = useState<string>("why-farmer-eye");
-  const [activeSubChapterId, setActiveSubChapterId] = useState<string | undefined>("global-challenge");
+  const [activeChapterId, setActiveChapterId] = useState<string>("overview");
+  const [activeSubChapterId, setActiveSubChapterId] = useState<string | undefined>("evidence-policy");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const { lang } = useDocsContext();
@@ -46,7 +46,7 @@ export function DocsPage() {
   const navigation = getDossierNavigation(lang);
 
   const currentChapter =
-    getChapterById(activeChapterId, lang) || getChapterById("why-farmer-eye", lang)!;
+    getChapterById(activeChapterId, lang) || getChapterById("overview", lang)!;
 
   // Resolve current active sub-chapter ID (defaulting to the first sub-chapter if unset or mismatched)
   const effectiveSubChapterId =
@@ -61,7 +61,11 @@ export function DocsPage() {
   useEffect(() => {
     const handleHashSync = () => {
       const hash = window.location.hash.replace("#", "");
-      if (!hash) return;
+      if (!hash) {
+        setActiveChapterId("overview");
+        setActiveSubChapterId("evidence-policy");
+        return;
+      }
 
       for (const cat of navigation) {
         for (const ch of cat.chapters) {

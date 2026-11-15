@@ -21,14 +21,11 @@ export function DocsProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Language>("en");
   const [mounted, setMounted] = useState(false);
 
-  // Initialize from localStorage or media query
+  // Initialize from localStorage (default to light mode unless explicitly dark)
   useEffect(() => {
     try {
       const savedTheme = localStorage.getItem("farmer_eye_theme") as ThemeMode | null;
-      if (savedTheme === "dark" || savedTheme === "light") {
-        setThemeState(savedTheme);
-        document.documentElement.classList.toggle("dark", savedTheme === "dark");
-      } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      if (savedTheme === "dark") {
         setThemeState("dark");
         document.documentElement.classList.add("dark");
       } else {

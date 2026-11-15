@@ -15,8 +15,8 @@ interface DocsSidebarProps {
 }
 
 export function DocsSidebar({
-  activeChapterId = "why-farmer-eye",
-  activeSubChapterId,
+  activeChapterId = "overview",
+  activeSubChapterId = "evidence-policy",
   onSelectChapter,
   onItemClick,
   className,
@@ -26,7 +26,8 @@ export function DocsSidebar({
 
   // Accordion state: by default, ONLY the active chapter is expanded ("mnghir fen rani db ykun m7lol mzyan")
   const [openChapters, setOpenChapters] = useState<Record<string, boolean>>({
-    [activeChapterId]: true,
+    [activeChapterId || "overview"]: true,
+    overview: true,
   });
 
   // When activeChapterId changes (e.g. from bottom Next/Prev pagination or deep link),
