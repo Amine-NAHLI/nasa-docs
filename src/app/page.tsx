@@ -32,6 +32,7 @@ import {
   HardwareValidationChapterView,
   PhysicalSoilLabChapterView,
 } from "@/components/docs/chapters/IotChapterViews";
+import { BusinessPlanChapterView } from "@/components/docs/chapters/BusinessPlanChapterView";
 import Image from "next/image";
 import { ChevronRight, ArrowLeft, ArrowRight, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -344,6 +345,9 @@ export function DocsPage() {
             )}
             {activeChapterId === "impact-2030" && (
               <Impact2030ChapterView activeSubChapterId={effectiveSubChapterId} />
+            )}
+            {activeChapterId === "business-plan" && (
+              <BusinessPlanChapterView activeSubChapterId={effectiveSubChapterId} />
             )}
             {activeChapterId === "annexes" && (
               <AnnexesChapterView activeSubChapterId={effectiveSubChapterId} />
