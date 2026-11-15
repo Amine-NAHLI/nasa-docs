@@ -15,7 +15,8 @@ import {
   ImpactScalingVisualizations,
 } from "@/components/docs/charts/DocsCharts";
 import { CodeBlock } from "@/components/docs/CodeBlock";
-import { ShieldCheck, FileCheck, Calculator, ArrowRight, CheckCircle2, AlertTriangle, Cpu, Layers, Terminal, Globe } from "lucide-react";
+import Image from "next/image";
+import { ShieldCheck, FileCheck, Calculator, ArrowRight, CheckCircle2, AlertTriangle, Cpu, Layers, Terminal, Globe, ExternalLink, Database, Compass, Eye, Sparkles, BookOpen } from "lucide-react";
 
 interface ChapterViewProps {
   activeSubChapterId?: string;
@@ -547,6 +548,203 @@ export function NasaPowerChapterView({ activeSubChapterId }: ChapterViewProps) {
         </div>
       </section>
 
+      {/* ─────────────────────────────────────────────────────────────────── */}
+      {/* NASA POWER — CLIMATE INTELLIGENCE                                   */}
+      {/* ─────────────────────────────────────────────────────────────────── */}
+      <section id="power-climate-intelligence" className="scroll-mt-20 space-y-6">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "NASA POWER — Climate Intelligence" : "NASA POWER — Intelligence Climatique"}
+        </h2>
+
+        {/* Overview */}
+        <div className="border border-border/80 bg-muted/20 p-4 rounded-sm text-sm space-y-2">
+          <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-foreground font-semibold">
+            <Compass className="h-4 w-4 text-emerald-500" />
+            <span>{isEn ? "Overview" : "Vue d'Ensemble"}</span>
+          </div>
+          <p className="text-muted-foreground leading-relaxed text-sm">
+            {isEn ? (
+              <>
+                NASA POWER (Prediction Of Worldwide Energy Resources) provides analysis-ready meteorological and solar radiation data accessible through public REST APIs. In Farmer Eye, NASA POWER daily data are retrieved to analyze regional climatic conditions and support agricultural decision-making. The project uses meteorological information as a quantitative foundation for scientific calculations, climate analysis, agricultural planning, and scenario stress-testing.
+              </>
+            ) : (
+              <>
+                Le service NASA POWER (Prediction Of Worldwide Energy Resources) fournit des données météorologiques et de rayonnement solaire prêtes pour l'analyse via des API REST publiques. Dans Farmer Eye, les flux journaliers NASA POWER sont exploités pour analyser les conditions climatiques régionales et guider la prise de décision agricole. Le projet utilise ces informations comme socle quantitatif pour les calculs biophysiques, l'analyse climatique et la simulation de scénarios.
+              </>
+            )}
+          </p>
+        </div>
+
+        {/* Implemented Integration */}
+        <div className="space-y-3">
+          <h3 className="font-mono text-sm font-semibold text-foreground uppercase tracking-wider">
+            {isEn ? "Implemented Integration" : "Implémentation Réelle du Service"}
+          </h3>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            {isEn
+              ? "The original Farmer Eye scientific service integrates NASA POWER's Daily Point API. The application supports requests based on geographical coordinates or resolved locations and selected date ranges. Retrieved data are normalized, quality-checked, cached, and made available through structured outputs for climate summaries, agronomic modeling, and export functionality."
+              : "Le service scientifique d'origine de Farmer Eye intègre l'API Daily Point de NASA POWER. L'application prend en charge les requêtes par coordonnées géographiques ou localités résolues et plages temporelles sélectionnées. Les données récupérées sont normalisées, vérifiées, mises en cache et restituées sous forme de structures prêtes pour la modélisation agronomique."}
+          </p>
+        </div>
+
+        {/* 7 Steps Processing Pipeline */}
+        <div className="space-y-3">
+          <h3 className="font-mono text-sm font-semibold text-foreground uppercase tracking-wider">
+            {isEn ? "How Farmer Eye Processes NASA POWER Data (7 Steps)" : "Traitement des Données NASA POWER en 7 Étapes"}
+          </h3>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs font-mono">
+            <div className="p-3 rounded border border-border/70 bg-background space-y-1">
+              <span className="font-bold text-foreground">Step 1 — Location Input</span>
+              <p className="text-muted-foreground font-sans text-xs">
+                {isEn ? "User chooses a geographical location (e.g. Meknes) or inputs latitude and longitude." : "L'utilisateur choisit une localité géographique (ex. Meknès) ou saisit latitude et longitude."}
+              </p>
+            </div>
+            <div className="p-3 rounded border border-border/70 bg-background space-y-1">
+              <span className="font-bold text-foreground">Step 2 — Date Selection</span>
+              <p className="text-muted-foreground font-sans text-xs">
+                {isEn ? "Selects a single agricultural season or multi-year historical period." : "Sélection d'une campagne agricole spécifique ou d'une période historique pluriannuelle."}
+              </p>
+            </div>
+            <div className="p-3 rounded border border-border/70 bg-background space-y-1">
+              <span className="font-bold text-foreground">Step 3 — API Request</span>
+              <p className="text-muted-foreground font-sans text-xs">
+                {isEn ? "Requests the 7 meteorological parameters from the NASA POWER Daily Point API under AG community." : "Interrogation des 7 paramètres météo via l'API NASA POWER Daily Point (communauté AG)."}
+              </p>
+            </div>
+            <div className="p-3 rounded border border-border/70 bg-background space-y-1">
+              <span className="font-bold text-foreground">Step 4 — Response Validation</span>
+              <p className="text-muted-foreground font-sans text-xs">
+                {isEn ? "Validates units, coverage, and missing-value flags (-999). Missing values are never silently replaced." : "Vérification des unités et sentinelles (-999). Les lacunes ne sont jamais remplacées silencieusement."}
+              </p>
+            </div>
+            <div className="p-3 rounded border border-border/70 bg-background space-y-1">
+              <span className="font-bold text-foreground">Step 5 — Climate Analysis</span>
+              <p className="text-muted-foreground font-sans text-xs">
+                {isEn ? "Computes mean temperature, cumulative precipitation, dry days, and hot-day indicators." : "Calcul des moyennes thermiques, cumul pluviométrique, jours secs et indicateurs de canicule."}
+              </p>
+            </div>
+            <div className="p-3 rounded border border-border/70 bg-background space-y-1">
+              <span className="font-bold text-foreground">Step 6 — Scientific Modeling</span>
+              <p className="text-muted-foreground font-sans text-xs">
+                {isEn ? "Feeds FAO-56 Penman-Monteith reference ET0 and crop water requirement ETc calculations." : "Alimente le calcul de l'ET0 FAO-56 Penman-Monteith et des besoins en eau ETc."}
+              </p>
+            </div>
+          </div>
+          <div className="p-3 rounded border border-border/70 bg-muted/20 text-xs font-mono">
+            <span className="font-bold text-foreground block">Step 7 — Results and Export</span>
+            <p className="text-muted-foreground font-sans text-xs mt-0.5">
+              {isEn ? "Presents findings through structured JSON responses, comparative tables, charts, and CSV/PDF export formats." : "Restitution via réponses JSON structurées, tableaux comparatifs, graphiques et exports CSV/PDF."}
+            </p>
+          </div>
+        </div>
+
+        {/* Scientific Calculations */}
+        <div className="space-y-4">
+          <h3 className="font-mono text-sm font-semibold text-foreground uppercase tracking-wider">
+            {isEn ? "Core Scientific Calculations" : "Formules Scientifiques Appliquées"}
+          </h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-xs">
+            <div className="p-3.5 rounded border border-border/70 bg-background space-y-2">
+              <span className="font-semibold text-foreground uppercase block text-[11px]">{isEn ? "1. Total Precipitation" : "1. Précipitations Cumulées"}</span>
+              <div className="p-2 rounded bg-muted/30 text-center font-bold text-foreground">
+                {"P_total = ∑ (t=1..N) P_t"}
+              </div>
+              <p className="text-muted-foreground font-sans text-[11px]">
+                {isEn ? "Where P_t is corrected precipitation on day t in millimeters, summed across valid days." : "Où P_t est la pluie corrigée du jour t en millimètres, sommée sur les jours valides."}
+              </p>
+            </div>
+
+            <div className="p-3.5 rounded border border-border/70 bg-background space-y-2">
+              <span className="font-semibold text-foreground uppercase block text-[11px]">{isEn ? "2. Mean Temperature" : "2. Température Moyenne"}</span>
+              <div className="p-2 rounded bg-muted/30 text-center font-bold text-foreground">
+                {"T_mean = (1 / N_valid) ∑ (t∈valid) T_t"}
+              </div>
+              <p className="text-muted-foreground font-sans text-[11px]">
+                {isEn ? "Computed solely across valid observation days, excluding -999 flags." : "Calculée strictement sur les jours valides, en excluant les marqueurs d'absence -999."}
+              </p>
+            </div>
+
+            <div className="p-3.5 rounded border border-border/70 bg-background space-y-2">
+              <span className="font-semibold text-foreground uppercase block text-[11px]">{isEn ? "3. Crop Water Demand (ETc)" : "3. Demande en Eau Culturale (ETc)"}</span>
+              <div className="p-2 rounded bg-muted/30 text-center font-bold text-foreground">
+                {"ET_c = K_c × ET_0"}
+              </div>
+              <p className="text-muted-foreground font-sans text-[11px]">
+                {isEn ? "Where ET_0 is reference evapotranspiration and K_c is the seasonal crop coefficient." : "Où ET_0 est l'évapotranspiration de référence et K_c le coefficient cultural phénologique."}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Connection to Earth Trials */}
+        <div className="space-y-3">
+          <h3 className="font-mono text-sm font-semibold text-foreground uppercase tracking-wider">
+            {isEn ? "Connection to Earth Trials Labs" : "Connexion avec les Laboratoires EARTH TRIALS"}
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs font-mono">
+            <div className="p-3.5 rounded border border-border/70 bg-muted/10 space-y-1">
+              <span className="font-bold text-foreground block">Crop Battle Lab</span>
+              <p className="text-muted-foreground font-sans text-xs">
+                {isEn ? "Historical climate informs modeled water demand of competing rotations (e.g. wheat vs wheat-lentil-barley)." : "Le climat historique alimente le calcul de demande hydrique comparée des rotations."}
+              </p>
+            </div>
+            <div className="p-3.5 rounded border border-border/70 bg-muted/10 space-y-1">
+              <span className="font-bold text-foreground block">Climate Attack Lab</span>
+              <p className="text-muted-foreground font-sans text-xs">
+                {isEn ? "Applies explicit stress scenarios (heatwave +2.5°C, drought, delayed rain) to test farm resilience." : "Applique des stress explicites (canicule +2,5°C, sécheresse, pluies tardives) pour tester la résilience."}
+              </p>
+            </div>
+            <div className="p-3.5 rounded border border-border/70 bg-muted/10 space-y-1">
+              <span className="font-bold text-foreground block">Farm Time Machine</span>
+              <p className="text-muted-foreground font-sans text-xs">
+                {isEn ? "Replays past seasons with NASA historical weather to evaluate alternative crop choices in hindsight." : "Rejoue des saisons passées avec les séries réelles NASA pour comparer rétrospectivement les choix."}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Scientific Limitations & Provenance Chain */}
+        <div className="p-4 rounded border border-border/80 bg-muted/20 text-xs font-mono space-y-2">
+          <div className="flex items-center gap-2 text-foreground font-semibold">
+            <AlertTriangle className="h-4 w-4 text-amber-500" />
+            <span>{isEn ? "Scientific Limitations & Distinction Boundary:" : "Limites Scientifiques & Chaîne de Traçabilité :"}</span>
+          </div>
+          <p className="text-muted-foreground font-sans text-xs leading-relaxed">
+            {isEn ? (
+              <>
+                NASA POWER data describe regional atmospheric grid conditions and are not equivalent to a dedicated micro-meteorological weather station placed in every individual field. Actual farm conditions may differ due to altitude, terrain relief, local irrigation, and canopy microclimate.
+                <br />
+                <span className="font-mono text-[11px] font-semibold text-foreground block mt-1.5">
+                  NASA Climate Data → Derived Scientific Indicators → Simulated Agricultural Outcomes.
+                </span>
+              </>
+            ) : (
+              <>
+                Les données NASA POWER décrivent des conditions atmosphériques régionales de grille et ne se substituent pas à une station micro-météorologique installée sur chaque parcelle. Les conditions réelles peuvent varier en fonction de l'altitude, du relief, de l'irrigation locale et du microclimat sous canopée.
+                <br />
+                <span className="font-mono text-[11px] font-semibold text-foreground block mt-1.5">
+                  Données Météo NASA → Indicateurs Scientifiques Dérivés → Résultats Agricoles Simulés.
+                </span>
+              </>
+            )}
+          </p>
+          <div className="pt-2 border-t border-border/60 text-[11px] flex items-center justify-between flex-wrap gap-2">
+            <span>{isEn ? "Official Reference: NASA POWER Daily API" : "Référence Officielle : API Quotidienne NASA POWER"}</span>
+            <a
+              href="https://power.larc.nasa.gov/docs/services/api/temporal/daily/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-emerald-600 dark:text-emerald-400 hover:underline inline-flex items-center gap-1"
+            >
+              <span>power.larc.nasa.gov/docs</span>
+              <ExternalLink className="h-3 w-3" />
+            </a>
+          </div>
+        </div>
+      </section>
+
       <section id="power-quality" className="scroll-mt-20">
         <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
           {isEn ? "Quality Handling & Missingness Protocol" : "Traitement Qualité & Protocole des Lacunes"}
@@ -663,6 +861,202 @@ export function NasaSmapChapterView({ activeSubChapterId }: ChapterViewProps) {
               </tr>
             </tbody>
           </table>
+        </div>
+      </section>
+
+      {/* ─────────────────────────────────────────────────────────────────── */}
+      {/* GOOGLE EARTH ENGINE INTEGRATION                                     */}
+      {/* ─────────────────────────────────────────────────────────────────── */}
+      <section id="gee-integration" className="scroll-mt-20 space-y-6">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Google Earth Engine Integration" : "Intégration Google Earth Engine"}
+        </h2>
+
+        {/* Overview */}
+        <div className="border border-border/80 bg-muted/20 p-4 rounded-sm text-sm space-y-2">
+          <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-foreground font-semibold">
+            <Database className="h-4 w-4 text-emerald-500" />
+            <span>{isEn ? "Overview" : "Vue d'Ensemble"}</span>
+          </div>
+          <p className="text-muted-foreground leading-relaxed text-sm">
+            {isEn ? (
+              <>
+                Google Earth Engine (GEE) is a cloud-based geospatial analysis platform that allows developers and scientists to access, process, and analyze large Earth observation datasets. In Farmer Eye, Google Earth Engine is used to retrieve and process regional soil moisture information from NASA's Soil Moisture Active Passive (SMAP) mission. Rather than simply displaying satellite imagery, Farmer Eye transforms scientific geospatial data into structured information that can support agricultural analysis and decision-making.
+              </>
+            ) : (
+              <>
+                Google Earth Engine (GEE) est une plateforme d'analyse géospatiale basée sur le cloud qui permet aux scientifiques et développeurs d'accéder, traiter et analyser de vastes jeux de données d'observation de la Terre. Dans Farmer Eye, Google Earth Engine est exploité pour extraire et traiter l'humidité régionale du sol issue de la mission NASA SMAP (Soil Moisture Active Passive). Plutôt que de simplement afficher des images, Farmer Eye convertit les données géospatiales en flux structurés exploitables pour l'agronomie.
+              </>
+            )}
+          </p>
+        </div>
+
+        {/* Our Actual Implementation */}
+        <div className="space-y-3">
+          <h3 className="font-mono text-sm font-semibold text-foreground uppercase tracking-wider">
+            {isEn ? "Our Actual Implementation" : "Notre Implémentation Réelle"}
+          </h3>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            {isEn
+              ? "Farmer Eye integrates the official NASA SMAP Level-4 Soil Moisture, Version 008 dataset through the Google Earth Engine Python API in its original scientific service:"
+              : "Farmer Eye intègre le produit officiel NASA SMAP Niveau-4 Version 008 via l'API Python de Google Earth Engine au sein de son service scientifique :"}
+          </p>
+          <div className="p-3 rounded bg-muted/30 border border-border/70 font-mono text-xs text-foreground">
+            <code>Dataset identifier: NASA/SMAP/SPL4SMGP/008</code>
+          </div>
+          <div className="p-4 rounded-md border border-border/70 bg-background space-y-2 text-xs font-mono">
+            <span className="font-semibold text-foreground block">{isEn ? "The implemented SMAP Explorer provides:" : "L'explorateur SMAP implémenté fournit :"}</span>
+            <ul className="text-muted-foreground space-y-1 list-disc pl-4 font-sans text-xs">
+              <li>{isEn ? "Access to a documented catalogue of 46 scientific data bands." : "Accès à un catalogue documenté de 46 bandes scientifiques."}</li>
+              <li>{isEn ? "An agricultural mode containing 16 selected key variables." : "Un mode agricole contenant 16 variables sélectionnées."}</li>
+              <li>{isEn ? "Regional soil moisture extraction by location and time period." : "Extraction de l'humidité du sol par coordonnées et période."}</li>
+              <li>{isEn ? "Surface (0–5 cm) and root-zone (0–100 cm) soil moisture analysis." : "Analyse différentielle surface (0–5 cm) et zone racinaire (0–100 cm)."}</li>
+              <li>{isEn ? "Monthly summaries and time-series exploration (ee-chart series)." : "Synthèses mensuelles et exploration de séries temporelles (ee-chart)."}</li>
+              <li>{isEn ? "Preservation of scientific units (m³/m³), metadata, and variable explanations." : "Préservation des unités scientifiques (m³/m³), métadonnées et descriptions."}</li>
+              <li>{isEn ? "Structured outputs for biophysical modeling and UI visualization." : "Sorties structurées pour la modélisation biophysique et l'affichage."}</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* How It Works (6 Steps) */}
+        <div className="space-y-3">
+          <h3 className="font-mono text-sm font-semibold text-foreground uppercase tracking-wider">
+            {isEn ? "How It Works (6 Processing Steps)" : "Fonctionnement en 6 Étapes de Traitement"}
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs font-mono">
+            <div className="p-3 rounded border border-border/70 bg-background space-y-1">
+              <span className="font-bold text-foreground">Step 1 — Location Selection</span>
+              <p className="text-muted-foreground font-sans text-xs">
+                {isEn ? "User specifies a geographical location, such as Meknes, Morocco, or provides coordinates." : "L'utilisateur spécifie une région (ex. Meknès) ou fournit des coordonnées."}
+              </p>
+            </div>
+            <div className="p-3 rounded border border-border/70 bg-background space-y-1">
+              <span className="font-bold text-foreground">Step 2 — Dataset Access</span>
+              <p className="text-muted-foreground font-sans text-xs">
+                {isEn ? "Accesses the NASA SMAP Level-4 V008 image collection in Google Earth Engine." : "Accède à la collection d'images NASA SMAP L4 V008 dans Google Earth Engine."}
+              </p>
+            </div>
+            <div className="p-3 rounded border border-border/70 bg-background space-y-1">
+              <span className="font-bold text-foreground">Step 3 — Temporal Filtering</span>
+              <p className="text-muted-foreground font-sans text-xs">
+                {isEn ? "The system selects observations corresponding to the requested date range." : "Sélectionne les observations correspondant à la période demandée."}
+              </p>
+            </div>
+            <div className="p-3 rounded border border-border/70 bg-background space-y-1">
+              <span className="font-bold text-foreground">Step 4 — Spatial Extraction</span>
+              <p className="text-muted-foreground font-sans text-xs">
+                {isEn ? "Scientific service extracts regional values using defined spatial scale and aggregation." : "Le service extrait les valeurs régionales selon l'échelle et la méthode d'agrégation."}
+              </p>
+            </div>
+            <div className="p-3 rounded border border-border/70 bg-background space-y-1">
+              <span className="font-bold text-foreground">Step 5 — Data Processing</span>
+              <p className="text-muted-foreground font-sans text-xs">
+                {isEn ? "Valid measurements are organized and converted into structured outputs preserving units." : "Les mesures valides sont converties en sorties structurées avec métadonnées."}
+              </p>
+            </div>
+            <div className="p-3 rounded border border-border/70 bg-background space-y-1">
+              <span className="font-bold text-foreground">Step 6 — Agricultural Interpretation</span>
+              <p className="text-muted-foreground font-sans text-xs">
+                {isEn ? "Extracted moisture becomes an input for regional analysis and AI-assisted explanations." : "L'humidité extraite alimente l'analyse agricole et les explications en Darija/Français."}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Executed Example — Meknes, January 2025 */}
+        <div className="space-y-3">
+          <h3 className="font-mono text-sm font-semibold text-foreground uppercase tracking-wider">
+            {isEn ? "Executed Example — Meknes, January 2025" : "Exemple Exécuté — Meknès, Janvier 2025"}
+          </h3>
+          <p className="text-sm text-muted-foreground">
+            {isEn
+              ? "A documented internal Google Earth Engine extraction for the Meknes agricultural basin reported:"
+              : "Une extraction documentée interne Google Earth Engine pour le bassin agricole de Meknès rapporte :"}
+          </p>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-sm border-collapse font-mono text-xs">
+              <thead className="border-b border-border text-[11px] uppercase tracking-wider text-muted-foreground bg-muted/20">
+                <tr>
+                  <th className="py-2.5 px-3 text-left font-medium">{isEn ? "Variable" : "Variable"}</th>
+                  <th className="py-2.5 px-3 text-left font-medium">{isEn ? "Extracted Value (GEE SPL4SMGP/008)" : "Valeur Extraite (GEE SPL4SMGP/008)"}</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border/60 text-muted-foreground">
+                <tr>
+                  <td className="py-2.5 px-3 font-semibold text-foreground">{isEn ? "Surface soil moisture (sm_surface)" : "Humidité du sol en surface (sm_surface)"}</td>
+                  <td className="py-2.5 px-3 font-bold text-foreground">0.2109277844 m³/m³</td>
+                </tr>
+                <tr>
+                  <td className="py-2.5 px-3 font-semibold text-foreground">{isEn ? "Root-zone soil moisture (sm_rootzone)" : "Humidité de la zone racinaire (sm_rootzone)"}</td>
+                  <td className="py-2.5 px-3 font-bold text-emerald-600 dark:text-emerald-400">0.2572526634 m³/m³</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="text-xs text-muted-foreground font-mono">
+            {isEn
+              ? "Note: These values are regional SMAP data-product estimates, not measurements from a physical soil probe on an individual farm."
+              : "Note : Ces valeurs sont des estimations du produit de données régionales SMAP, et non des mesures d'une sonde physique sur une ferme individuelle."}
+          </p>
+        </div>
+
+        {/* Scientific Limitations */}
+        <div className="p-4 rounded border border-border/80 bg-muted/20 text-xs font-mono space-y-2">
+          <div className="flex items-center gap-2 text-foreground font-semibold">
+            <AlertTriangle className="h-4 w-4 text-amber-500" />
+            <span>{isEn ? "Scientific Limitations of Regional Satellite Radar:" : "Limites Scientifiques du Radar Satellitaire Régional :"}</span>
+          </div>
+          <p className="text-muted-foreground font-sans text-xs leading-relaxed">
+            {isEn ? (
+              <>
+                The native SMAP Level-4 product has an approximate <strong className="text-foreground">9 km spatial grid</strong> and provides 3-hourly estimates. These observations represent regional modeled and assimilated soil conditions. They <strong className="text-foreground">cannot directly determine</strong> the exact moisture content of an individual farm, plant, or root. Local soil properties, irrigation, crop types, and sensor measurements may differ considerably within the same satellite grid cell. Farmer Eye rigorously preserves this distinction between regional Earth observation data and physical field measurements.
+              </>
+            ) : (
+              <>
+                Le produit SMAP Niveau-4 présente une grille spatiale d'environ <strong className="text-foreground">9 km</strong> avec estimations tri-horaires. Ces observations représentent des conditions régionales modélisées et assimilées. Elles <strong className="text-foreground">ne peuvent pas déterminer directement</strong> l'humidité exacte d'une ferme, d'une plante ou d'une racine individuelle. Les propriétés pédologiques locales, l'irrigation et les types de cultures peuvent différer fortement au sein de la même maille. Farmer Eye préserve scrupuleusement cette distinction.
+              </>
+            )}
+          </p>
+        </div>
+
+        {/* Why It Matters & Official References */}
+        <div className="space-y-3 pt-1">
+          <h3 className="font-mono text-sm font-semibold text-foreground uppercase tracking-wider">
+            {isEn ? "Why It Matters & Official References" : "Importance & Références Officielles"}
+          </h3>
+          <p className="text-xs text-muted-foreground font-sans leading-relaxed">
+            {isEn
+              ? "Google Earth Engine allows Farmer Eye to connect a global scientific dataset with agricultural decision-support workflows. This integration creates a bridge between Earth observations and practical environmental analysis without requiring every agricultural location to have its own satellite processing infrastructure."
+              : "Google Earth Engine permet à Farmer Eye de connecter un jeu de données scientifiques mondial aux flux d'aide à la décision agricole. Cette intégration fait le pont entre observations de la Terre et analyse environnementale concrète, sans imposer à chaque exploitation de posséder sa propre station de traitement satellitaire."}
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono pt-1">
+            <a
+              href="https://developers.google.com/earth-engine"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded border border-border/70 bg-background hover:bg-muted/40 transition-colors flex items-center justify-between"
+            >
+              <div>
+                <span className="font-semibold text-foreground block">Google Earth Engine</span>
+                <span className="text-[11px] text-muted-foreground">developers.google.com/earth-engine</span>
+              </div>
+              <ExternalLink className="h-3.5 w-3.5 text-muted-foreground" />
+            </a>
+
+            <a
+              href="https://developers.google.com/earth-engine/datasets/catalog/NASA_SMAP_SPL4SMGP_008"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded border border-border/70 bg-background hover:bg-muted/40 transition-colors flex items-center justify-between"
+            >
+              <div>
+                <span className="font-semibold text-foreground block">NASA SMAP Level-4 V008 Catalog</span>
+                <span className="text-[11px] text-muted-foreground">NASA_SMAP_SPL4SMGP_008</span>
+              </div>
+              <ExternalLink className="h-3.5 w-3.5 text-muted-foreground" />
+            </a>
+          </div>
         </div>
       </section>
 
@@ -794,6 +1188,225 @@ export function ArchitecturePipelineChapterView({ activeSubChapterId }: ChapterV
                 : "Explications contextualisées multi-agents et garde-fous de preuves du Tribunal Scientifique."}
             </span>
           </div>
+        </div>
+      </section>
+
+      {/* ─────────────────────────────────────────────────────────────────── */}
+      {/* INTERACTIVE 3D EARTH EXPERIENCE                                    */}
+      {/* ─────────────────────────────────────────────────────────────────── */}
+      <section id="interactive-3d-earth" className="scroll-mt-20 space-y-6">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2 mb-4">
+          {isEn ? "Interactive 3D Earth Experience" : "Expérience Géospatiale 3D Interactive"}
+        </h2>
+
+        {/* Overview */}
+        <div className="border border-border/80 bg-muted/20 p-4 rounded-sm text-sm space-y-2">
+          <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-foreground font-semibold">
+            <Globe className="h-4 w-4 text-blue-500" />
+            <span>{isEn ? "Overview" : "Vue d'Ensemble"}</span>
+          </div>
+          <p className="text-muted-foreground leading-relaxed text-sm">
+            {isEn ? (
+              <>
+                Farmer Eye includes an immersive geospatial experience designed to connect planetary-scale observation with regional agricultural challenges. The user begins with a three-dimensional view of Earth from space and can explore geographical locations through an interactive camera and map interface. The experience visually communicates the central idea behind Farmer Eye: <strong className="text-foreground">“From Space to the Field.”</strong> It is a geographic storytelling and navigation interface, distinct from the scientific data processing performed by Google Earth Engine.
+              </>
+            ) : (
+              <>
+                Farmer Eye intègre une expérience géospatiale immersive conçue pour relier l'observation à l'échelle planétaire aux défis agricoles régionaux. L'utilisateur débute par une vue tridimensionnelle de la Terre depuis l'espace et explore les bassins agricoles grâce à une caméra interactive. L'expérience illustre visuellement la vision centrale : <strong className="text-foreground">« De l'Espace à la Parcelle. »</strong> Il s'agit d'une interface de navigation et de mise en récit géographique, distincte du traitement scientifique de données opéré par Google Earth Engine.
+              </>
+            )}
+          </p>
+        </div>
+
+        {/* Real Screenshots Grid */}
+        <div className="space-y-3">
+          <h3 className="font-mono text-sm font-semibold text-foreground uppercase tracking-wider">
+            {isEn ? "Live Interface Captures — Interactive 3D Globe" : "Captures de l'Interface Réelle — Globe 3D Interactif"}
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="rounded-lg border border-border/80 overflow-hidden bg-black/60 shadow-sm space-y-2">
+              <div className="relative aspect-video w-full">
+                <Image
+                  src="/images/globe-earth-space.jpg"
+                  alt="Farmer Eye 3D Earth from Space"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-3 text-xs font-mono text-muted-foreground">
+                <strong className="text-foreground block">{isEn ? "Stage 1 — Earth From Space" : "Étape 1 — La Terre vue de l'Espace"}</strong>
+                <span>{isEn ? "Rotating 3D globe, procedural cosmic starfield, and atmospheric lighting." : "Globe 3D interactif, champ d'étoiles procédural et éclairage atmosphérique."}</span>
+              </div>
+            </div>
+
+            <div className="rounded-lg border border-border/80 overflow-hidden bg-black/60 shadow-sm space-y-2">
+              <div className="relative aspect-video w-full">
+                <Image
+                  src="/images/globe-morocco-zoom.jpg"
+                  alt="Farmer Eye Cinematic Zoom to Fès-Saïss"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-3 text-xs font-mono text-muted-foreground">
+                <strong className="text-foreground block">{isEn ? "Stages 3 & 4 — Regional Zoom & Fès–Saïss Briefing" : "Étapes 3 & 4 — Zoom Régional & Fiche Fès–Saïss"}</strong>
+                <span>{isEn ? "Cinematic flight towards Morocco with HUD telemetry and regional context card." : "Vol cinématique vers le Maroc avec télémétrie HUD et fiche contextuelle."}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* The 5 Stages */}
+        <div className="space-y-3">
+          <h3 className="font-mono text-sm font-semibold text-foreground uppercase tracking-wider">
+            {isEn ? "The Experience across 5 Stages" : "Le Déroulé de l'Expérience en 5 Étapes"}
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs font-mono">
+            <div className="p-3 rounded border border-border/70 bg-background space-y-1">
+              <span className="font-bold text-foreground">Stage 1 — Earth From Space</span>
+              <p className="text-muted-foreground font-sans text-xs">
+                {isEn ? "Opens with a rotating 3D Earth, space environment, atmospheric lighting, and navigation controls." : "S'ouvre sur une Terre 3D en rotation, un environnement spatial sombre et des commandes de navigation."}
+              </p>
+            </div>
+            <div className="p-3 rounded border border-border/70 bg-background space-y-1">
+              <span className="font-bold text-foreground">Stage 2 — Regional Selection</span>
+              <p className="text-muted-foreground font-sans text-xs">
+                {isEn ? "User selects a Moroccan agricultural region (e.g. Fès–Saïss) from the interactive dock." : "Sélection d'une région agricole marocaine (ex. Fès–Saïss) via le dock de navigation."}
+              </p>
+            </div>
+            <div className="p-3 rounded border border-border/70 bg-background space-y-1">
+              <span className="font-bold text-foreground">Stage 3 — Cinematic Zoom</span>
+              <p className="text-muted-foreground font-sans text-xs">
+                {isEn ? "Camera flies smoothly from global orbit toward the selected agricultural plain." : "La caméra plonge de manière fluide depuis l'orbite vers la plaine agricole choisie."}
+              </p>
+            </div>
+            <div className="p-3 rounded border border-border/70 bg-background space-y-1">
+              <span className="font-bold text-foreground">Stage 4 — Regional Overview</span>
+              <p className="text-muted-foreground font-sans text-xs">
+                {isEn ? "Contextual card presents agricultural relevance, water challenges, and NASA datasets used." : "Une fiche contextuelle affiche les enjeux hydriques locaux et les données NASA mobilisées."}
+              </p>
+            </div>
+            <div className="p-3 rounded border border-border/70 bg-background space-y-1 sm:col-span-2">
+              <span className="font-bold text-foreground">Stage 5 — Enter Documentation</span>
+              <p className="text-muted-foreground font-sans text-xs">
+                {isEn ? "Geographical background becomes visually subdued as the full technical documentation interface appears." : "L'arrière-plan géographique s'estompe pour laisser place à la documentation technique complète."}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Why We Created This Experience */}
+        <div className="space-y-3">
+          <h3 className="font-mono text-sm font-semibold text-foreground uppercase tracking-wider">
+            {isEn ? "Why We Created This Experience" : "Pourquoi Nous Avons Créé Cette Expérience"}
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs font-mono">
+            <div className="p-3.5 rounded border border-border/70 bg-muted/10 space-y-1.5">
+              <span className="font-bold text-foreground uppercase block text-[11px]">{isEn ? "1. Global Perspective" : "1. Perspective Globale"}</span>
+              <p className="text-muted-foreground font-sans text-xs leading-relaxed">
+                {isEn ? "Environmental and drought challenges extend beyond any single parcel or country." : "Les défis de sécheresse et de changement climatique dépassent les frontières d'une seule parcelle."}
+              </p>
+            </div>
+            <div className="p-3.5 rounded border border-border/70 bg-muted/10 space-y-1.5">
+              <span className="font-bold text-foreground uppercase block text-[11px]">{isEn ? "2. Regional Context" : "2. Contexte Régional"}</span>
+              <p className="text-muted-foreground font-sans text-xs leading-relaxed">
+                {isEn ? "Agricultural decisions depend strictly on local biophysical and water conditions." : "Les décisions culturales dépendent étroitement des conditions biophysiques et hydriques locales."}
+              </p>
+            </div>
+            <div className="p-3.5 rounded border border-border/70 bg-muted/10 space-y-1.5">
+              <span className="font-bold text-foreground uppercase block text-[11px]">{isEn ? "3. Scientific Accessibility" : "3. Accessibilité Scientifique"}</span>
+              <p className="text-muted-foreground font-sans text-xs leading-relaxed">
+                {isEn ? "Complex Earth observation datasets become intuitive when users can explore geography visually." : "Les données spatiales complexes deviennent intuitives lorsque l'utilisateur peut explorer le globe."}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Technical Architecture (Verified) */}
+        <div className="p-4 rounded-md border border-border/70 bg-background space-y-3 text-xs font-mono">
+          <div className="flex items-center gap-2 text-foreground font-semibold">
+            <Cpu className="h-4 w-4 text-emerald-500" />
+            <span>{isEn ? "Technical Architecture & Rendering Stack (Verified in Code):" : "Architecture Technique & Pile de Rendu (Vérifiée dans le Code) :"}</span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div className="p-2.5 rounded bg-muted/20 border border-border/60 space-y-1">
+              <strong className="text-foreground block">{isEn ? "3D Globe Engine:" : "Moteur de Globe 3D :"}</strong>
+              <span className="text-muted-foreground font-sans">
+                MapLibre GL JS (<code>maplibre-gl</code>) configured with custom local worker (<code>/maplibre-gl-worker.js</code>) for isolated multithreaded tile parsing.
+              </span>
+            </div>
+            <div className="p-2.5 rounded bg-muted/20 border border-border/60 space-y-1">
+              <strong className="text-foreground block">{isEn ? "Satellite Imagery Provider:" : "Fournisseur d'Imagerie Satellitaire :"}</strong>
+              <span className="text-muted-foreground font-sans">
+                Raster tiles streamed from ArcGIS World Imagery Server (© Esri, NASA, USGS, ESA) up to zoom level 19.
+              </span>
+            </div>
+            <div className="p-2.5 rounded bg-muted/20 border border-border/60 space-y-1">
+              <strong className="text-foreground block">{isEn ? "Cosmic Starfield & Atmosphere:" : "Champ Stellaire & Atmosphère :"}</strong>
+              <span className="text-muted-foreground font-sans">
+                Procedural HTML5 Canvas starfield (<code>CosmicStarfield.tsx</code>) rendering layered particle stars and horizon glow.
+              </span>
+            </div>
+            <div className="p-2.5 rounded bg-muted/20 border border-border/60 space-y-1">
+              <strong className="text-foreground block">{isEn ? "Flight Transitions & Controls:" : "Transitions & Télémétrie :"}</strong>
+              <span className="text-muted-foreground font-sans">
+                Programmatic camera flight curves (<code>flyToRegion</code>, pitch, bearing) with live altitude and coordinate HUD telemetry.
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Relationship With NASA Data */}
+        <div className="p-4 rounded border border-border/80 bg-muted/20 text-xs font-mono space-y-2">
+          <div className="flex items-center gap-2 text-foreground font-semibold">
+            <AlertTriangle className="h-4 w-4 text-amber-500" />
+            <span>{isEn ? "Strict Distinction: Visual Interface vs. Scientific Data Services:" : "Distinction Stricte : Interface Visuelle vs Services Scientifiques :"}</span>
+          </div>
+          <p className="text-muted-foreground font-sans text-xs leading-relaxed">
+            {isEn ? (
+              <>
+                The visual 3D Earth interface and the scientific data pipelines have distinct responsibilities:
+                <br />
+                • <strong className="text-foreground">The 3D Globe interface</strong> presents geographical storytelling and user navigation.
+                <br />
+                • <strong className="text-foreground">NASA POWER</strong> supplies meteorological and solar radiation time series.
+                <br />
+                • <strong className="text-foreground">NASA SMAP</strong> supplies regional modeled and assimilated soil moisture.
+                <br />
+                • <strong className="text-foreground">Google Earth Engine</strong> provides data retrieval and processing of SMAP Level-4 image collections.
+                <br />
+                <span className="font-semibold text-foreground block mt-1.5">
+                  The visual 3D map itself is NOT proof of field-level satellite measurement accuracy.
+                </span>
+              </>
+            ) : (
+              <>
+                L'interface visuelle du globe 3D et les pipelines de données scientifiques ont des rôles strictement séparés :
+                <br />
+                • <strong className="text-foreground">Le Globe 3D</strong> assure la mise en récit géographique et la navigation interactive.
+                <br />
+                • <strong className="text-foreground">NASA POWER</strong> fournit les séries temporelles météorologiques et de rayonnement.
+                <br />
+                • <strong className="text-foreground">NASA SMAP</strong> fournit l'humidité régionale modélisée et assimilée.
+                <br />
+                • <strong className="text-foreground">Google Earth Engine</strong> permet l'extraction et le traitement des collections SMAP L4.
+                <br />
+                <span className="font-semibold text-foreground block mt-1.5">
+                  La carte visuelle 3D en elle-même NE constitue PAS une preuve de précision de mesure au champ.
+                </span>
+              </>
+            )}
+          </p>
+        </div>
+
+        {/* Global Vision */}
+        <div className="space-y-1.5 text-xs text-muted-foreground font-sans">
+          <strong className="font-mono text-foreground uppercase block text-xs">{isEn ? "Global Vision:" : "Vision Globale :"}</strong>
+          <p className="leading-relaxed">
+            {isEn
+              ? "The Moroccan regions displayed in the interactive experience serve as demonstrations of the broader Farmer Eye concept. The project’s objective is to make Earth observation-based agricultural decision-support adaptable to diverse semi-arid basins worldwide, supported by local agronomic calibration and empirical ground validation."
+              : "Les régions marocaines présentées dans l'expérience interactive constituent des démonstrations du concept global de Farmer Eye. L'objectif est de rendre l'aide à la décision agricole fondée sur l'observation de la Terre applicable à divers bassins semi-arides mondiaux, avec les calibrations locales appropriées."}
+          </p>
         </div>
       </section>
 

@@ -137,6 +137,10 @@ const LOCALIZED_DOSSIER: LocalizedCategoryData[] = [
             title: { en: "7 Meteorological Variables (Table 9.1)", fr: "7 variables météo (Tableau 9.1)" },
           },
           {
+            id: "power-climate-intelligence",
+            title: { en: "NASA POWER — Climate Intelligence", fr: "NASA POWER — Intelligence Climatique" },
+          },
+          {
             id: "power-quality",
             title: { en: "Quality Handling & Missing-Data Markers", fr: "Traitement qualité et marqueurs de lacunes" },
           },
@@ -165,6 +169,10 @@ const LOCALIZED_DOSSIER: LocalizedCategoryData[] = [
           {
             id: "smap-catalogue",
             title: { en: "SMAP L4 SPL4SMGP Collection & 5 Fields", fr: "Collection SMAP L4 SPL4SMGP et 5 champs" },
+          },
+          {
+            id: "gee-integration",
+            title: { en: "Google Earth Engine Integration", fr: "Intégration Google Earth Engine" },
           },
           {
             id: "smap-extraction-example",
@@ -199,6 +207,10 @@ const LOCALIZED_DOSSIER: LocalizedCategoryData[] = [
           {
             id: "functional-architecture",
             title: { en: "Functional Architecture (Figure 7.1)", fr: "Architecture fonctionnelle (Figure 7.1)" },
+          },
+          {
+            id: "interactive-3d-earth",
+            title: { en: "Interactive 3D Earth Experience", fr: "Expérience Géospatiale 3D Interactive" },
           },
           {
             id: "request-trace",
