@@ -5,6 +5,13 @@ import { useDocsContext } from "@/context/DocsContext";
 import { EvidenceBadge } from "@/components/docs/EvidenceBadge";
 import { CodeBlock } from "@/components/docs/CodeBlock";
 import {
+  Esp32ArchitectureDiagram,
+  SensorWiringSchematicDiagram,
+  SensorCalibrationCurveChart,
+  SmapVsGroundComplementarityDiagram,
+  IotTelemetryPipelineDiagram,
+} from "@/components/docs/charts/IotCharts";
+import {
   Cpu,
   Layers,
   Activity,
@@ -153,6 +160,7 @@ export function Esp32HardwareChapterView({ activeSubChapterId }: ChapterViewProp
         <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2">
           {isEn ? "03 — Implemented Architecture & Pinout" : "03 — Architecture Implémentée & Brochage"}
         </h2>
+        <Esp32ArchitectureDiagram />
         <div className="p-4 rounded-md border border-border/70 bg-muted/20 font-mono text-xs overflow-x-auto my-3">
           <pre>{`+--------------------------------------------------------------+
 |                     ESP32 EDGE FIELD NODE                    |
@@ -470,6 +478,7 @@ export function WiringAndFirmwareChapterView({ activeSubChapterId }: ChapterView
         <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2">
           {isEn ? "01 — Physical Wiring & Pinout Architecture" : "01 — Câblage Physique & Brochage"}
         </h2>
+        <SensorWiringSchematicDiagram />
         <div className="p-4 rounded-md border border-border/70 bg-muted/20 font-mono text-xs overflow-x-auto my-3">
           <pre>{`+-------------------+                    +-----------------------+
 |  SparkFun Soil    |                    |    ESP32 DevKit v1    |
@@ -654,6 +663,7 @@ export function SensorCalibrationChapterView({ activeSubChapterId }: ChapterView
         <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2">
           {isEn ? "04 — Soil-Specific Calibration Curves (Tirs vs. Hamri)" : "04 — Courbes d'Étalonnage par Type de Sol (Tirs vs Hamri)"}
         </h2>
+        <SensorCalibrationCurveChart />
         <div className="space-y-3 text-xs font-mono">
           <div className="p-3 rounded-md border border-border/70 bg-muted/20">
             <span className="text-foreground font-bold block mb-1">Hamri (Chromic Luvisol — Silt Loam):</span>
@@ -710,6 +720,7 @@ export function IotTelemetryChapterView({ activeSubChapterId }: ChapterViewProps
         <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2">
           {isEn ? "02 — Proposed TypeScript-Compatible JSON Contract" : "02 — Contrat JSON Compatible TypeScript"}
         </h2>
+        <IotTelemetryPipelineDiagram />
         <div className="p-4 rounded-md border border-border/70 bg-muted/20 font-mono text-xs overflow-x-auto">
           <pre>{`{
   "device_id": "FE-NODE-SAISS-01",
@@ -851,6 +862,7 @@ export function SmapVsGroundSensorsChapterView({ activeSubChapterId }: ChapterVi
         <h2 className="text-xl font-semibold tracking-tight text-foreground border-b border-border/60 pb-2">
           {isEn ? "04 — Conceptual Complementary Integration Framework" : "04 — Cadre d'Intégration Complémentaire Conceptuel"}
         </h2>
+        <SmapVsGroundComplementarityDiagram />
         <div className="p-4 rounded-md border border-border/70 bg-muted/20 font-mono text-xs overflow-x-auto text-center">
           <pre>{`NASA SMAP Regional Baseline (81 km² macro trends)
                     +
