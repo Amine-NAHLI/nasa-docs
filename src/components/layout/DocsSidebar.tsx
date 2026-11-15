@@ -103,7 +103,7 @@ export function DocsSidebar({
                       <button
                         type="button"
                         onClick={() => handleChapterClick(chapter.id, firstSubId)}
-                        className="flex-1 text-left py-1.5 px-2 truncate cursor-pointer"
+                        className="flex-1 text-left py-2 sm:py-1.5 px-2.5 sm:px-2 truncate cursor-pointer"
                         title={chapter.title}
                       >
                         {chapter.title}
@@ -114,7 +114,7 @@ export function DocsSidebar({
                           type="button"
                           onClick={(e) => handleToggleChevron(e, chapter.id)}
                           aria-label={isOpen ? "Collapse chapter" : "Expand chapter"}
-                          className="p-1.5 mr-1 text-muted-foreground/70 hover:text-foreground rounded transition-transform cursor-pointer"
+                          className="p-2 sm:p-1.5 mr-1 text-muted-foreground/70 hover:text-foreground rounded transition-transform cursor-pointer"
                         >
                           <ChevronRight
                             className={cn(
@@ -141,7 +141,7 @@ export function DocsSidebar({
                                 handleSubChapterClick(chapter.id, sub.id)
                               }
                               className={cn(
-                                "w-full text-left py-1 px-2 rounded text-[12px] leading-relaxed transition-colors block cursor-pointer truncate",
+                                "w-full text-left py-1.5 sm:py-1 px-2.5 sm:px-2 rounded text-[12px] leading-relaxed transition-colors block cursor-pointer truncate",
                                 isSubActive
                                   ? "text-foreground font-medium bg-muted/70 shadow-xs"
                                   : "text-muted-foreground hover:text-foreground hover:bg-muted/30"

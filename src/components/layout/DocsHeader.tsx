@@ -20,11 +20,11 @@ export function DocsHeader({ onOpenMobileNav }: DocsHeaderProps) {
 
   return (
     <>
-      {/* Minimal Top Announcement Banner */}
-      <div className="w-full bg-zinc-50 dark:bg-zinc-950 border-b border-border/60 py-1 px-4 text-center text-xs text-muted-foreground font-sans flex items-center justify-center gap-2 select-none">
-        <span className="font-mono text-[11px]">NASA SPACE APPS 2026</span>
-        <span className="text-border">•</span>
-        <span>
+      {/* Minimal Top Announcement Banner - Responsive Truncation */}
+      <div className="w-full bg-zinc-50 dark:bg-zinc-950 border-b border-border/60 py-1 px-3 sm:px-4 text-center text-[10px] sm:text-xs text-muted-foreground font-sans flex items-center justify-center gap-1.5 sm:gap-2 select-none overflow-hidden">
+        <span className="font-mono text-[10px] sm:text-[11px] font-semibold shrink-0">NASA SPACE APPS 2026</span>
+        <span className="text-border shrink-0">•</span>
+        <span className="truncate">
           {isEn
             ? "Global Agricultural Decision-Support Platform · Planetary Earth Observation"
             : "Plateforme Agricole Planétaire d'Aide à la Décision · Observation Globale de la Terre"}
@@ -32,37 +32,37 @@ export function DocsHeader({ onOpenMobileNav }: DocsHeaderProps) {
       </div>
 
       {/* Main Sticky Header */}
-      <header className="sticky top-0 z-40 h-14 w-full border-b border-border/60 bg-background/85 backdrop-blur-md px-4 sm:px-6">
-        <div className="flex h-full items-center justify-between gap-3 sm:gap-4 max-w-7xl mx-auto">
-          {/* Left: Brand Identity + Category */}
-          <div className="flex items-center gap-3 sm:gap-4 shrink-0">
-            {/* Mobile Menu Button */}
+      <header className="sticky top-0 z-40 h-14 w-full border-b border-border/60 bg-background/85 backdrop-blur-md px-3 sm:px-6">
+        <div className="flex h-full items-center justify-between gap-2 sm:gap-4 max-w-7xl mx-auto">
+          {/* Left: Mobile Menu Toggle + Brand Identity */}
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            {/* Mobile Menu Button (Hamburger) */}
             {onOpenMobileNav && (
               <button
                 type="button"
                 onClick={onOpenMobileNav}
-                className="lg:hidden p-1.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer"
+                className="lg:hidden p-1.5 -ml-1 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer"
                 aria-label={isEn ? "Open navigation" : "Ouvrir le menu"}
               >
-                <Menu className="h-4 w-4" />
+                <Menu className="h-5 w-5" />
               </button>
             )}
 
             {/* Logo + Title */}
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="relative w-8 h-8 flex items-center justify-center shrink-0">
+            <Link href="/" className="flex items-center gap-2 sm:gap-2.5 group">
+              <div className="relative w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center shrink-0">
                 <Image
                   src="/images/Logo_Farmer_Eye__œil_agricole_coloré-removebg-preview.png"
                   alt="Farmer Eye Logo"
-                  width={32}
-                  height={32}
+                  width={30}
+                  height={30}
                   className="object-contain"
                   priority
                 />
               </div>
 
-              <div className="flex items-center gap-2">
-                <span className="font-semibold text-sm tracking-tight text-foreground group-hover:text-foreground/90 transition-colors">
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <span className="font-semibold text-xs sm:text-sm tracking-tight text-foreground group-hover:text-foreground/90 transition-colors">
                   Farmer Eye
                 </span>
                 <span className="text-muted-foreground/30 font-mono text-xs select-none">/</span>
@@ -74,17 +74,20 @@ export function DocsHeader({ onOpenMobileNav }: DocsHeaderProps) {
           </div>
 
           {/* Center: Search Box */}
-          <div className="flex-1 max-w-md mx-2 sm:mx-6">
+          <div className="flex-1 max-w-md mx-1 sm:mx-6">
             <button
               type="button"
               onClick={() => setIsSearchOpen(true)}
-              className="w-full flex items-center justify-between px-3 py-1.5 rounded-md border border-border/70 bg-muted/30 hover:bg-muted/60 hover:border-border text-xs text-muted-foreground transition-all cursor-pointer"
+              className="w-full flex items-center justify-between px-2.5 sm:px-3 py-1.5 rounded-md border border-border/70 bg-muted/30 hover:bg-muted/60 hover:border-border text-xs text-muted-foreground transition-all cursor-pointer"
               aria-label={isEn ? "Search documentation" : "Rechercher dans la documentation"}
             >
               <div className="flex items-center gap-2 truncate">
                 <Search className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
-                <span className="truncate">
+                <span className="hidden sm:inline truncate">
                   {isEn ? "Search documentation..." : "Rechercher dans la documentation..."}
+                </span>
+                <span className="sm:hidden text-[11px] truncate">
+                  {isEn ? "Search..." : "Rechercher..."}
                 </span>
               </div>
               <kbd className="hidden sm:inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-background border border-border/80 text-[10px] font-mono text-muted-foreground">
@@ -93,15 +96,15 @@ export function DocsHeader({ onOpenMobileNav }: DocsHeaderProps) {
             </button>
           </div>
 
-          {/* Right: Language Switcher + GitHub + Theme Toggle */}
-          <div className="flex items-center gap-2 shrink-0">
+          {/* Right: Language Switcher + Theme Toggle */}
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             {/* Language Switcher */}
             <div className="flex items-center rounded-md border border-border/70 p-0.5 text-xs font-mono">
               <button
                 type="button"
                 onClick={() => setLang("en")}
                 className={cn(
-                  "px-2 py-0.5 rounded text-[11px] transition-colors cursor-pointer",
+                  "px-1.5 sm:px-2 py-0.5 rounded text-[10px] sm:text-[11px] transition-colors cursor-pointer",
                   lang === "en"
                     ? "bg-foreground text-background font-medium"
                     : "text-muted-foreground hover:text-foreground"
@@ -114,7 +117,7 @@ export function DocsHeader({ onOpenMobileNav }: DocsHeaderProps) {
                 type="button"
                 onClick={() => setLang("fr")}
                 className={cn(
-                  "px-2 py-0.5 rounded text-[11px] transition-colors cursor-pointer",
+                  "px-1.5 sm:px-2 py-0.5 rounded text-[10px] sm:text-[11px] transition-colors cursor-pointer",
                   lang === "fr"
                     ? "bg-foreground text-background font-medium"
                     : "text-muted-foreground hover:text-foreground"
